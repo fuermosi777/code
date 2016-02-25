@@ -23,7 +23,7 @@ public class Percolation {
     }
 
     private int coordinateToIndex(int y, int x) {
-        
+
     }
 
     public void open(int i, int j) {
