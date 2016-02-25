@@ -12,15 +12,20 @@ public class Percolation {
         sites = new WeightedQuickUnionUF(N * N + 2);
 
         sitesMap = new int[N][N];
-        int index = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                sitesMap[i][j] = index;
-                index++;
+        for (int y = 0; y < N; y++) {
+            for (int x = 0; x < N; x++) {
+                // 0 - block, 1 - open
+                // y - row, x - col
+                sitesMap[y][x] = 0;
             }
         }
 
     }
+
+    private int coordinateToIndex(int y, int x) {
+        
+    }
+
     public void open(int i, int j) {
 
     }
@@ -35,6 +40,6 @@ public class Percolation {
     }
     public static void main(String[] args) {
         Percolation p = new Percolation(10);
-        StdOut.print(p.sites.count());
+        StdOut.print(p.sites.find(4));
     }
 }
