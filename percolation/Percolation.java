@@ -1,5 +1,6 @@
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class Percolation {
     private int n;
@@ -32,12 +33,15 @@ public class Percolation {
     }
 
     public void open(int i, int j) {
+        if (i < 1 || i > n || j < 1 || j > n) {
+            throw new java.lang.IndexOutOfBoundsException();
+        }
         sitesMap[i - 1][j - 1] = 1;
         int index = coordinateToIndex(i - 1, j - 1);
         if (i - 1 == 0) {
             sites.union(index, top);
         }
-        if (i - 1 == n) {
+        if (i == n) {
             sites.union(index, bottom);
         }
         // up
@@ -46,7 +50,7 @@ public class Percolation {
         }
         // down
         if (i < n && isOpen(i + 1, j)) {
-            sites.union(coordinateToIndex(i + 2, j - 1), index);
+            sites.union(coordinateToIndex(i, j - 1), index);
         }
         // left
         if (j > 1 && isOpen(i, j - 1)) {
@@ -54,24 +58,50 @@ public class Percolation {
         }
         // right
         if (j < n && isOpen(i, j + 1)) {
-            sites.union(coordinateToIndex(i - 1, j + 2), index);
+            sites.union(coordinateToIndex(i - 1, j), index);
         }
     }
     public boolean isOpen(int i, int j) {
+        if (i < 1 || i > n || j < 1 || j > n) {
+            throw new java.lang.IndexOutOfBoundsException();
+        }
         return sitesMap[i - 1][j - 1] == 1;
     }
     public boolean isFull(int i, int j) {
+        if (i < 1 || i > n || j < 1 || j > n) {
+            throw new java.lang.IndexOutOfBoundsException();
+        }
         return sites.connected(coordinateToIndex(i - 1, j - 1), top);
     }
     public boolean percolates() {
         return sites.connected(top, bottom);
     }
     public static void main(String[] args) {
-        Percolation p = new Percolation(5);
-        p.open(1, 2);
+        Percolation p = new Percolation(20);
+        /*
+        p.open(1, 1);
+        p.open(2, 1);
         p.open(2, 2);
-        p.open(2, 3);
-        StdOut.println(p.isFull(2, 4));
+        p.open(3, 1);
+        p.open(3, 3);
+        StdOut.println(p.percolates());
+        */
+
+        int openNum = 0;
+        while (!p.percolates()) {
+            int randI = StdRandom.uniform(1, 20 + 1);
+            int randJ = StdRandom.uniform(1, 20 + 1);
+            StdOut.print(randI);
+            StdOut.print(randJ);
+            StdOut.println(' ');
+            if (!p.isOpen(randI, randJ)) {
+                p.open(randI, randJ);
+                openNum += 1;
+            }
+        }
+
+        double pp = (double)openNum / 400;
+        StdOut.println(pp);
         /*
         for (int x = 0; x < p.n; x++) {
             for (int y = 0; y < p.n; y++) {
