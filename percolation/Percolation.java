@@ -91,9 +91,9 @@ public class Percolation {
         while (!p.percolates()) {
             int randI = StdRandom.uniform(1, 20 + 1);
             int randJ = StdRandom.uniform(1, 20 + 1);
-            StdOut.print(randI);
-            StdOut.print(randJ);
-            StdOut.println(' ');
+            //StdOut.print(randI);
+            //StdOut.print(randJ);
+            //StdOut.println(' ');
             if (!p.isOpen(randI, randJ)) {
                 p.open(randI, randJ);
                 openNum += 1;
@@ -101,7 +101,7 @@ public class Percolation {
         }
 
         double pp = (double)openNum / 400;
-        StdOut.println(pp);
+        //StdOut.println(pp);
         /*
         for (int x = 0; x < p.n; x++) {
             for (int y = 0; y < p.n; y++) {
