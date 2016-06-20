@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class ArrayDeque<Item> implements Iterable<> {
+public class ArrayDeque<Item> implements Iterable<Item> {
     private int N = 0;
     private Item[] a = (Item[]) new Object[1];
     private int left = 0;
@@ -62,12 +62,12 @@ public class ArrayDeque<Item> implements Iterable<> {
 
     //}
 
-    private class ArrayDequeIterator<Item> implements Iterator<Item> {
+    private class ArrayDequeIterator implements Iterator<Item> {
         public Item next() {
-
+            return a[0];
         }
         public boolean hasNext() {
-
+            return true;
         }
     }
     public static void main(String[] args) {
