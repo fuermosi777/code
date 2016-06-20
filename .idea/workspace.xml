@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798e228e-de25-4d6f-8d0c-37a001e6259c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/1.3.15/PrintBackward.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/1.3.31/DualLinkedList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/1.3.33/ArrayDeque.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/1.3.33/Deque.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="exercise.iws" />
@@ -67,7 +63,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="38" />
+    <option name="x" value="72" />
     <option name="y" value="23" />
     <option name="width" value="1340" />
     <option name="height" value="873" />
@@ -121,10 +117,6 @@
               <option name="myItemId" value="exercise" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -133,6 +125,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="exercise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -669,15 +665,15 @@
       <workItem from="1466018178451" duration="23000" />
       <workItem from="1466018211172" duration="446000" />
       <workItem from="1466023239506" duration="7452000" />
-      <workItem from="1466192213476" duration="10923000" />
+      <workItem from="1466192213476" duration="12529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24054000" />
+    <option name="totallyTimeSpent" value="25660000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="38" y="23" width="1340" height="873" extended-state="0" />
+    <frame x="72" y="23" width="1340" height="873" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
