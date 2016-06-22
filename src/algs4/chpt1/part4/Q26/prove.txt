@@ -1,0 +1,19 @@
+y = xi + j
+
+a^3 = ai + j
+b^3 = bi + j
+
+i = (a^3 - b^3)/(a - b)
+j = -ab(a + b)
+
+if a + b + c = 0
+then c = - (a + b)
+
+prove ci + j = c^3
+
+ci + j
+= - (a + b)(a^3 - b^3)/(a - b) + -ab(a + b)
+= - (a + b)(a^2 + ab + b^2) - ab(a + b)
+= - (a + b)(a^2 + 2ab + b^2)
+= - (a + b)^3
+= c^3
