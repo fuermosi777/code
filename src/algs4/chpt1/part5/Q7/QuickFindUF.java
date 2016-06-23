@@ -6,6 +6,7 @@ package algs4.chpt1.part5.Q7;
 public class QuickFindUF {
     private int[] a;
     private int count;
+
     public QuickFindUF(int N) {
         a = new int[N];
         count = N;
@@ -30,7 +31,7 @@ public class QuickFindUF {
         if (pid == qid) return;
 
         for (int i = 0; i < a.length; i++) {
-            if (pid == find(i)) {
+            if (a[i] == pid) {
                 a[i] = qid;
             }
         }
