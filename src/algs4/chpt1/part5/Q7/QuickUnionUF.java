@@ -31,6 +31,7 @@ public class QuickUnionUF {
         int pid = find(p);
         int qid = find(q);
         if (pid == qid) return;
-        a[p]
+        a[p] = qid;
+        count--;
     }
 }

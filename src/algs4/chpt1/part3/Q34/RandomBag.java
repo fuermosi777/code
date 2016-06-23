@@ -1,6 +1,6 @@
-import java.util.Iterator;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+package algs4.chpt1.part3.Q34;
+
+import java.util.*;
 
 public class RandomBag<Item> implements Iterable<Item> {
     public Item[] a;
@@ -36,14 +36,12 @@ public class RandomBag<Item> implements Iterable<Item> {
         private int s = 0;
 
         public RandomBagIterator() {
-            if (N > 1) {
-                Random rnd = ThreadLocalRandom.current();
-                for (int i = a.length - 1; i > 0; i--) {
-                    int index = rnd.nextInt(i + 1);
-                    Item item = a[index];
-                    a[index] = a[i];
-                    a[i] = item;
-                }
+            Random rand = new Random();
+            for (int i = 0; i < N; i++) {
+                int randomPos = rand.nextInt(N);
+                Item temp = a[i];
+                a[i] = a[randomPos];
+                a[randomPos] = temp;
             }
         }
 
