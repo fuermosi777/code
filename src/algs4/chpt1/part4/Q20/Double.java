@@ -1,3 +1,5 @@
+package algs4.chpt1.part4.Q20;
+
 public class Double {
     public static void main(String[] args) {
         int[] a = {0,1,2,4,5,6,7,8,10,13,15,26,9,7,6,5,3,2};
