@@ -10,9 +10,9 @@ public class Shell {
         return a.compareTo(b) < 0;
     }
     private static void exch(Comparable[] a, int x, int y) {
-        Comparable t = a[x];
-        a[x] = y;
-        a[y] = t;
+        Comparable temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
     }
     public static void sort(Comparable[] a) {
         int N = a.length;
