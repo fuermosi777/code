@@ -1,5 +1,6 @@
 package algs4.chpt2.part4.A6;
 
+import algs4.chpt2.part3.A5.Quick;
 import algs4.helper.RandomArrayOfInts;
 
 import java.util.Arrays;
@@ -24,6 +25,9 @@ public class MaxPQ<Item extends Comparable<Item>> {
         pq[N + 1] = item;
         N++;
         swim(N);
+    }
+    public Item[] array() {
+        return pq;
     }
     public Item delMax() {
         Item max = pq[1];
@@ -53,18 +57,16 @@ public class MaxPQ<Item extends Comparable<Item>> {
     }
     private void sink(int k) {
         while (true) {
-            if (k * 2 > N) break;
-            int x = k * 2;
-            int y = x + 1;
-            if (less(k, x)) {
-                exch(k, x);
-                k = x;
-            } else if (less(k, y)) {
-                exch(k, y);
-                k = y;
-            } else {
-                break;
+            if (2 * k > N) break;
+            int j = 2 * k;
+            if (j < N && pq[j].compareTo(pq[j + 1]) < 0) {
+                j++;
             }
+            if (pq[k].compareTo(pq[j]) < 0) {
+                exch(k, j);
+            }
+            k = j;
+
         }
     }
     public static void main(String[] args) {
