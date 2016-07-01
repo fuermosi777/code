@@ -1,8 +1,5 @@
 package algs4.chpt2.part4.A6;
 
-import algs4.chpt2.part3.A5.Quick;
-import algs4.helper.RandomArrayOfInts;
-
 import java.util.Arrays;
 
 /**
