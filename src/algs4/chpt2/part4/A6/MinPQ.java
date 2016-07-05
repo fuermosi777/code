@@ -18,6 +18,14 @@ public class MinPQ<Item extends Comparable<Item>> {
         swim(N);
     }
 
+    public boolean isEmpty() {
+        return N == 0;
+    }
+
+    public int size() {
+        return N;
+    }
+
     public Item delMin() {
         Item min = pq[1];
         exch(1, N);
@@ -28,7 +36,7 @@ public class MinPQ<Item extends Comparable<Item>> {
     }
 
     private void sink(int k) {
-        while (2 * k < N) {
+        while (2 * k <= N) {
             int j = 2 * k;
             if (j < N && !less(2 * k, 2 * k + 1)) j++;
             if (less(j, k)) {
@@ -53,19 +61,21 @@ public class MinPQ<Item extends Comparable<Item>> {
         pq[j] = t;
     }
 
+    public String toString() {
+        return Arrays.toString(pq);
+    }
+
     private boolean less(int i, int j) {
         return pq[i].compareTo(pq[j]) < 0;
     }
     public static void main(String[] args) {
         Integer[] a = {6,3,7,0,2,8,7,4,9,1,4,2,0};
         MinPQ mpq = new MinPQ(a.length);
-        mpq.insert(6);
-        mpq.insert(3);
-        mpq.insert(7);
-        mpq.insert(5);
-        mpq.insert(2);
+        mpq.insert(235592);
+        mpq.insert(235592);
         mpq.delMin();
-        mpq.insert(4);
-        System.out.println(Arrays.toString(mpq.pq));
+        mpq.insert(245592);
+
+        System.out.println(mpq.toString());
     }
 }
