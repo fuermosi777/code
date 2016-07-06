@@ -34,6 +34,9 @@ public class MaxPQ<Item extends Comparable<Item>> {
         sink(1);
         return max;
     }
+    public Item max() {
+        return pq[1];
+    }
     private boolean less(int i, int j) {
         if (pq[i].compareTo(pq[j]) < 0) {
             return true;

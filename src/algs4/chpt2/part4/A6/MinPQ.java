@@ -35,6 +35,10 @@ public class MinPQ<Item extends Comparable<Item>> {
         return min;
     }
 
+    public Item min() {
+        return pq[1];
+    }
+
     private void sink(int k) {
         while (2 * k <= N) {
             int j = 2 * k;
