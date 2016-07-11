@@ -1,11 +1,12 @@
 package algs4.chpt2.part4.A6;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Created by hao on 6/30/16.
  */
-public class MinPQ<Item extends Comparable<Item>> {
+public class MinPQ<Item extends Comparable<Item>> implements Iterable<Item> {
     private Item[] pq;
     private int N = 0;
 
@@ -20,6 +21,10 @@ public class MinPQ<Item extends Comparable<Item>> {
 
     public boolean isEmpty() {
         return N == 0;
+    }
+
+    public boolean isFull() {
+        return N == pq.length - 1;
     }
 
     public int size() {
@@ -72,6 +77,24 @@ public class MinPQ<Item extends Comparable<Item>> {
     private boolean less(int i, int j) {
         return pq[i].compareTo(pq[j]) < 0;
     }
+
+    public Iterator<Item> iterator() {
+        return new MinPQIterator();
+    }
+
+    private class MinPQIterator implements Iterator<Item> {
+        private int flag = 1;
+        public Item next() {
+            Item item = pq[flag];
+            flag++;
+            return item;
+        }
+        public boolean hasNext() {
+            if (flag <= N) return true;
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         Integer[] a = {6,3,7,0,2,8,7,4,9,1,4,2,0};
         MinPQ mpq = new MinPQ(a.length);

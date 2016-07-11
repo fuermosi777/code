@@ -1,0 +1,11 @@
+task1 10
+task2 3
+task3 15
+task4 25
+task5 10
+task6 30
+task7 20
+task8 5
+task9 35
+task10 27
+task11 20

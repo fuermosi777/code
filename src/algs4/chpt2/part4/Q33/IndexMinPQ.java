@@ -1,5 +1,7 @@
 package algs4.chpt2.part4.Q33;
 
+import java.util.Arrays;
+
 /**
  * Created by hao on 7/7/16.
  */
