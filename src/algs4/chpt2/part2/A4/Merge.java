@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by hao on 6/27/16.
  */
-public class Merge {
+public class Merge { 
 
     private static Comparable[] aux;
 
