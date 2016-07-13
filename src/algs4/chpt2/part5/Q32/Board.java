@@ -124,6 +124,8 @@ public class Board {
     }
 
     public int priority() {
+        if (done()) return 0;
+
         // position
         int count = 0;
         for (int i = 1; i < pos.length; i++) {
@@ -138,7 +140,7 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board b = new Board("1 3 6 4 8 5 0 7 2");
+        Board b = new Board("1 2 3 4 6 5 7 0 8");
         b.print();
         b.priority();
     }
