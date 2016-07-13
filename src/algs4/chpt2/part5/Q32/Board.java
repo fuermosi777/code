@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Created by hao on 7/12/16.
  */
-public class Board {
+public class Board implements Comparable<Board> {
     /* turn "1 2 3 4 5 6 7 8 0" to Board
 
     1 | 2 | 3
@@ -114,7 +114,11 @@ public class Board {
     public void print() {
         System.out.print("----------\n");
         for (int i = 0; i < points.length; i++) {
-            System.out.print(points[i].value);
+            if (points[i].value != 0 ) {
+                System.out.print(points[i].value);
+            } else {
+                System.out.print(" ");
+            }
             if ((i + 1) % 3 == 0) {
                 System.out.print("\n----------\n");
             } else {
@@ -126,23 +130,29 @@ public class Board {
     public int priority() {
         if (done()) return 0;
 
+        Board doneBoard = new Board("1 2 3 4 5 6 7 8 0");
         // position
         int count = 0;
         for (int i = 1; i < pos.length; i++) {
             if (points[i - 1].value != i) {
-                System.out.println(i);
+                Point j = points[pos[i]];
+                Point k = doneBoard.points[i - 1];
+                count += Math.abs(j.x - k.x) + Math.abs(j.y - k.y);
                 count++;
             }
         }
-        Point[] missplacedPoints = new Point[count];
 
+        return count;
+    }
+
+    public int compareTo(Board that) {
+        if (this.priority() > that.priority()) return 1;
+        if (this.priority() < that.priority()) return -1;
         return 0;
     }
 
     public static void main(String[] args) {
-        Board b = new Board("1 2 3 4 6 5 7 0 8");
-        b.print();
-        b.priority();
+
     }
 
 }
