@@ -20,10 +20,6 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private Node root;
 
-    public BST() {
-
-    }
-
     public int size() {
         return size(root);
     }
