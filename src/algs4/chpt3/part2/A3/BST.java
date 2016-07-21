@@ -1,5 +1,6 @@
 package algs4.chpt3.part2.A3;
 
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -135,6 +136,83 @@ public class BST<Key extends Comparable<Key>, Value> {
         return n.key;
     }
 
+    // 3.2.29
+    private int altSize(Node node) {
+        if (node == null) return 0;
+        return altSize(node.left) + altSize(node.right) + 1;
+    }
+    public boolean isBinaryTree(Node node) {
+        return altSize(root) == root.N;
+    }
+
+    // 3.2.30
+    public boolean isOrdered(Node node, Key min, Key max) {
+        if (node == null) return false;
+
+        if (node.key.compareTo(min) < 0 || node.key.compareTo(max) > 0) return false;
+
+        if (node.left != null) {
+            return isOrdered(node.left, min, max);
+        }
+
+        if (node.right != null) {
+            return isOrdered(node.right, min, max);
+        }
+
+        if (node.left == null && node.right == null) {
+            return node.key.compareTo(min) >= 0 && node.key.compareTo(max) <= 0;
+        }
+
+        return false;
+    }
+
+    // 3.2.36
+    public Iterable<Key> keys() {
+        Queue<Key> q = new Queue<>();
+        Stack<Node> s = new Stack<>();
+
+        if (root == null) return null;
+
+        Node n = root;
+        s.push(n);
+
+        while (!s.isEmpty()) {
+            Node out = s.pop();
+            q.enqueue(out.key);
+            if (out.left != null) {
+                s.push(out.left);
+            }
+            if (out.right != null) {
+                s.push(out.right);
+            }
+        }
+
+        return q;
+    }
+
+    // 3.2.37
+    public void printLevel(Node node) {
+        if (node == null) return;
+        Queue<Node> q = new Queue<>();
+        q.enqueue(node);
+        while (!q.isEmpty()) {
+            Queue<Node> temp = new Queue<>();
+            while (!q.isEmpty()) {
+                temp.enqueue(q.dequeue());
+            }
+            for (Node n : temp) {
+                System.out.print(n.key);
+                if (n.left != null) {
+                    q.enqueue(n.left);
+                }
+                if (n.right != null) {
+                    q.enqueue(n.right);
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
     public Key floor(Key key) {
         return null;
     }
@@ -239,8 +317,9 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     public static void main(String[] args) {
         BST<String, Integer> bst = new BST<>();
-        bst.altPut("A", 1);
         bst.altPut("C", 2);
+        bst.altPut("A", 1);
+
         bst.altPut("F", 5);
         bst.altPut("B", 5);
         bst.altPut("G", 5);
@@ -258,6 +337,12 @@ public class BST<Key extends Comparable<Key>, Value> {
         bst.print();
 
         System.out.println("height: " + bst.height());
+
+        System.out.println("keys: " + bst.keys().toString());
+
+        System.out.println("printRoot: ");
+        bst.printLevel(bst.root);
+
     }
 
 }
