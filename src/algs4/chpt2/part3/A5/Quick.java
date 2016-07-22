@@ -48,11 +48,12 @@ public class Quick {
     }
 
     public static void main(String[] args) {
-        int[] a = RandomArrayOfInts.generate(40, 1, 10);
+        int[] a = RandomArrayOfInts.generate(10, 1, 10);
         Integer[] b = RandomArrayOfInts.toInteger(a);
         String[] c = {"E", "A", "S", "Y", "Q", "U", "E", "S", "T", "I", "O", "N"};
         Integer[] d = {1,0,1,0,0,1,1,1,0,1,0,1,1,1,0,0,1,0,0,1,0,1};
-        sort(b);
-        System.out.println(Arrays.toString(b));
+        Integer[] e = {3,2,4,5,7,1,9,8,6};
+        sort(e);
+        System.out.println(Arrays.toString(e));
     }
 }
