@@ -46,7 +46,7 @@ public class RBT<Key extends Comparable<Key>, Value> {
         h.left = x.right;
         x.right = h;
         x.color = h.color;
-        h.color = RED:
+        h.color = RED;
         x.N = h.N;
         h.N = size(h);
 
