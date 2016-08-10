@@ -12,14 +12,14 @@ public class SeparateChainingHashST<Key, Value> {
 
     public SeparateChainingHashST(int M) {
         this.M = M;
-        st = (SequentialSearchST[]) new Object[M];
+        st = new SequentialSearchST[7];
         for (int i = 0; i < st.length; i++) {
             st[i] = new SequentialSearchST<>();
         }
     }
 
     private int hash(Key key) {
-        return (key.hashCode() & 0x7fffffff) % M;
+        return (key.hashCode() & 0x7fffffff) % 7;
     }
 
     public Value get(Key key) {
@@ -28,6 +28,12 @@ public class SeparateChainingHashST<Key, Value> {
 
     public void put(Key key, Value val) {
         st[hash(key)].put(key, val);
+    }
+
+    public static void main(String[] args) {
+        SeparateChainingHashST s = new SeparateChainingHashST(10);
+        s.put("A", 3);
+        System.out.print(s.get("A"));
     }
 
 
