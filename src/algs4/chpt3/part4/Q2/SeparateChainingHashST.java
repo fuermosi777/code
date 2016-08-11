@@ -1,5 +1,7 @@
 package algs4.chpt3.part4.Q2;
 
+import edu.princeton.cs.algs4.Queue;
+
 import java.util.Arrays;
 
 /**
@@ -94,6 +96,19 @@ public class SeparateChainingHashST<Key, Value> {
             last = node;
             node = node.next;
         }
+    }
+
+    // 3.4.19
+    public Iterable keys() {
+        Queue<Key> q = new Queue<>();
+        for (int i = 0; i < M; i++) {
+            Node node = st[i];
+            while (node != null) {
+                q.enqueue((Key) node.key);
+                node = node.next;
+            }
+        }
+        return q;
     }
 
     public static void main(String[] args) {

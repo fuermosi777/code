@@ -1,5 +1,7 @@
 package algs4.chpt3.part4.A6;
 
+import java.util.Arrays;
+
 /**
  * Created by hao on 8/4/16.
  */
@@ -87,8 +89,14 @@ public class LinearProbingHashST<Key, Value> {
         if (N > 0 && N == M / 8) resize(M / 2);
     }
 
+    public void printKeys() {
+        System.out.print(Arrays.toString(keys));
+    }
+
+    // 3.4.19
     public Iterable keys() {
-        return null;
+        Iterable<Key> iter = Arrays.asList(keys);
+        return iter;
     }
 
     public static void main(String[] args) {
