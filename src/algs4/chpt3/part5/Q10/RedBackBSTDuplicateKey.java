@@ -50,6 +50,7 @@ public class RedBackBSTDuplicateKey<Key extends Comparable<Key>, Value> {
         h.color = RED;
         h.left.color = BLACK;
         h.right.color = BLACK;
+        return h;
     }
 
     public void put(Key key, Value val) {
@@ -83,7 +84,7 @@ public class RedBackBSTDuplicateKey<Key extends Comparable<Key>, Value> {
     }
 
     public Value get(Key key, Value val) {
-
+        return null;
     }
 
     public void delete(Key key) {
