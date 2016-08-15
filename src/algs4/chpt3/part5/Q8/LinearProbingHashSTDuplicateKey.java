@@ -36,6 +36,7 @@ public class LinearProbingHashSTDuplicateKey<K, V> {
             i = (i + 1) % M;
         }
         keys[i] = key;
+        return vals[i];
     }
 
     public void delete(K key) {
