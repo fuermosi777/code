@@ -11,12 +11,17 @@ public class BreadthFirstPaths {
 
     private boolean[] marked;
     private int[] edgeTo;
+    private int[] distTo;
 
     private final int s;
 
     public BreadthFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
+        distTo = new int[G.V()];
+        for (int i = 0; i < G.V(); i++) {
+            distTo[i] = 0;
+        }
         this.s = s;
         bfs(G, s);
     }
@@ -31,6 +36,7 @@ public class BreadthFirstPaths {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     marked[w] = true;
+                    distTo[w]++;
                     q.enqueue(w);
                 }
             }
@@ -53,6 +59,11 @@ public class BreadthFirstPaths {
         path.push(s);
 
         return path;
+    }
+
+    // 4.1.13
+    public int distTo(int v) {
+        return distTo[v];
     }
 
 }
