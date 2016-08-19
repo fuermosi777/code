@@ -1,6 +1,7 @@
 package algs4.chpt4.part1.A0;
 
 import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
 
 /**
  * Created by hao on 8/16/16.
@@ -13,6 +14,43 @@ public class Graph {
 
     public Graph(int V) {
         this.V = V;
+        this.E = 0;
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<>();
+        }
+    }
+
+    public Graph(In in) {
+        this(in.readInt());
+        int E = in.readInt();
+        for (int i = 0; i < E; i++) {
+            int v = in.readInt();
+            int w = in.readInt();
+            addEdge(v, w);
+        }
+    }
+
+    // 4.1.3
+    public Graph(Graph G) {
+        this(G.V());
+        this.E = G.E();
+        for (int i = 0; i < V; i++) {
+            for (int v : G.adj(i)) {
+                adj[i].add(v);
+            }
+        }
+    }
+
+    // 4.1.4
+    public boolean hasEdge(int v, int w) {
+        for (int x : adj[v]) {
+            if (x == w) return true;
+        }
+        for (int y : adj[w]) {
+            if (y == v) return true;
+        }
+        return false;
     }
 
     public int V() {
@@ -31,6 +69,22 @@ public class Graph {
 
     public Iterable<Integer> adj(int v) {
         return adj[v];
+    }
+
+    public String toString() {
+        String s = V + " vertices, " + E + " edges\n";
+        for (int v = 0; v < V; v++) {
+            s += v + ": ";
+            for (int w : adj(v)) {
+                s += w + " ";
+            }
+            s += "\n";
+        }
+        return s;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

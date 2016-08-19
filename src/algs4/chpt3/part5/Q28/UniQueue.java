@@ -24,7 +24,7 @@ public class UniQueue<Item> {
     }
 
     public Item dequeue() {
-        if (q.isEmpty()) return;
+        if (q.isEmpty()) return null;
         Item item = q.dequeue();
         map.remove(item);
         return item;
