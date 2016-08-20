@@ -1,6 +1,7 @@
 package algs4.chpt4.part1.A0;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Queue;
 
 import java.util.HashMap;
 
@@ -40,5 +41,14 @@ public class SymbolGraph {
                 G.addEdge(v, st.get(a[i]));
             }
         }
+    }
+
+    public Iterable<String> adj(String v) {
+        int w = st.get(v);
+        Queue<String> q = new Queue<>();
+        for (int x: G.adj(w)) {
+            q.enqueue(keys[x]);
+        }
+        return q;
     }
 }

@@ -66,4 +66,14 @@ public class BreadthFirstPaths {
         return distTo[v];
     }
 
+    public int maxDist() {
+        int max = distTo[0];
+        for (int i : distTo) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
+
 }
