@@ -2,6 +2,7 @@ package algs4.chpt4.part1.A0;
 
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Queue;
 
 /**
  * Created by hao on 8/16/16.
@@ -81,6 +82,26 @@ public class Graph {
             s += "\n";
         }
         return s;
+    }
+
+    // 4.1.31
+    public int parallel() {
+        int count = 0;
+        boolean marked[] = new boolean[V];
+        Queue<Integer> q = new Queue<>();
+        q.enqueue(0);
+        marked[0] = true;
+        while (!q.isEmpty()) {
+            int v = q.dequeue();
+            for (int w: adj(v)) {
+                if (!marked[w]) {
+                    q.enqueue(w);
+                    marked[w] = true;
+                    count++;
+                }
+            }
+        }
+        return E - count;
     }
 
     public static void main(String[] args) {
