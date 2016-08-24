@@ -1,6 +1,7 @@
 package algs4.chpt4.part2.A0;
 
 import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
 
 /**
  * Created by hao on 8/22/16.
@@ -16,6 +17,16 @@ public class Digraph {
         adj = (Bag<Integer>[]) new Bag[V];
         for (int i = 0; i < V; i++) {
             adj[i] = new Bag<Integer>();
+        }
+    }
+
+    public Digraph(In in) {
+        this(in.readInt());
+        int E = in.readInt();
+        for (int i = 0; i < E; i++) {
+            int v = in.readInt();
+            int w = in.readInt();
+            addEdge(v, w);
         }
     }
 

@@ -15,6 +15,7 @@ public class DirectedCycle {
 
     public DirectedCycle(Digraph G) {
         marked = new boolean[G.V()];
+        edgeTo = new int[G.V()];
     }
 
     private void dfs(Digraph G, int v) {
