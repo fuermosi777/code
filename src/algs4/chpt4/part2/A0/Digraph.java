@@ -19,11 +19,26 @@ public class Digraph {
         }
     }
 
+    // 4.2.3
+    public Digraph(Digraph G) {
+        this(G.V());
+        for (int i = 0; i < G.V(); i++) {
+            for (int j : G.adj(i)) {
+                addEdge(i, j);
+            }
+        }
+    }
+
     public int V() { return V; }
 
     public int E() { return E; }
 
     public void addEdge(int v, int w) {
+        // 4.2.5 no self cycle
+        // if (v == w) return;
+        // 4.2.5 no parallel edges
+        // if (hasEdge(v, w)) return;
+
         adj[v].add(w);
         E++;
     }
@@ -40,5 +55,12 @@ public class Digraph {
             }
         }
         return r;
+    }
+
+    public boolean hasEdge(int v, int w) {
+        for (int x : adj(v)) {
+            if (x == w) return true;
+        }
+        return false;
     }
 }
