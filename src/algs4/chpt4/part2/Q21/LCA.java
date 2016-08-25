@@ -55,8 +55,11 @@ public class LCA {
                 }
             }
 
-            if (!marked[w]) {
+            if (height[w] <= height[v]) {
                 height[w] = height[v] + 1;
+            }
+
+            if (!marked[w]) {
                 dfs(G, w, x, y);
             }
         }
@@ -83,6 +86,7 @@ public class LCA {
                 }
             }
         }
+        System.out.println(Arrays.toString(height));
         return max;
     }
 
