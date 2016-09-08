@@ -3,6 +3,8 @@ package algs4.chpt4.part3.A0;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 
+import java.util.Arrays;
+
 /**
  * Created by hao on 8/25/16.
  */
@@ -14,7 +16,7 @@ public class EdgeWeightedGraph {
 
     public EdgeWeightedGraph(int V) {
         this.V = V;
-        this.E = E;
+        this.E = 0;
         adj = (Bag<Edge>[]) new Bag[V];
         for (int i = 0; i < V; i++) {
             adj[i] = new Bag<Edge>();
@@ -22,7 +24,17 @@ public class EdgeWeightedGraph {
     }
 
     public EdgeWeightedGraph(In in) {
-        
+        this(in.readInt());
+
+        int e = in.readInt();
+        String[] lines = in.readAllLines();
+        for (int i = 1; i <= e; i++) {
+            String line = lines[i];
+
+            String[] vals = line.split(" ");
+            Edge edge = new Edge(Integer.parseInt(vals[0]), Integer.parseInt(vals[1]), Double.parseDouble(vals[2]));
+            addEdge(edge);
+        }
     }
 
     public int V() {
@@ -55,5 +67,10 @@ public class EdgeWeightedGraph {
             }
         }
         return bag;
+    }
+
+    public static void main(String[] args) {
+        In in = new In("/Users/hao/workspace/exercise/src/algs4/data/tinyEWG.txt");
+        EdgeWeightedGraph g = new EdgeWeightedGraph(in);
     }
 }
