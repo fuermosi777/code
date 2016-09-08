@@ -6,12 +6,15 @@ package algs4.chpt4.part4.A0;
 public class SP {
 
     private double[] distTo;
+    private DirectedEdge[] edgeTo;
 
     public SP(EdgeWeightedDigraph G, int s) {
         distTo = new double[G.V()];
         for (int i = 0; i < G.V(); i++) {
             distTo[i] = Double.POSITIVE_INFINITY;
         }
+
+        edgeTo = (DirectedEdge[]) new DirectedEdge[G.V()];
     }
 
     public double distTo(int v) {
