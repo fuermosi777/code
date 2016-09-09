@@ -14,7 +14,7 @@ public class LazyPrimMST {
 
     public LazyPrimMST(EdgeWeightedGraph G) {
         marked = new boolean[G.V()];
-        pq = new MinPQ<>();
+        pq = new MinPQ<>(G.V());
         mst = new Queue<>();
 
         visit(G, 0);

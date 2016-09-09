@@ -15,7 +15,7 @@ public class Kruskal {
 
     public Kruskal(EdgeWeightedGraph G) {
         mst = new Queue<>();
-        MinPQ<Edge> pq = new MinPQ<Edge>();
+        MinPQ<Edge> pq = new MinPQ<Edge>(G.V());
         for (Edge e : G.edges()) {
             pq.insert(e);
         }

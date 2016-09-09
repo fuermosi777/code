@@ -17,7 +17,7 @@ public class Dijkstra {
     public Dijkstra(EdgeWeightedDigraph G, int s) {
         edgeTo = new DirectedEdge[G.V()];
         distTo = new double[G.V()];
-        pq = new IndexMinPQ<>();
+        pq = new IndexMinPQ<>(G.V());
 
         for (int i = 0; i < G.V(); i++) {
             distTo[i] = Double.POSITIVE_INFINITY;
