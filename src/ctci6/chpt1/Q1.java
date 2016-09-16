@@ -20,7 +20,6 @@ public class Q1 {
 
     public static void main(String[] args) {
         assert isUnique("wtf");
-        assert (isUnique("wwf") == true);
         System.out.println(isUnique("wwf"));
     }
 }

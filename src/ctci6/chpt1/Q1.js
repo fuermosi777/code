@@ -14,3 +14,5 @@ var isUnique = function(s) {
 
 assert(isUnique('wtf') === true);
 assert(isUnique('wwf') === false);
+
+// O(nlogn)
