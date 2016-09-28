@@ -3,6 +3,7 @@ var exports = module.exports = {};
 function Node(val) {
     this.val = val;
     this.next = null;
+    this.visited = false;
 }
 
 Node.prototype.toString = function() {
@@ -17,6 +18,32 @@ Node.prototype.toString = function() {
     }
     return s;
 };
+
+Node.prototype.visit = function() {
+    this.visited = true;
+}
+
+Node.prototype.size = function() {
+    var node = this;
+    var size = 0;
+    while (node !== null) {
+        size++;
+        node = node.next;
+    }
+    return size;
+}
+
+Node.prototype.last = function() {
+    var node = this;
+    while (node.next !== null) {
+        node = node.next;
+    }
+    return node;
+}
+
+Node.prototype.isVisited = function() {
+    return this.visited;
+}
 
 module.exports = Node;
 
