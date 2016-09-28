@@ -1,4 +1,4 @@
-var SinglyLinkedList = require('../utils/SinglyLinkedList');
+require('../utils/Array');
 
 // @param Node
 // @param undefined
@@ -47,10 +47,10 @@ function removeDups(head) {
 // test
 function test() {
     var list = [4,3,7,5,9,3,2,7,5,0,2];
-    var linkedList = SinglyLinkedList.arrayToLinkedList(list);
-    console.log(SinglyLinkedList.toString(linkedList));
+    var linkedList = list.toLinkedList();
+    console.log(linkedList.toString());
     removeDups(linkedList);
-    console.log(SinglyLinkedList.toString(linkedList));
+    console.log(linkedList.toString());
 }
 
 test();

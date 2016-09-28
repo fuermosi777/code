@@ -1,5 +1,5 @@
-var SinglyLinkedList = require('../utils/SinglyLinkedList');
-var Node = SinglyLinkedList.Node;
+require('../utils/Array');
+var Node = require('../utils/Node')
 
 // @param Node head
 // @param Integer v
@@ -57,11 +57,10 @@ function partition(head, v) {
 
 // test
 function test() {
-    var input = [3, 5, 8, 5, 10, 2, 1];
-    var list = SinglyLinkedList.arrayToLinkedList(input);
-    console.log(SinglyLinkedList.toString(list));
+    var list = [3, 5, 8, 5, 10, 2, 1].toLinkedList();
+    console.log(list.toString());
     list = partition(list, 5);
-    console.log(SinglyLinkedList.toString(list));
+    console.log(list.toString());
 }
 
 test()

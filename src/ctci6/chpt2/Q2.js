@@ -1,4 +1,4 @@
-var SinglyLinkedList = require('../utils/SinglyLinkedList');
+require('../utils/Array');
 
 // Find the Kth to last element of a linked list
 
@@ -48,8 +48,8 @@ function kthToLast2(head, k) {
 
 function test() {
     var list = [4,3,7,5,9,3,2,7,5,0,2];
-    var linkedList = SinglyLinkedList.arrayToLinkedList(list);
-    console.log(SinglyLinkedList.toString(linkedList));
+    var linkedList = list.toLinkedList();
+    console.log(linkedList.toString());
     console.log(kthToLast(linkedList, 3).val);
     console.log(kthToLast2(linkedList, 3).val);
 }

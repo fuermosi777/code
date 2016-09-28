@@ -1,4 +1,5 @@
-var SinglyLinkedList = require('../utils/SinglyLinkedList');
+
+require('../utils/Array');
 
 // @param Node node
 // @param undefined
@@ -11,11 +12,11 @@ function deleteNode(node) {
 
 function test() {
     var list = ['a', 'b', 'c', 'd', 'e', 'f'];
-    var linkedList = SinglyLinkedList.arrayToLinkedList(list);
-    console.log(SinglyLinkedList.toString(linkedList));
+    var linkedList = list.toLinkedList();
+    console.log(linkedList.toString());
     var node = linkedList.next.next;
     deleteNode(node);
-    console.log(SinglyLinkedList.toString(linkedList));
+    console.log(linkedList.toString());
 }
 
 test();
