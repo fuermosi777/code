@@ -19,6 +19,14 @@ Queue.prototype.add = function(item) {
     this.N++;
 }
 
+Queue.prototype.enqueue = function(item) {
+    this.add(item);
+}
+
+Queue.prototype.dequeue = function() {
+    return this.remove();
+}
+
 Queue.prototype.remove = function() {
     if (this.isEmpty()) return null;
     if (this.size() === 1) {
