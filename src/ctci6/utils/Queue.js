@@ -26,18 +26,22 @@ Queue.prototype.remove = function() {
         this.first = null;
         this.last = null;
         this.N--;
-        return node;
+        return node.val;
     } else {
         var first = this.first;
         var second = this.first.next;
         this.first = second;
         this.N--;
-        return first;
+        return first.val;
     }
 }
 
+Queue.prototype.first = function() {
+    return this.first.val;
+}
+
 Queue.prototype.peek = function() {
-    return this.last;
+    return this.last.val;
 }
 
 Queue.prototype.isEmpty = function() {
