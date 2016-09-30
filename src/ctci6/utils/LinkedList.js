@@ -95,6 +95,8 @@ LinkedList.prototype = {
     }
 }
 
+module.exports = LinkedList;
+
 // test
 function test() {
     var ll = new LinkedList();
