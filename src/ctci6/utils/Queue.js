@@ -44,6 +44,20 @@ Queue.prototype.remove = function() {
     }
 }
 
+Queue.prototype[Symbol.iterator] = function() {
+    var node = this.first;
+    return {
+        next: function() {
+            var n = node;
+            if (n) node = node.next;
+            return {
+                value: n ? n.val : null,
+                done: n == null
+            }
+        }
+    }
+}
+
 Queue.prototype.first = function() {
     return this.first.val;
 }
@@ -74,8 +88,10 @@ function test() {
     q.remove();
     q.add(3);
     q.remove();
-    q.remove();
-    console.log(q.toString());
+    // console.log(q.toString());
+    for (var i of q) {
+        console.log(i);
+    }
 }
 
 if (require.main === module) test();

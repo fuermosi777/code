@@ -41,11 +41,28 @@ Stack.prototype.remove = function(key) {
     this.data[this.data.length - 1] = null;
 }
 
+Stack.prototype[Symbol.iterator] = function() {
+    var i = -1;
+    var data = this.data;
+    return {
+        next: function() {
+            return {
+                value: data[++i],
+                done: !(i in data)
+            }
+        }
+    }
+}
+
 module.exports = Stack;
 
 function test() {
     var stack = new Stack();
     stack.push(3);
+    stack.push(4);
+    for (var s of stack) {
+        console.log(s)
+    }
 }
 
 if (require.main === module) test();
