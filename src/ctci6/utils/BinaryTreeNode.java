@@ -9,6 +9,7 @@ public class BinaryTreeNode<Value> {
     public BinaryTreeNode left;
     public BinaryTreeNode right;
     public BinaryTreeNode parent;
+    public int size; // optional
 
     public BinaryTreeNode(Value val) {
         this.val = val;
