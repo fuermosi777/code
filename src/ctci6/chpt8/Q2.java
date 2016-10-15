@@ -2,14 +2,18 @@ package ctci6.chpt8;
 
 import ctci6.utils.Queue;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by hao on 10/15/16.
  */
+
 public class Q2 {
     private Cell[][] cells;
     private int row;
     private int col;
-    private PathNode root;
+    private Cell root;
 
     public enum CellType {
         Blank, Block;
@@ -28,18 +32,8 @@ public class Q2 {
         public String toString() {
             return type == CellType.Blank ? "o" : "x";
         }
-    }
-
-    public class PathNode {
-        public Cell cell;
-        public PathNode left;
-        public PathNode right;
-        public int height = 0;
-        public PathNode(Cell cell) {
-            this.cell = cell;
-        }
-        public String toString() {
-            return "(" + cell.row + ", " + cell.col + ")";
+        public String toCoor() {
+            return "(" + row + ", " + col + ")";
         }
     }
 
@@ -63,22 +57,25 @@ public class Q2 {
         cells[6][4].type = CellType.Block;
         cells[1][5].type = CellType.Block;
 
-        root = new PathNode(cells[0][0]);
-        buildPathTree(root);
-        setHeight();
+        root = cells[0][0];
     }
 
-    private void buildPathTree(PathNode node) {
-        Cell rightCell = canMoveRight(node.cell);
-        Cell bottomCell = canMoveBottom(node.cell);
-        if (rightCell != null) {
-            node.right = new PathNode(rightCell);
-            buildPathTree(node.right);
+    public ArrayList<Cell> getPath() {
+        ArrayList<Cell> path = new ArrayList<>();
+        getPath(root, path);
+        return path;
+    }
+
+    private boolean getPath(Cell cell, ArrayList<Cell> path) {
+        if (cell == null) return false;
+        if (cell.row == row - 1 && cell.col == col - 1) {
+            return true;
         }
-        if (bottomCell != null) {
-            node.left = new PathNode(bottomCell);
-            buildPathTree(node.left);
+        if (getPath(canMoveRight(cell), path) || getPath(canMoveBottom(cell), path)) {
+            path.add(cell);
+            return true;
         }
+        return false;
     }
 
     public Cell canMoveRight(Cell cell) {
@@ -112,22 +109,12 @@ public class Q2 {
         }
     }
 
-    public void setHeight() {
-        root.height = height(root);
-    }
-
-    private int height(PathNode node) {
-        if (node == null) return 0;
-        if (node.left == null && node.right == null) {
-            node.height = 0;
-        } else {
-            node.height = Math.max(height(node.left), height(node.right)) + 1;
-        }
-        return node.height;
-    }
-
     public static void main(String[] args) {
         Q2 q = new Q2(7, 6);
         q.print();
+        ArrayList<Cell> path = q.getPath();
+        for (Cell c : path) {
+            System.out.println(c.toCoor());
+        }
     }
 }
