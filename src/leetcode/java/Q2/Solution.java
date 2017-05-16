@@ -1,4 +1,4 @@
-package leetcode.Q2;
+package Q2;
 
 /**
  * Created by hao on 5/13/17.

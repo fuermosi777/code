@@ -1,4 +1,4 @@
-package leetcode.Q3;
+package Q3;
 
 import java.util.HashMap;
 

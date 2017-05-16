@@ -13,3 +13,4 @@ Download [algs4.jar](http://algs4.cs.princeton.edu/code/) and include the module
 ### Setup Intellij IDEA
 
 Open project -> Select "Code" -> set "/src" as root source
+Create a folder "/output", marked it as output dir
