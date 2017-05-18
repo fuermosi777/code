@@ -1,69 +1,83 @@
 package Q4;
 
-import java.util.Arrays;
-
 /**
- * Created by haol on 5/16/17.
+ * Created by Hao on 5/16/17.
  *
  * Thinking 1: Merge two arrays into one, and get median of that one. However the time complexity is O(m + n)
  *
  * Thinking 2: Get median of each array, compare, get the second half of the smaller one and the first half of the larger one.
  * Do a recursion. Unfortunately, it is WRONG!
  *
- * Thinking 3: get median of nums1, assume it is the median of both, try to find it in nums2, if the count of nums2 larger + count of nums1 == m/2 + n/2,
- * then it is the median, otherwise change the median towards directions.
+ * Thinking 3: Consider that the count of numbers that larger than the median must be (m + n) / 2...
+ *
+ * SUCCESS! This solution beats 88.26%!!
  *
  */
 public class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        return findMedianSortedArrays(nums1, 0, nums1.length -1, nums2, 0, nums2.length - 1);
-    }
-
-    private double findMedianSortedArrays(int[] nums1, int lo1, int hi1, int[] nums2, int lo2, int hi2) {
-        int length1 = hi1 - lo1 + 1;
-        int length2 = hi2 - lo2 + 1;
-        System.out.println(length1 + " " + length2);
-        if (length1 == 0) return findMedianSortedArray(nums2, lo2, hi2);
-        if (length2 == 0) return findMedianSortedArray(nums1, lo1, hi1);
-        if (length1 == 1 && length2 == 1) return (double)(nums1[0] + nums2[0]) / 2;
-        if (length1 + length2 == 3) {
-            int[] singleNums = length1 < length2 ? nums1 : nums2;
-            int[] doubleNums = singleNums == nums1 ? nums2 : nums1;
-            if (singleNums[0] <= doubleNums[0]) {
-                return doubleNums[0];
-            } else if (singleNums[0] <= doubleNums[1]) {
-                return doubleNums[1];
-            } else {
-                return singleNums[0];
-            }
+        int half = (nums1.length + nums2.length) / 2;
+        if ((nums1.length + nums2.length) % 2 == 0) {
+            int leftMedian = findMedianByHalf(nums1, nums2, half );
+            int rightMedian = findMedianByHalf(nums1, nums2, half - 1);
+            return (float) (leftMedian + rightMedian) / 2;
         } else {
-            double m1 = findMedianSortedArray(nums1, lo1, hi1);
-            double m2 = findMedianSortedArray(nums2, lo2, hi2);
-            if (m1 < m2) {
-                int start1 = length1 % 2 == 0 ? lo1 + (hi1 - lo1) / 2 + 1 : lo1 + (hi1 - lo1) / 2;
-                return findMedianSortedArrays(nums1, start1, hi1, nums2, lo2, lo2 + (hi2 - lo2) / 2);
-            } else if (m1 > m2) {
-                int start2 = length2 % 2 == 0 ? lo2 + (hi2 - lo2) / 2 + 1 : lo2 + (hi2 - lo2) / 2;
-                return findMedianSortedArrays(nums1, lo1, lo1 + (hi1 - lo1) / 2, nums2, start2, hi2);
-            } else {
-                return m1;
-            }
+            return findMedianByHalf(nums1, nums2, half);
         }
     }
 
-    private double findMedianSortedArray(int[] nums, int lo, int hi) {
-        int length = hi - lo + 1;
-        if (length % 2 == 0) {
-            return (double)(nums[(hi - lo) / 2 + lo] + nums[(hi - lo) / 2 + lo + 1]) / 2;
+    private int findMedianByHalf(int[] nums1, int[] nums2, int half) {
+        int result = 0;
+        int midPos = findMedianPosByRightHalf(nums1, nums2, half);
+        if (midPos == -1) {
+            midPos = findMedianPosByRightHalf(nums2, nums1, half);
+            result = nums2[midPos];
         } else {
-            return nums[(hi - lo) / 2 + lo];
+            result = nums1[midPos];
         }
+        return result;
+    }
+
+    private int findMedianPosByRightHalf(int[] target, int[] other, int halfCount) {
+        int lo = 0;
+        int hi = target.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int targetHalfCount = target.length - 1 - mid;
+            int restCount = halfCount - targetHalfCount;
+            if (restCount < 0) {
+                lo = mid + 1;
+            } else if (restCount == 0) {
+                if (other.length != 0 && other[other.length - 1] > target[mid]) {
+                    lo = mid + 1;
+                } else {
+                    return mid;
+                }
+            } else if (other.length == 0) {
+                hi = mid - 1;
+            } else {
+                int otherRightBoundPos = other.length - restCount;
+                int otherLeftBoundPos = otherRightBoundPos - 1;
+                if (otherRightBoundPos < 0) {
+                    hi = mid - 1;
+                } else if (target[mid] > other[otherRightBoundPos]) {
+                    hi = mid - 1;
+                } else if (otherLeftBoundPos < 0) {
+                    return mid;
+                } else if (target[mid] < other[otherLeftBoundPos]) {
+                    lo = mid + 1;
+                } else {
+                    return mid;
+                }
+            }
+        }
+
+        return -1;
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[] nums1 = {0,1,1};
-        int[] nums2 = {0,3,6m};
+        int[] nums1 = {2,3};
+        int[] nums2 = {1,2,3,4,5,6,7,8,9};
         System.out.println(s.findMedianSortedArrays(nums1, nums2));
     }
 }
