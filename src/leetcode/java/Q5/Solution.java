@@ -1,55 +1,61 @@
 package Q5;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 /**
  * Created by hao on 5/21/17.
  *
- * Difficult at first glance, but easy when think through...
- *
- * Thinking 1: Brute force - simple one
- *
- * Thinking 2: iterate the string by char, test String[index - current] is the same as current char or not
- *
+ * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
  */
+
 public class Solution {
     public String longestPalindrome(String s) {
         if (s.length() <= 1) return s;
+        String r = reverse(s);
+        System.out.println(r);
+        System.out.println(s);
 
-        String longest = "" + s.charAt(0);
-        String current = "";
-        boolean isCurrentSingleChar = true;
+        return lcs(s, r);
+    }
 
-        for (int i = 1; i < s.length(); i++) {
-            int counterPos = i - current.length() - 1;
-            int counterPos2 = i - current.length() - 2;
+    private String lcs(String a, String b) {
+        String[][] cache = new String[a.length() + 1][b.length() + 1];
 
-            if (current != "" && isCurrentSingleChar && s.charAt(i) == s.charAt(i - 1)) {
-                current = current + s.charAt(i);
-            } else if (counterPos < 0 && isCurrentSingleChar && s.charAt(0) == s.charAt(i)) {
-                current = current + s.charAt(i);
-            } else if (current == "" && counterPos2 >=0 && s.charAt(counterPos2) == s.charAt(i)) {
-                current = "" + s.charAt(counterPos2) + s.charAt(counterPos) + s.charAt(i);
-                isCurrentSingleChar = s.charAt(counterPos) == s.charAt(i);
-            } else if (counterPos >= 0 && s.charAt(counterPos) == s.charAt(i)) {
-                if (isCurrentSingleChar && current != "") {
-                    isCurrentSingleChar = current.charAt(0) == s.charAt(counterPos);
+        for (int i = 0; i <= a.length(); i++) {
+            for (int j = 0; j <= b.length(); j++) {
+                if (i == 0 || j == 0) {
+                    cache[i][j] = "";
+                } else if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                    cache[i][j] = cache[i - 1][j - 1] + b.charAt(j - 1);
+                } else {
+                    cache[i][j] = "";
+//                    if (cache[i - 1][j].length() > cache[i][j - 1].length()) {
+//                        cache[i][j] = cache[i - 1][j];
+//                    } else {
+//                        cache[i][j] = cache[i][j - 1];
+//                    }
                 }
-                current = s.charAt(counterPos) + current + s.charAt(i);
-            } else {
-                current = "";
-                isCurrentSingleChar = true;
             }
-
-            if (current.length() > longest.length()) {
-                longest = current;
-            }
-            System.out.println(current);
         }
-        return longest;
+        for (int i = 0; i <= a.length(); i++) {
+            System.out.println(Arrays.toString(cache[i]));
+        }
+        return "";
+    }
+
+    private String reverse(String s) {
+        String res = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            res += s.charAt(i);
+        }
+        return res;
     }
 
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.longestPalindrome("abbbabaaababbbabaaabab"));
+        s.longestPalindrome("abbababbaaababaaabbababbaa");
+//        System.out.println(Arrays.toString(s.postfixSubstrings("abbc")));
     }
 }
