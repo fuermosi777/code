@@ -1,6 +1,5 @@
 package Q10;
 
-import javax.sound.midi.SysexMessage;
 import java.util.Arrays;
 
 /**
@@ -8,7 +7,6 @@ import java.util.Arrays;
  */
 public class Solution {
 
-    // TODO: fix it
     public boolean isMatch(String s, String p) {
         if (s.equals("") && p.equals("")) return true;
         if (p.equals("") && !s.equals("")) return false;
@@ -32,24 +30,60 @@ public class Solution {
 
         boolean[][] dp = new boolean[s.length()][pp.length() / 2];
 
-        if (s.charAt(0) == pp.charAt(0) || isAnySingle(0, pp)) dp[0][0] = true;
-        else dp[0][0] = false;
-
+        // build first col
+        boolean hasSingleBefore = false;
         for (int j = 0; j < pp.length() / 2; j++) {
-            if (j == 0) continue;
-            if (!dp[0][j - 1]) {
-                dp[0][j] = false;
-            } else if (isMultiple(j * 2, pp)) {
-                dp[0][j] = true;
+            if (j == 0) {
+                if (isAnySingle(j, pp) || pp.charAt(j) == s.charAt(0)) {
+                    dp[0][j] = true;
+                } else {
+                    dp[0][j] = false;
+                }
             } else {
-                dp[0][j] = false;
+                if (isMultiple(j * 2, pp)) {
+                    if (dp[0][j - 1]) {
+                        dp[0][j] = true;
+                    } else if (hasSingleBefore) {
+                        dp[0][j] = false;
+                    } else if (pp.charAt(j * 2) == s.charAt(0) || isAnySingle(j * 2, pp)) {
+                        dp[0][j] = true;
+                    } else {
+                        dp[0][j] = false;
+                    }
+                } else {
+                    if (hasSingleBefore) {
+                        dp[0][j] = false;
+                    } else if (pp.charAt(j * 2) == s.charAt(0) || isAnySingle(j * 2, pp)) {
+                        dp[0][j] = true;
+                    } else {
+                        dp[0][j] = false;
+                    }
+                }
             }
+            if (!isMultiple(j * 2, pp)) hasSingleBefore = true;
+        }
 
-            for (int i = 0; i < s.length(); i++) {
-                if (i != 0 && j != 0) {
-                    if (dp[i - 1][j]) {
-                        if (isMultiple(j * 2, pp)) {
+        // build rest
+        for (int j = 0; j < pp.length() / 2; j++) {
+            for (int i = 1; i < s.length(); i++) {
+                if (isMultiple(j * 2, pp)) {
+                    if (j - 1 >= 0 && dp[i][j - 1]) {
+                        dp[i][j] = true;
+                    } else if (dp[i - 1][j]) {
+                        if (isAnySingle(j * 2, pp) || pp.charAt(j * 2) == s.charAt(i)) {
                             dp[i][j] = true;
+                        } else {
+                            dp[i][j] = false;
+                        }
+                    } else  {
+                        dp[i][j] = false;
+                    }
+                } else {
+                    if (isAnySingle(j * 2, pp) || pp.charAt(j * 2) == s.charAt(i)) {
+                        if ((j - 1 >= 0 && dp[i - 1][j - 1])) {
+                            dp[i][j] = true;
+                        } else if (dp[i - 1][j]) {
+                            dp[i][j] = false;
                         } else {
                             dp[i][j] = false;
                         }
@@ -59,15 +93,15 @@ public class Solution {
                 }
             }
         }
+//        // DEBUG
+//        for (int j = 0; j < pp.length() / 2; j++) {
+//            for (int i = 0; i < s.length(); i++) {
+//                System.out.print(dp[i][j] + " ");
+//            }
+//            System.out.print('\n');
+//        }
 
-        for (int j = 0; j < pp.length() / 2; j++) {
-            for (int i = 0; i < s.length(); i++) {
-                System.out.print(dp[i][j] + " ");
-            }
-            System.out.print('\n');
-        }
-
-        return true;
+        return dp[s.length() - 1][pp.length() / 2 - 1];
     }
 
     private boolean isMultiple(int i, String pp) {
@@ -95,6 +129,48 @@ public class Solution {
 //        System.out.println(s.isMatch("aaa", "a*a"));
 //        System.out.println(s.isMatch("aaa", "aaaa"));
 
-        s.isMatch("aab", "c*a*b");
+        s.isMatch("aaa", "ab*a*c*a");
+//        System.out.println("---");
+//        s.isMatch("aaa", "c*a*a*.*aa");
+//        System.out.println("---");
+//        s.isMatch("aaa", "aaaa");
+
+//        // test cases
+//        ""
+//        "a"
+//        ""
+//        "a*"
+//        "aa"
+//        "a"
+//        "aa"
+//        "aa"
+//        "aaa"
+//        "aa"
+//        "aa"
+//        "a*"
+//        "aa"
+//        ".*"
+//        "ab"
+//        ".*"
+//        "aab"
+//        "c*a*b"
+//        "ab"
+//        "**"
+//        "ab"
+//        ".*c"
+//        "aaa"
+//        "a.a"
+//        "aaa"
+//        "a*a"
+//        "aac"
+//        "a*cd"
+//        "aaa"
+//        "aaaa"
+//        "a"
+//        "ab*a"
+//        "aaa"
+//        "ab*ac*a"
+//        "aaa"
+//        "ab*a*c*a"
     }
 }
