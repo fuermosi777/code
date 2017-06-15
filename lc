@@ -1,0 +1,118 @@
+#!/bin/sh
+
+# Use leetcode-cli to list, show, test and submit solutions
+# need to do some changes since it creates file names that cannot be accepted by Intellij IDEA
+
+if [[ $1 = "list" ]]; then
+    leetcode list
+fi
+
+if [[ $1 = "show" ]]; then
+    if echo $2 | egrep -q '^[0-9]+$'; then
+        folder_name="src/leetcode/java/Q$2"
+        if [ -d $folder_name ]; then
+            echo "$folder_name already exists"
+        else
+            mkdir $folder_name &&
+            cd "$_" &&
+            leetcode show $2 -x -g &&
+
+            # get new java file
+            for f in *
+            do
+                newjava=$f
+            done
+
+            # copy
+            cp $newjava ./Solution.java
+
+            # remove .java postfix
+            placeholdername=${newjava%%.java}
+            mv $newjava $placeholdername.ph
+
+            # clear placeholder file
+            > $placeholdername.ph
+        fi
+    fi
+fi
+
+if [[ $1 = "test" ]]; then
+    if echo $2 | egrep -q '^[0-9]+$'; then
+        folder_name="src/leetcode/java/Q$2"
+        cd $folder_name
+
+        # get new java file
+        for f in *
+        do
+            if [[ $f = "Solution.java" ]]; then
+                solutionfile=$f
+            fi
+            if [[ ${f: -3} == ".ph" ]]; then
+                placeholderfile=$f
+            fi
+        done
+
+        placeholdername=${placeholderfile%%.ph}
+        mv $placeholderfile $placeholdername.java
+        cat $solutionfile >> $placeholdername.java
+
+        leetcode test $placeholdername.java -t $3
+
+        mv $placeholdername.java $placeholderfile
+        > $placeholderfile
+    fi
+fi
+
+if [[ $1 = "test" ]]; then
+    if echo $2 | egrep -q '^[0-9]+$'; then
+        folder_name="src/leetcode/java/Q$2"
+        cd $folder_name
+
+        # get new java file
+        for f in *
+        do
+            if [[ $f = "Solution.java" ]]; then
+                solutionfile=$f
+            fi
+            if [[ ${f: -3} == ".ph" ]]; then
+                placeholderfile=$f
+            fi
+        done
+
+        placeholdername=${placeholderfile%%.ph}
+        mv $placeholderfile $placeholdername.java
+        cat $solutionfile >> $placeholdername.java
+
+        leetcode test $placeholdername.java -t $3
+
+        mv $placeholdername.java $placeholderfile
+        > $placeholderfile
+    fi
+fi
+
+if [[ $1 = "submit" ]]; then
+    if echo $2 | egrep -q '^[0-9]+$'; then
+        folder_name="src/leetcode/java/Q$2"
+        cd $folder_name
+
+        # get new java file
+        for f in *
+        do
+            if [[ $f = "Solution.java" ]]; then
+                solutionfile=$f
+            fi
+            if [[ ${f: -3} == ".ph" ]]; then
+                placeholderfile=$f
+            fi
+        done
+
+        placeholdername=${placeholderfile%%.ph}
+        mv $placeholderfile $placeholdername.java
+        cat $solutionfile >> $placeholdername.java
+
+        leetcode submit $placeholdername.java
+
+        mv $placeholdername.java $placeholderfile
+        > $placeholderfile
+    fi
+fi
