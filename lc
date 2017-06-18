@@ -1,118 +1,91 @@
-#!/bin/sh
+#!/usr/local/bin/node
 
-# Use leetcode-cli to list, show, test and submit solutions
-# need to do some changes since it creates file names that cannot be accepted by Intellij IDEA
+/**
+ * Use leetcode-cli to list, show, test and submit solutions.
+ * Need to do some changes since it creates file names that cannot be accepted by Intellij IDEA
+ */
 
-if [[ $1 = "list" ]]; then
-    leetcode list
-fi
+const fs = require('fs');
+const { spawnSync } = require('child_process');
+const path = require('path');
+const LANG = 'java';
 
-if [[ $1 = "show" ]]; then
-    if echo $2 | egrep -q '^[0-9]+$'; then
-        folder_name="src/leetcode/java/Q$2"
-        if [ -d $folder_name ]; then
-            echo "$folder_name already exists"
-        else
-            mkdir $folder_name &&
-            cd "$_" &&
-            leetcode show $2 -x -g &&
+let args = process.argv.slice(2);
 
-            # get new java file
-            for f in *
-            do
-                newjava=$f
-            done
+if (args.length <= 0) {
+    exit('Options: list | show | test | submit');
+}
 
-            # copy
-            cp $newjava ./Solution.java
+let option = args[0];
 
-            # remove .java postfix
-            placeholdername=${newjava%%.java}
-            mv $newjava $placeholdername.ph
+if (option === 'list') {
+    spawnSync('leetcode', ['list'], {stdio: "inherit"});
+} else {
+    let jsonFileLocation = path.join(process.env.HOME || process.env.USERPROFILE, '.lc', 'all.json');
+    if (!fs.existsSync(jsonFileLocation)) {
+        exit(`No ${jsonFileLocation} file found. Run ./lc list first.`);
+    }
 
-            # clear placeholder file
-            > $placeholdername.ph
-        fi
-    fi
-fi
+    if (args.length < 2) {
+        exit('Options: shoew 12 | test 12 | test 12 \'xxx\' | submit 12');
+    }
 
-if [[ $1 = "test" ]]; then
-    if echo $2 | egrep -q '^[0-9]+$'; then
-        folder_name="src/leetcode/java/Q$2"
-        cd $folder_name
+    let problemNum = args[1];
+    problemNum = parseInt(problemNum);
+    if (!problemNum || problemNum <= 0) {
+        exit('Problem number must be a positive integer');
+    }
+    let json = JSON.parse(fs.readFileSync(jsonFileLocation, 'utf-8'));
+    let problem = findByKey(json, 'id', problemNum);
+    let subjectFileName = `${problemNum}.${problem.key}.${LANG}`;
+    let solutionFolderLoc = `./src/leetcode/${LANG}/Q${problemNum}`;
+    let solutionFileLoc = `${solutionFolderLoc}/Solution.${LANG}`;
 
-        # get new java file
-        for f in *
-        do
-            if [[ $f = "Solution.java" ]]; then
-                solutionfile=$f
-            fi
-            if [[ ${f: -3} == ".ph" ]]; then
-                placeholderfile=$f
-            fi
-        done
+    if (option === 'show') {
+        if (fs.existsSync(solutionFileLoc)) {
+            exit(`Solution already exists: ${solutionFileLoc}`);
+        }
 
-        placeholdername=${placeholderfile%%.ph}
-        mv $placeholderfile $placeholdername.java
-        cat $solutionfile >> $placeholdername.java
+        if (!fs.existsSync(solutionFolderLoc)) {
+            fs.mkdirSync(solutionFolderLoc);
+        }
 
-        leetcode test $placeholdername.java -t $3
+        spawnSync('leetcode', ['show', problemNum, '-x', '-g'], {stdio: 'inherit'});
+        fs.renameSync(path.join(__dirname, subjectFileName), solutionFileLoc);
+    } else if (option === 'test') {
+        if (!fs.existsSync(solutionFileLoc)) {
+            exit(`Solution NOT exists. Run show first`);
+        }
 
-        mv $placeholdername.java $placeholderfile
-        > $placeholderfile
-    fi
-fi
+        let testCases = args.length === 3 ? args[2] : '';
+        spawnSync('cp', [solutionFileLoc, `./${subjectFileName}`], {stdio: 'inherit'});
 
-if [[ $1 = "test" ]]; then
-    if echo $2 | egrep -q '^[0-9]+$'; then
-        folder_name="src/leetcode/java/Q$2"
-        cd $folder_name
+        let solutionText = fs.readFileSync(`./${subjectFileName}`, 'utf-8');
+        let processedSolutionText = solutionText.split('\n').filter(line => !line.startsWith('package')).join('\n');
+        fs.writeFileSync(`./${subjectFileName}`, processedSolutionText, 'utf-8');
+        spawnSync('leetcode', ['test', `./${subjectFileName}`, testCases], {stdio: 'inherit'});
+        fs.unlinkSync(`./${subjectFileName}`);
+    } else if (option === 'submit') {
+        if (!fs.existsSync(solutionFileLoc)) {
+            exit(`Solution NOT exists. Run show first`);
+        }
 
-        # get new java file
-        for f in *
-        do
-            if [[ $f = "Solution.java" ]]; then
-                solutionfile=$f
-            fi
-            if [[ ${f: -3} == ".ph" ]]; then
-                placeholderfile=$f
-            fi
-        done
+        let testCases = args.length === 3 ? args[2] : '';
+        spawnSync('cp', [solutionFileLoc, `./${subjectFileName}`], {stdio: 'inherit'});
 
-        placeholdername=${placeholderfile%%.ph}
-        mv $placeholderfile $placeholdername.java
-        cat $solutionfile >> $placeholdername.java
+        let solutionText = fs.readFileSync(`./${subjectFileName}`, 'utf-8');
+        let processedSolutionText = solutionText.split('\n').filter(line => !line.startsWith('package')).join('\n');
+        fs.writeFileSync(`./${subjectFileName}`, processedSolutionText, 'utf-8');
+        spawnSync('leetcode', ['submit', `./${subjectFileName}`], {stdio: 'inherit'});
+        fs.unlinkSync(`./${subjectFileName}`);
+    }
+}
 
-        leetcode test $placeholdername.java -t $3
+function findByKey(arr, keyName, keyValue) {
+    return arr.filter(item => item[keyName] === keyValue)[0];
+}
 
-        mv $placeholdername.java $placeholderfile
-        > $placeholderfile
-    fi
-fi
-
-if [[ $1 = "submit" ]]; then
-    if echo $2 | egrep -q '^[0-9]+$'; then
-        folder_name="src/leetcode/java/Q$2"
-        cd $folder_name
-
-        # get new java file
-        for f in *
-        do
-            if [[ $f = "Solution.java" ]]; then
-                solutionfile=$f
-            fi
-            if [[ ${f: -3} == ".ph" ]]; then
-                placeholderfile=$f
-            fi
-        done
-
-        placeholdername=${placeholderfile%%.ph}
-        mv $placeholderfile $placeholdername.java
-        cat $solutionfile >> $placeholdername.java
-
-        leetcode submit $placeholdername.java
-
-        mv $placeholdername.java $placeholderfile
-        > $placeholderfile
-    fi
-fi
+function exit(msg) {
+    console.log(msg);
+    process.exit();
+}

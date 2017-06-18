@@ -14,3 +14,17 @@ Download [algs4.jar](http://algs4.cs.princeton.edu/code/) and include the module
 
 Open project -> Select "Code" -> set "/src" as root source
 Create a folder "/output", marked it as output dir
+
+### Setup leetcode-cli
+
+`$ npm install -g leetcode-cli`
+
+`$ leetcode user -l`
+
+List all questions:
+
+`$ ./lc list`
+
+Show/Test/Submit Q13:
+
+`$ ./lc show 13`
