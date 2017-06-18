@@ -51,6 +51,9 @@ if (option === 'list') {
         }
 
         spawnSync('leetcode', ['show', problemNum, '-x', '-g'], {stdio: 'inherit'});
+        let placeholderText = fs.readFileSync(`./${subjectFileName}`, 'utf-8');
+        placeholderText = `package Q${problemNum};\n${placeholderText}`;
+        fs.writeFileSync(`./${subjectFileName}`, placeholderText, 'utf-8');
         fs.renameSync(path.join(__dirname, subjectFileName), solutionFileLoc);
     } else if (option === 'test') {
         if (!fs.existsSync(solutionFileLoc)) {
@@ -61,9 +64,9 @@ if (option === 'list') {
         spawnSync('cp', [solutionFileLoc, `./${subjectFileName}`], {stdio: 'inherit'});
 
         let solutionText = fs.readFileSync(`./${subjectFileName}`, 'utf-8');
-        let processedSolutionText = solutionText.split('\n').filter(line => !line.startsWith('package')).join('\n');
-        fs.writeFileSync(`./${subjectFileName}`, processedSolutionText, 'utf-8');
-        spawnSync('leetcode', ['test', `./${subjectFileName}`, testCases], {stdio: 'inherit'});
+        solutionText = solutionText.split('\n').filter(line => !line.startsWith('package') || !line.startsWith('import')).join('\n');
+        fs.writeFileSync(`./${subjectFileName}`, solutionText, 'utf-8');
+        spawnSync('leetcode', ['test', `./${subjectFileName}`, '-t', testCases], {stdio: 'inherit'});
         fs.unlinkSync(`./${subjectFileName}`);
     } else if (option === 'submit') {
         if (!fs.existsSync(solutionFileLoc)) {
