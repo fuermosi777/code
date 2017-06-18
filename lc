@@ -64,7 +64,7 @@ if (option === 'list') {
         spawnSync('cp', [solutionFileLoc, `./${subjectFileName}`], {stdio: 'inherit'});
 
         let solutionText = fs.readFileSync(`./${subjectFileName}`, 'utf-8');
-        solutionText = solutionText.split('\n').filter(line => !line.startsWith('package') || !line.startsWith('import')).join('\n');
+        solutionText = solutionText.split('\n').filter(line => !line.startsWith('package')).join('\n');
         fs.writeFileSync(`./${subjectFileName}`, solutionText, 'utf-8');
         spawnSync('leetcode', ['test', `./${subjectFileName}`, '-t', testCases], {stdio: 'inherit'});
         fs.unlinkSync(`./${subjectFileName}`);

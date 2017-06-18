@@ -1,6 +1,6 @@
 package Q15;
 
-import java.util.List;
+import java.util.*;
 
 /*
  * [15] 3Sum
@@ -30,6 +30,45 @@ import java.util.List;
  */
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        
+        Arrays.sort(nums);
+
+        List<List<Integer>> res = new LinkedList<>();
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int a = map.containsKey(nums[i]) ? map.get(nums[i]) : 0;
+            map.put(nums[i], a + 1);
+        }
+
+        Set<Integer> iSet = new HashSet<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (iSet.contains(nums[i])) continue;
+            Set<Integer> jSet = new HashSet<>();
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                if (jSet.contains(nums[j])) continue;
+                int t = - nums[i] - nums[j];
+                if ((t == nums[i] || t == nums[j]) && map.get(t) <= 1) continue;
+                if (t == nums[i] && t == nums[j] && map.get(t) <= 2) continue;
+                if (t < nums[j]) continue;
+                if (map.containsKey(t)) {
+                    List<Integer> l = new LinkedList<>();
+                    l.add(nums[i]);
+                    l.add(nums[j]);
+                    l.add(t);
+                    res.add(l);
+                    jSet.add(nums[j]);
+                }
+            }
+            iSet.add(nums[i]);
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        s.threeSum(new int[]{-1,0,1,0}).stream().forEach((list) -> {
+            System.out.println(Arrays.toString(list.toArray()));
+        });
     }
 }
