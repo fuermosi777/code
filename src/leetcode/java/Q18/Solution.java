@@ -30,60 +30,106 @@ import java.util.*;
  * ]
  * 
  */
+
+class Couple {
+    public int first;
+    public int second;
+
+    public Couple(int first, int second) {
+        this.first = first;
+        this.second = second;
+    }
+}
+
 public class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
 
-        List<List<Integer>> res = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
+
+        Map<Integer, List<Couple>> coupleMap = new HashMap<>();
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int sum = nums[i] + nums[j];
+                List<Couple> cs = new ArrayList<>();
+                if (coupleMap.containsKey(sum)) {
+                    cs = coupleMap.get(sum);
+                }
+                Couple c = new Couple(nums[i], nums[j]);
+                cs.add(c);
+                coupleMap.put(sum, cs);
+            }
+        }
 
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            int a = map.containsKey(nums[i]) ? map.get(nums[i]) : 0;
-            map.put(nums[i], a + 1);
-        }
-
-        Set<Integer> iSet = new HashSet<>();
-        for (int i = 0; i < nums.length - 3; i++) {
-            if (iSet.contains(nums[i])) continue;
-            Set<Integer> jSet = new HashSet<>();
-
-            for (int j = i + 1; j < nums.length - 2; j++) {
-                if (jSet.contains(nums[j])) continue;
-                Set<Integer> kSet = new HashSet<>();
-
-                for (int k = j + 1; k < nums.length - 1; k++) {
-                    if (kSet.contains(nums[k])) continue;
-                    int t = target - nums[i] - nums[j] - nums[k];
-
-                    int n = 0;
-                    if (map.containsKey(t)) n = map.get(t);
-                    if (t == nums[i]) n--;
-                    if (t == nums[j]) n--;
-                    if (t == nums[k]) n--;
-                    if (n <= 0) continue;
-                    if (t < nums[k]) continue;
-                    if (map.containsKey(t)) {
-                        List<Integer> l = new LinkedList<>();
-                        l.add(nums[i]);
-                        l.add(nums[j]);
-                        l.add(nums[k]);
-                        l.add(t);
-                        res.add(l);
-
-                        kSet.add(nums[k]);
-                    }
-                }
-                jSet.add(nums[j]);
+            int n = 0;
+            if (map.containsKey(nums[i])) {
+                n = map.get(nums[i]);
             }
-            iSet.add(nums[i]);
+            map.put(nums[i], n + 1);
         }
 
-        return res;
+        for (int i = 0; i < nums.length - 3; i++) {
+            for (int j = i + 1; j < nums.length - 2; j++) {
+                int t = target - nums[i] - nums[j];
+
+                List<Couple> cs = null;
+                if (coupleMap.containsKey(t)) {
+                    cs = coupleMap.get(t);
+                }
+                if (cs == null) continue;
+
+                for (Couple c : cs) {
+                    int firstCt = 0;
+                    int secondCt = 0;
+                    boolean isSame = false;
+                    int unifiedCt = 0;
+                    if (map.containsKey(c.first)) firstCt = map.get(c.first);
+                    if (map.containsKey(c.second)) secondCt = map.get(c.second);
+                    if (c.first == c.second) isSame = true; unifiedCt = firstCt;
+
+                    if (c.first == nums[i]) firstCt--;
+                    if (c.first == nums[j]) firstCt--;
+                    if (c.second == nums[i]) secondCt--;
+                    if (c.second == nums[j]) secondCt--;
+                    if (isSame && c.first == nums[i]) unifiedCt--;
+                    if (isSame && c.first == nums[j]) unifiedCt--;
+                    if (firstCt <= 0 || secondCt <= 0) continue;
+                    if (isSame && unifiedCt <= 1) continue;
+
+                    if (c.first < nums[j] || c.second < nums[j]) continue;
+
+                    List<Integer> l = new LinkedList<>();
+                    l.add(nums[i]);
+                    l.add(nums[j]);
+                    l.add(c.first);
+                    l.add(c.second);
+                    res.add(l);
+                }
+            }
+        }
+
+        Set<String> set = new HashSet<>();
+        List<List<Integer>> newRes = new ArrayList<>();
+        for (List<Integer> item : res) {
+            String s = Integer.toString(item.get(0)) +
+                    Integer.toString(item.get(1)) +
+                    Integer.toString(item.get(2)) +
+                    Integer.toString(item.get(3));
+            if (!set.contains(s)) {
+                newRes.add(item);
+                set.add(s);
+            }
+        }
+
+
+        return newRes;
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        s.fourSum(new int[]{1, 0, -1, 0, -2, 2}, -1).stream().forEach((list) -> {
+        s.fourSum(new int[]{2,0,3,0,1,2,4}, 7).stream().forEach((list) -> {
             System.out.println(Arrays.toString(list.toArray()));
         });
     }
