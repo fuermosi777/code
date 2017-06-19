@@ -30,6 +30,9 @@ package Q19;
  */
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -40,7 +43,37 @@ package Q19;
  */
 public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        List<ListNode> helper = new ArrayList<>();
+        ListNode node = head;
+        while (node != null) {
+            helper.add(node);
+            node = node.next;
+        }
 
-
+        int index = helper.size() - n;
+        ListNode toRemove = index >= 0 ? helper.get(index) : null;
+        ListNode prev = index - 1 >= 0 ? helper.get(index - 1) : null;
+        ListNode next = index + 1 < helper.size() ? helper.get(index + 1) : null;
+        ListNode newHead = removeNode(toRemove, prev, next, head);
+        return newHead;
     }
+
+    private ListNode removeNode(ListNode node, ListNode prev, ListNode next, ListNode head) {
+        if (node == null || (prev == null && next == null)) {
+            return null;
+        } else if (prev == null) {
+            return next;
+        } else if (next == null) {
+            prev.next = null;
+            return head;
+        } else {
+            prev.next = next;
+            return head;
+        }
+    }
+
+//    public static void main(String[] args) {
+//        Solution s = new Solution();
+//        System.out.println(s.removeNthFromEnd(ListNode.createFromArray(new int[]{1,2,3}), 0));
+//    }
 }
