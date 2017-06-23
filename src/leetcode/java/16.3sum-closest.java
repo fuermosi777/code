@@ -19,72 +19,47 @@
  * 
  */
 
+/*
+ * Thinking: Double pointer...
+ */
+
 import java.util.*;
 
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
+        int minSum = nums[0] + nums[1] + nums[2];
+        int minDiff = Math.abs(minSum - target);
+
         if (nums.length == 3) {
-            return nums[0] + nums[1] + nums[2];
+            return minSum;
         }
 
         Arrays.sort(nums);
 
-        int minDiff = -1;
-        int minSum = -1;
+        for (int i = 0; i < nums.length - 2; i++) {
+            int j = i + 1;
+            int k = nums.length - 1;
 
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                int t = target - nums[i] - nums[j];
-                int find1 = bs(nums, 0, i - 1, t);
-                int find2 = bs(nums, i + 1, j - 1, t);
-                int find3 = bs(nums, j + 1, nums.length - 1, t);
-                int find = findClosestAmongThree(find1, find2, find3, t);
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == target) {
+                    return sum;
+                } else {
+                    int diff = Math.abs(sum - target);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        minSum = sum;
+                    }
+                }
 
-                int sum = nums[i] + nums[j] + find;
-
-                int diff = Math.abs(target - sum);
-                if (minDiff == -1 || diff < minDiff) {
-                    minSum = sum;
-                    minDiff = diff;
+                if (sum > target) {
+                    k--;
+                } else {
+                    j++;
                 }
             }
         }
 
         return minSum;
-    }
-    private int bs(int[] nums, int lo, int hi, int s) {
-        while (lo < hi) {
-            if (hi - lo == 2 || hi - lo == 1) {
-                return findClosestAmongThree(nums[lo], nums[lo + 1], nums[hi], s);
-            }
-
-            int mid = lo + (hi - lo) / 2;
-            if (nums[mid] == s) {
-                return nums[mid];
-            } else if (nums[mid] > s) {
-                hi = mid - 1;
-            } else {
-                lo = mid + 1;
-            }
-        }
-
-        if (lo == hi) return nums[lo];
-
-        return Integer.MAX_VALUE;
-    }
-    private int findClosestAmongThree(int f1, int f2, int f3, int t) {
-        int max = Integer.MAX_VALUE;
-        int d1 = f1 == max ? max : f1 - t;
-        int d2 = f2 == max ? max : f2 - t;
-        int d3 = f3 == max ? max : f3 - t;
-
-        int min = Math.min(Math.min(Math.abs(d1), Math.abs(d2)), Math.abs(d3));
-        if (min == Math.abs(d1)) {
-            return f1;
-        } else if (min == Math.abs(d2)) {
-            return f2;
-        } else {
-            return f3;
-        }
     }
 }
