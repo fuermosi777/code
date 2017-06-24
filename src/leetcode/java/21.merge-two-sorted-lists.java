@@ -23,29 +23,31 @@ public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode n1 = l1;
         ListNode n2 = l2;
-        if (n1 == null) return n2;
-        if (n2 == null) return n1;
+        if (n1 == null && n2 == null) return null;
 
         ListNode head = null;
         ListNode n3 = head;
 
         while (n1 != null || n2 != null) {
+            int nextVal = 0;
             if (n1 == null) {
-                n3.next = n2;
+                nextVal = n2.val;
                 n2 = n2.next;
             } else if (n2 == null) {
-                n3.next = n1;
+                nextVal = n1.val;
                 n1 = n1.next;
             } else if (n1.val > n2.val) {
-                n3.next = n2;
+                nextVal = n2.val;
                 n2 = n2.next;
             } else {
-                n3.next = n1;
+                nextVal = n1.val;
                 n1 = n1.next;
             }
             if (head == null) {
-                head = n3;
+                head = new ListNode(nextVal);
+                n3 = head;
             } else {
+                n3.next = new ListNode(nextVal);
                 n3 = n3.next;
             }
         }
