@@ -1,5 +1,3 @@
-package Q18;
-
 import java.util.*;
 
 /*

@@ -1,5 +1,3 @@
-package Q17;
-
 import java.util.*;
 /*
  * [17] Letter Combinations of a Phone Number
