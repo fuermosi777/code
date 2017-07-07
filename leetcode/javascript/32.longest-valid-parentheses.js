@@ -48,13 +48,14 @@ var longestValidParentheses = function(s) {
       let pos = stack.pop();
       console.log(pos);
       if (pos - 1 >= 0 && dp[pos - 1].length > 0 && dp[pos - 1].hi === pos - 1) {
-        dp[i] = {length: dp[pos - 1].length + i - pos + 1, start: dp[pos - 1].lo, hi: i};
+        let l = dp[pos - 1].length + i - pos + 1;
+        dp[i] = {length: dp[pos - 1].length + i - pos + 1, lo: dp[pos - 1].lo, hi: i};
       } else {
         let l = i - pos + 1;
         if (l >= dp[i - 1].length) {
           dp[i] = {length: i - pos + 1, lo: pos, hi: i};
         } else {
-          dp[i] = {length: dp[i - 1].length, lo: pos, hi: i};
+          dp[i] = dp[i - 1];
         }
       }
     }
