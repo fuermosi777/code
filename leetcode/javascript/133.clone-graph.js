@@ -68,5 +68,5 @@
  * @return {UndirectedGraphNode}
  */
 var cloneGraph = function(graph) {
-    
+  console.log(graph.label, graph.neighbors);
 };
