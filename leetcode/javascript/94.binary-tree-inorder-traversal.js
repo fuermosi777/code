@@ -39,5 +39,28 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
+  if (root === null) return [];
+  let stack = [];
+  let res = [];
+
+  stack.push(root);
+
+  while (stack.length > 0) {
+    let node = stack[stack.length - 1];
     
+    if (node.left !== null && !node.left.visited) {
+      stack.push(node.left);
+      continue;
+    } else if (!node.visited) {
+      res.push(node.val);
+      node.visited = true;
+    }
+    if (node.right !== null && !node.right.visited) {
+      stack.push(node.right);
+    } else {
+      stack.pop();
+    }
+  }
+
+  return res;
 };
