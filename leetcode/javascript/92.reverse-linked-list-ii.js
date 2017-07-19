@@ -41,5 +41,53 @@
  * @return {ListNode}
  */
 var reverseBetween = function(head, m, n) {
+  if (head === null || head.next === null || m === n) return head;
 
+  let preStart = null;
+  let start = null;
+  let end = null;
+  let postEnd = null;
+  let i = 1;
+  let node = head;
+  let last = null;
+  while (i <= n + 1) {
+    if (i === m - 1) preStart = node;
+    if (i === m) start = node;
+    
+    if (i === n - 1) end = node.next;
+    if (i === n) end = node;
+    if (i === n + 1) postEnd = node;
+    if (m <= i && i < n) {
+      let next = node.next;
+      let nextNext = null;
+      if (next !== null) {
+        nextNext = next.next;
+        next.next = node;
+      }
+
+      if (last !== null) node.next = last;
+
+      last = next;
+
+      i += 2;
+      node = nextNext;
+    } else if (i === n) {
+      let next = node.next;
+      node.next = last;
+      node = next;
+      i += 1;
+    } else {
+      if (node !== null) node = node.next;
+      i += 1;
+    }
+  }
+
+  if (preStart !== null) {
+    preStart.next = end;
+  } else {
+    head = end;
+  }
+  start.next = postEnd;
+
+  return head;
 };
