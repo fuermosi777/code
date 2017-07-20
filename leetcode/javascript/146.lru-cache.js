@@ -41,15 +41,24 @@
  * 
  */
 
+// Beat 90.41%
+
+var Node = function(key, val) {
+  this.val = val;
+  this.key = key;
+  this.prev = null;
+  this.next = null;
+}
+
 /**
  * @param {number} capacity
  */
 var LRUCache = function(capacity) {
   this.cap = capacity;
   this.size = 0;
-  this.vals = {}; // {val, pos}
-  this.keys = []; // store all keys
-  this.lru = -1; // least recent used key pos
+  this.head = null; // mostly recent used
+  this.tail = null;
+  this.map = {};
 };
 
 /** 
@@ -58,10 +67,49 @@ var LRUCache = function(capacity) {
  */
 LRUCache.prototype.get = function(key) {
   if (this.map.hasOwnProperty(key)) {
-    
+    let node = this.map[key];
+
+    if (this.head !== node) {
+      this.removeNode(node);
+      this.addNode(node);
+    }
+
+    return node.val;
   }
 
   return -1;
+};
+
+LRUCache.prototype.removeNode = function(node) {
+  if (this.head === this.tail) { // only 1 node
+    this.head = null;
+    this.tail = null;
+  } else if (node === this.head) {
+    let next = node.next;
+    next.prev = null;
+    this.head = next;
+  } else if (node === this.tail) {
+    let prev = node.prev;
+    prev.next = null;
+    this.tail = prev;
+  } else {
+    let prev = node.prev;
+    let next = node.next;
+    prev.next = next;
+    next.prev = prev;
+  }
+};
+
+LRUCache.prototype.addNode = function(node) {
+  if (this.head === null) {
+    this.head = node;
+    this.tail = node;
+  } else {
+    let head = this.head;
+    head.prev = node;
+    node.next = head;
+    this.head = node;
+  }
 };
 
 /** 
@@ -70,8 +118,26 @@ LRUCache.prototype.get = function(key) {
  * @return {void}
  */
 LRUCache.prototype.put = function(key, value) {
+  if (this.map.hasOwnProperty(key)) {
+    let node = this.map[key];
+    node.val = value;
+    this.removeNode(node);
+    this.addNode(node);
+  } else if (this.size === this.cap) {
+    let tail = this.tail;
+    this.removeNode(tail);
+    delete this.map[tail.key];
 
-
+    let node = new Node(key, value);
+    this.map[key] = node;
+    this.addNode(node);
+  } else {
+    let node = new Node(key, value);
+    this.map[key] = node;
+    this.addNode(node);
+    this.size += 1;
+  }
+  return null;
 };
 
 /** 
@@ -80,5 +146,3 @@ LRUCache.prototype.put = function(key, value) {
  * var param_1 = obj.get(key)
  * obj.put(key,value)
  */
-let cache = new LRUCache(2);
-console.log(cache.put(1, 1));
