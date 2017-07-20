@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="./../identical-dom-tree.js"></script>
+</head>
+<body>
+  <div class="tree">
+    <div class="node"></div>
+    <div class="node">
+      <div class="node"></div>
+      <div class="node1">
+        <div class="node"></div>
+      </div>
+      <div class="node"></div>
+    </div>
+  </div>
+
+  <div class="tree">
+    <div class="node"></div>
+    <div class="node">
+      <div class="node"></div>
+      <div class="node1">
+        <div class="node"></div>
+      </div>
+      <div class="node"></div>
+    </div>
+  </div>
+
+  <script>
+    var trees = document.querySelectorAll('.tree');
+    var tree1 = trees[0];
+    var tree2 = trees[1];
+    var node = document.querySelector('.node1');
+
+    console.dir(find(tree1, tree2, node));
+
+  </script>
+</body>
+</html>
