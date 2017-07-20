@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    .profile {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+    }
+    .medium {
+      width: 100%;
+      height: 100%;
+    }
+    .profile:hover .small {
+      display: block;
+    } 
+    .small {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <div class="medium" style="background-image: url(./medium.png)">
+    </div>
+    <div class="small">
+      <img src="./small.png">
+    </div>
+  </div>
+</body>
+</html>
