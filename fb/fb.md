@@ -7,14 +7,14 @@ How would you ensure clicking on this picture would go to a specific link?
 
 How would you ensure the child is positioned in the top right of the parent picture? 
 
-Write a function that takes in a roman numeral string and returns its decimal value. You may assume input is a valid roman numeral.  
+** Write a function that takes in a roman numeral string and returns its decimal value. You may assume input is a valid roman numeral.  
 
 Write a function to flatten an array in JavaScript.  
 Can you write a function that deeply flattens an array? 
 Write an array flatten function. 
 Flatten array. This array can have multiple types: {}, [], "", undefined, null, 123 are all valid types inside the array. 
 
-Given 2 identical DOM trees (but not equal) and one element of the first DOM tree, how would you find this element in the second DOM tree?  
+** Given 2 identical DOM trees (but not equal) and one element of the first DOM tree, how would you find this element in the second DOM tree?  
 Given two identical DOM tree structures, A and B, and a node from A, find the corresponding node in B.  
 Given two identical DOM trees (not the same one), and a node from one of them find the node in the other one.
 Given a node from a DOM tree find the node in the same position from an identical DOM tree. 
