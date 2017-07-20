@@ -14,15 +14,9 @@ Can you write a function that deeply flattens an array?
 Write an array flatten function. 
 Flatten array. This array can have multiple types: {}, [], "", undefined, null, 123 are all valid types inside the array. 
 
-** Given 2 identical DOM trees (but not equal) and one element of the first DOM tree, how would you find this element in the second DOM tree?  
-Given two identical DOM tree structures, A and B, and a node from A, find the corresponding node in B.  
-Given two identical DOM trees (not the same one), and a node from one of them find the node in the other one.
-Given a node from a DOM tree find the node in the same position from an identical DOM tree. 
-
 If you have 500 revisions of a program, write a program that will find and return the FIRST bad revision given a isBad(revision i) function.  
 
 Name a difficult challenge you faced while working on a project.  
-
 Tell me a difficult problem you had to solve. 
 
 difference between block and inline
