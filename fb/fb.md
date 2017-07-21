@@ -61,10 +61,6 @@ Using HTML and CSS, show how you would create an image that would display anothe
 https://github.com/h5bp/Front-end-Developer-Interview-Questions#js
 
 --- LC ---
-79
-Word Search
-20.5%
-Medium
 
 139
 Word Break
