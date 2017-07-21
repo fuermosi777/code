@@ -13,10 +13,15 @@
       position: relative;
       width: 200px;
     }
+    .wrap:hover .small,
+    .wrap:focus .small {
+      opacity: 1;
+    }
     .medium img {
       width: 100%;
     }
     .small {
+      opacity: 0;
       position: absolute;
       top: 0;
       right: 0;
@@ -26,10 +31,14 @@
 <body>
   <div class="wrap">
     <div class="medium">
-      <img src="medium.png">
+      <a href="/profile.php">
+        <img src="medium.png">
+      </a>
     </div>
     <div class="small">
-      <img src="small.png">
+      <a href="/edit.php">
+        <img src="small.png">
+      </a>
     </div>
   </div>
 </body>
