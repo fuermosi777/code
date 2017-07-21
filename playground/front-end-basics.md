@@ -65,3 +65,11 @@ http://www.jianshu.com/p/d3f66b1eb748
 10. `<script>` defer vs async
 
 https://segmentfault.com/q/1010000000640869
+
+12. array vs object?
+
+13. map vs forEach?
+
+14. What's DOM's data structure?
+
+15. If a balanced DOM tree has n nodes, what's its depth?
