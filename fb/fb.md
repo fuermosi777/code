@@ -62,11 +62,6 @@ https://github.com/h5bp/Front-end-Developer-Interview-Questions#js
 
 --- LC ---
 
-139
-Word Break
-23.1%
-Medium
-
 125
 Valid Palindrome
 22.0%
