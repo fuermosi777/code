@@ -30,8 +30,9 @@ var flattenArray1 = function(item) {
       for (let j = 0; j < it.length; j++) {
         item.splice(i + j, 0, it[j]);
       }
+    } else {
+      i++;
     }
-    if (!Array.isArray(item[i])) i++;
   }
 
   return item;
@@ -49,6 +50,20 @@ var flattenArray3 = function(item) {
 
   return res;
 }
+
+// playground
+
+var flattenArray0 = function(array) {
+  var res = [];
+  for (let i = 0, len = array.length; i < len; i++) {
+    if (Array.isArray(array[i])) {
+      res = res.concat(flattenArray0(array[i]));
+    } else {
+      res.push(array[i]);
+    }
+  }
+  return res;
+};
 
 // tests
 var testCases = [{
@@ -76,6 +91,9 @@ var testCases = [{
 
 testCases.forEach(testCase => {
   // expect(flattenArray(testCase.input)).to.deep.equal(testCase.expect);
-  // expect(flattenArray1(testCase.input)).to.deep.equal(testCase.expect);
+  expect(flattenArray1(testCase.input)).to.deep.equal(testCase.expect);
   // expect(flattenArray3(testCase.input)).to.deep.equal(testCase.expect);
+  // expect(flattenArray0(testCase.input)).to.deep.equal(testCase.expect);
 });
+
+console.log('passed!');

@@ -73,3 +73,7 @@ https://segmentfault.com/q/1010000000640869
 14. What's DOM's data structure?
 
 15. If a balanced DOM tree has n nodes, what's its depth?
+
+O(logn)
+
+16. There are five basic data type: Undefined, Null, Boolean, String, and Number
