@@ -61,26 +61,11 @@ Using HTML and CSS, show how you would create an image that would display anothe
 https://github.com/h5bp/Front-end-Developer-Interview-Questions#js
 
 --- LC ---
-
-125
-Valid Palindrome
-22.0%
-Easy
-
 1
 Two Sum
 17.7%
 Medium
 
-78
-Subsets
-28.2%
-Medium
-
-69
-Sqrt(x)
-23.2%
-Medium
 
 75
 Sort Colors
