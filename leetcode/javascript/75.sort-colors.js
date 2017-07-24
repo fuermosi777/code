@@ -41,6 +41,55 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+
+/*
+//two-pass
 var sortColors = function(nums) {
-    
+  let ct = [];
+  for (let i = 0; i < nums.length; i++) {
+    let color = nums[i];
+    if (typeof ct[color] === 'undefined') {
+      ct[color] = 0;
+    }
+    ct[color] += 1;
+  }
+
+  let cur = 0;
+  for (let i = 0; i < ct.length; i++) {
+    let j = 0;
+    while (j < ct[i]) {
+      nums[cur] = i;
+      j++;
+      cur++;
+    }
+  }
+};
+*/
+
+function swap(nums, i, j) {
+  let t = nums[i];
+  nums[i] = nums[j];
+  nums[j] = t;
+}
+
+// one-pass in-place
+// 3-way quick sort
+var sortColors = function(nums) {
+  let m = 0, n = nums.length - 1;
+  let i = 0;
+  while (i < nums.length) {
+    while (nums[m] === 0) {
+      m++;
+    }
+    while (nums[n] === 2) {
+      n--;
+    }
+    if (nums[i] === 2 && i < n) {
+      swap(nums, i, n);
+    }
+    if (nums[i] === 0 && i > m) {
+      swap(nums, i, m);
+    }
+    i++;
+  }
 };
