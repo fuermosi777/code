@@ -66,12 +66,6 @@ Two Sum
 17.7%
 Medium
 
-
-75
-Sort Colors
-32.6%
-Medium
-
 33
 Search in Rotated Sorted Array
 28.7%
