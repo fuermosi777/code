@@ -71,11 +71,6 @@ Search in Rotated Sorted Array
 28.7%
 Hard
 
-206
-Reverse Linked List
-32.3%
-Easy
-
 26
 Remove Duplicates from Sorted Array
 31.0%
