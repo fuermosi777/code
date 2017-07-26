@@ -71,11 +71,6 @@ Search in Rotated Sorted Array
 28.7%
 Hard
 
-26
-Remove Duplicates from Sorted Array
-31.0%
-Easy
-
 80
 Remove Duplicates from Sorted Array II
 30.4%

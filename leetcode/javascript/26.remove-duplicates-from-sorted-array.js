@@ -28,10 +28,27 @@
  * length.
  * 
  */
+function swap(nums, i, j) {
+  let t = nums[i];
+  nums[i] = nums[j];
+  nums[j] = t;
+}
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-    
+  if (nums.length === 0) return 0;
+  let a = 0, b = 0, lastB = nums[b];
+  while (true) {
+    a++;
+    b++;
+    while (nums[b] === lastB && b < nums.length) {
+      b++;
+    }
+    if (b >= nums.length) break;
+    lastB = nums[b];
+    swap(nums, a, b);
+  }
+  return a;
 };
