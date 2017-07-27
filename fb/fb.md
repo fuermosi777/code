@@ -71,11 +71,6 @@ Search in Rotated Sorted Array
 28.7%
 Hard
 
-80
-Remove Duplicates from Sorted Array II
-30.4%
-Medium
-
 10
 Regular Expression Matching
 20.7%
@@ -85,11 +80,6 @@ Hard
 Read N Characters Given Read4 II - Call multiple times
 22.6%
 Hard
-
-238
-Product of Array Except Self
-34.4%
-Medium
 
 50
 Pow(x, n)
