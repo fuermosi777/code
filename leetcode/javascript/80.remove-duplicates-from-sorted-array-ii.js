@@ -23,10 +23,47 @@
  * length.
  * 
  */
+function swap(nums, i, j) {
+  let t = nums[i];
+  nums[i] = nums[j];
+  nums[j] = t;
+}
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-  
+  if (nums.length === 0) return 0;
+
+  let a = 0, b = 0, lastA = nums[a], lastB = nums[b], ct = 1;
+  while (true) {
+    while (true) {
+      a++;
+      b++;
+      if (nums[a] === lastA) {
+        ct++;
+      } else if (nums[a] < lastA) {
+        break;
+      } else {
+        ct = 1;
+        lastA = nums[a];
+      }
+      if (ct > 2) break;
+      if (a > nums.length || b > nums.length) break;
+    }
+    console.log(nums, a, b, lastA, ct);
+    if (ct > 2) {
+      while (nums[b] === lastA) {
+        b++;
+      }
+      ct = 1;
+    }
+    if (b >= nums.length) break;
+    swap(nums, a, b);
+    lastA = nums[a];
+  }
+  return a;
 };
+
+var nums = [1,2,2,2,3,4,4,5,5,5,6];
+console.log(removeDuplicates(nums), nums);
