@@ -34,36 +34,41 @@ function swap(nums, i, j) {
  */
 var removeDuplicates = function(nums) {
   if (nums.length === 0) return 0;
+  var i = 0, j = 0, last = nums[0], ct = 1;
 
-  let a = 0, b = 0, lastA = nums[a], lastB = nums[b], ct = 1;
   while (true) {
     while (true) {
-      a++;
-      b++;
-      if (nums[a] === lastA) {
+      i++;
+      if (nums[i] === last) {
         ct++;
-      } else if (nums[a] < lastA) {
+      } else if (nums[i] < last) {
         break;
       } else {
         ct = 1;
-        lastA = nums[a];
+        last = nums[i];
       }
       if (ct > 2) break;
-      if (a > nums.length || b > nums.length) break;
     }
-    console.log(nums, a, b, lastA, ct);
-    if (ct > 2) {
-      while (nums[b] === lastA) {
-        b++;
-      }
-      ct = 1;
-    }
-    if (b >= nums.length) break;
-    swap(nums, a, b);
-    lastA = nums[a];
-  }
-  return a;
-};
+    
+    j = i;
 
-var nums = [1,2,2,2,3,4,4,5,5,5,6];
-console.log(removeDuplicates(nums), nums);
+    while (j < nums.length) {
+      j++;
+      if (ct < 2 && nums[j] === last) break;
+      if (nums[j] > last) break;
+    }
+
+    if (j >= nums.length) break;
+
+    swap(nums, i, j);
+    if (nums[i] !== last) {
+      ct = 1;
+    } else {
+      ct++;
+    }
+    last = nums[i];
+  }
+
+  return i;
+
+};
