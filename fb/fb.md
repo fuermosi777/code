@@ -96,11 +96,6 @@ Multiply Strings
 21.1%
 Medium
 
-76
-Minimum Window Substring
-19.0%
-Hard
-
 209
 Minimum Size Subarray Sum
 23.2%
