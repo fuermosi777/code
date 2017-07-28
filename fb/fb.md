@@ -91,11 +91,6 @@ One Edit Distance
 24.5%
 Medium
 
-200
-Number of Islands
-22.6%
-Medium
-
 43
 Multiply Strings
 21.1%
