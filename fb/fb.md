@@ -101,11 +101,6 @@ Minimum Window Substring
 19.0%
 Hard
 
-209
-Minimum Size Subarray Sum
-23.2%
-Medium
-
 88
 Merge Sorted Array
 29.1%
