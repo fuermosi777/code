@@ -86,7 +86,7 @@ Pow(x, n)
 26.7%
 Medium
 
-161
+161 - locked
 One Edit Distance
 24.5%
 Medium
