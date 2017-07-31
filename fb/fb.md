@@ -111,21 +111,6 @@ Meeting Rooms II
 26.6%
 Medium
 
-221
-Maximal Square
-19.7%
-Medium
-
-236
-Lowest Common Ancestor of a Binary Tree
-26.5%
-Medium
-
-235
-Lowest Common Ancestor of a Binary Search Tree
-37.5%
-Easy
-
 17
 Letter Combinations of a Phone Number
 25.6%
