@@ -101,22 +101,17 @@ Minimum Window Substring
 19.0%
 Hard
 
-88
-Merge Sorted Array
-29.1%
-Easy
-
 23
 Merge k Sorted Lists
 21.0%
 Hard
 
-252
+252 - locked
 Meeting Rooms
 33.3%
 Easy
 
-253
+253 - locked
 Meeting Rooms II
 26.6%
 Medium
