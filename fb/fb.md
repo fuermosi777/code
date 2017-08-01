@@ -116,17 +116,12 @@ Letter Combinations of a Phone Number
 25.6%
 Medium
 
-208
-Implement Trie (Prefix Tree)
-24.8%
-Medium
-
 28
 Implement strStr()
 22.4%
 Easy
 
-261
+261 - locked
 Graph Valid Tree
 25.2%
 Medium
