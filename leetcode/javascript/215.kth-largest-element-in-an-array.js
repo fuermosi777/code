@@ -22,16 +22,48 @@
  * Credits:Special thanks to @mithmatt for adding this problem and creating all
  * test cases.
  */
+
+function swap(nums, i, j) {
+  let t = nums[i];
+  nums[i] = nums[j];
+  nums[j] = t;
+}
+
+function find(nums, lo, hi, k) {
+  let i = lo + 1, j = hi, m = nums[lo];
+  while (i <= j) {
+    if (nums[i] <= m && nums[j] >= m) {
+      swap(nums, i, j);
+      i++;
+      j--;
+    } else if (nums[i] >= m && nums[j] >= m) {
+      i++;
+    } else if (nums[i] <= m && nums[j] <= m) {
+      j--;
+    } else {
+      i++;
+      j--;
+    }
+  }
+  swap(nums, lo, j);
+  if (j - lo === k - 1) return nums[j];
+  if (j - lo > k - 1) {
+    return find(nums, lo, j, k);
+  } else {
+    return find(nums, j + 1, hi, k - j + lo - 1);
+  }
+}
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {number}
  */
 var findKthLargest = function(nums, k) {
-  nums.sort((a, b) => {
-    if (a > b) return -1;
-    else if (b > a) return +1;
-    else return 0;
-  });
-  return nums[k - 1];
+  if (nums.length > 1) {
+    for (let i = 0, len = nums.length; i < len; i++) {
+      swap(nums, i, Math.floor(Math.random() * (len - 1)) + 1);
+    }
+  }
+  
+  return find(nums, 0, nums.length - 1, k);
 };
