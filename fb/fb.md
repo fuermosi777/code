@@ -116,11 +116,6 @@ Letter Combinations of a Phone Number
 25.6%
 Medium
 
-215
-Kth Largest Element in an Array
-27.3%
-Medium
-
 208
 Implement Trie (Prefix Tree)
 24.8%
