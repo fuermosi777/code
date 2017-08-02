@@ -136,11 +136,6 @@ Group Anagrams
 24.3%
 Medium
 
-67
-Add Binary
-24.6%
-Easy
-
 211
 Add and Search Word - Data structure design
 20.3%
