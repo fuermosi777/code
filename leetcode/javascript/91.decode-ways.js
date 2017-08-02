@@ -43,8 +43,7 @@
  */
 var numDecodings = function(s) {
   if (s.startsWith('0')) return 0;
-  if (s.length === 0) return 0;
-  if (s.length === 1) return 1;
+  if (s.length === 0 || s.length === 1) return s.length;
 
   let lastChar = s[0];
   let cta = 1, ctb = 0;
