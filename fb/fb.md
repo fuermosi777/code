@@ -131,11 +131,6 @@ Count and Say
 25.3%
 Easy
 
-121
-Best Time to Buy and Sell Stock
-32.9%
-Medium
-
 49
 Group Anagrams
 24.3%
