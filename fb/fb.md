@@ -131,11 +131,6 @@ Count and Say
 25.3%
 Easy
 
-173
-Binary Search Tree Iterator
-29.7%
-Medium
-
 121
 Best Time to Buy and Sell Stock
 32.9%
