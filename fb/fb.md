@@ -126,11 +126,6 @@ Graph Valid Tree
 25.2%
 Medium
 
-91
-Decode Ways
-16.3%
-Medium
-
 38
 Count and Say
 25.3%

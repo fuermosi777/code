@@ -63,10 +63,27 @@
  * }
  */
 
+function cloneNode(node) {
+  if (node === null) return null;
+
+  let cloned = new UndirectedGraphNode(node.label);
+  node.cloned = cloned;
+  for (let n of node.neighbors) {
+    if (!n.cloned) {
+      cloned.neighbors.push(cloneNode(n));
+    } else {
+      cloned.neighbors.push(n.cloned);
+    }
+  }
+  return cloned;
+}
+
 /**
  * @param {UndirectedGraphNode} graph
  * @return {UndirectedGraphNode}
  */
 var cloneGraph = function(graph) {
-  console.log(graph.label, graph.neighbors);
+  let cloned = cloneNode(graph);
+
+  return cloned;
 };
