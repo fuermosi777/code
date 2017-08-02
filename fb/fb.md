@@ -126,11 +126,6 @@ Graph Valid Tree
 25.2%
 Medium
 
-168
-Excel Sheet Column Title
-18.3%
-Easy
-
 91
 Decode Ways
 16.3%
