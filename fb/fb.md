@@ -131,16 +131,6 @@ Count and Say
 25.3%
 Easy
 
-133
-Clone Graph
-24.2%
-Medium
-
-102
-Binary Tree Level Order Traversal
-29.2%
-Easy
-
 173
 Binary Search Tree Iterator
 29.7%
