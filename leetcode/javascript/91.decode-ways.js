@@ -37,20 +37,34 @@
  * 
  */
 
-var dict = ['','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-
 /**
  * @param {string} s
  * @return {number}
  */
 var numDecodings = function(s) {
-  let dp = {};
-  for (let i = 1; i <= 10; i++) {
-    dp[i] = dict[i];
-  }
-  for (let i = 0; i < s.length; i++) {
-    
-  }
-};
+  if (s.startsWith('0')) return 0;
+  if (s.length === 0) return 0;
+  if (s.length === 1) return 1;
 
-numDecodings()
+  let lastChar = s[0];
+  let cta = 1, ctb = 0;
+  for (let i = 1; i < s.length; i++) {
+    let char = s[i];
+    let a = cta;
+    let b = ctb;
+    if (char !== '0') {
+      cta = a + b;
+    } else {
+      cta = 0;
+    }
+    if (parseInt(lastChar + char) <= 26) {
+      ctb = a;
+    } else {
+      ctb = 0;
+    }
+
+    lastChar = char;
+  }
+
+  return cta + ctb;
+};
