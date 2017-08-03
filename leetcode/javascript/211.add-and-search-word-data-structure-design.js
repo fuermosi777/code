@@ -45,11 +45,16 @@
  * problem: Implement Trie (Prefix Tree) first.
  * 
  */
+let Node = function() {
+  this.hasValue = false;
+  this.childNodes = {};
+};
+
 /**
  * Initialize your data structure here.
  */
 var WordDictionary = function() {
-    
+  this.root = new Node();
 };
 
 /**
@@ -58,7 +63,15 @@ var WordDictionary = function() {
  * @return {void}
  */
 WordDictionary.prototype.addWord = function(word) {
-    
+  let n = this.root;
+  for (let i = 0; i < word.length; i++) {
+    let char = word[i];
+    if (!n.childNodes.hasOwnProperty(char)) {
+      n.childNodes[char] = new Node();
+    }
+    n = n.childNodes[char];
+  }
+  n.hasValue = true;
 };
 
 /**
@@ -67,7 +80,28 @@ WordDictionary.prototype.addWord = function(word) {
  * @return {boolean}
  */
 WordDictionary.prototype.search = function(word) {
-    
+  return this._search(word, 0, this.root);
+  
+};
+
+WordDictionary.prototype._search = function(word, start, root) {
+  let char = word[start];
+  if (start === word.length) {
+    return !!root.hasValue;
+  }
+
+  if (char === '.') {
+    let keys = Object.keys(root.childNodes);
+    for (let i = 0; i < keys.length; i++) {
+      if (this._search(word, start + 1, root.childNodes[keys[i]])) {
+        return true;
+      }
+    }
+  } else if (root.childNodes.hasOwnProperty(char)) {
+    return this._search(word, start + 1, root.childNodes[char]);
+  }
+
+  return false;
 };
 
 /** 

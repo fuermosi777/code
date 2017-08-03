@@ -136,11 +136,6 @@ Group Anagrams
 24.3%
 Medium
 
-211
-Add and Search Word - Data structure design
-20.3%
-Medium
-
 15
 3Sum
 
