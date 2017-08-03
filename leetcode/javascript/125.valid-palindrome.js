@@ -28,6 +28,15 @@
  * For the purpose of this problem, we define empty string as valid palindrome.
  * 
  */
+
+/**
+ * https://stackoverflow.com/questions/9364400/remove-not-alphanumeric-characters-from-string-having-trouble-with-the-char
+ * 
+ * Note that \W is the equivalent of [^0-9a-zA-Z_] - it includes the underscore character. To also remove underscores use
+ * 
+ * input.replace(/[^0-9a-z]/gi, '')
+ */
+
 /**
  * @param {string} s
  * @return {boolean}
