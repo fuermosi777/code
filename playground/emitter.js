@@ -23,7 +23,15 @@ var Subscription = function(event, callback, emitter) {
 };
 
 Subscription.prototype.release = function() {
-  delete this.emitter.subscriptions[this.e];
+  let subs = this.emitter.subscriptions[this.e];
+  for (let i = 0; i < subs.length; i++) {
+    if (this === subs[i]) {
+      subs.splice(i, 1);
+    }
+  }
+  if (subs.length === 0) {
+    delete this.emitter.subscription[this.e];
+  }
 };
 
 var Emitter = function() {
@@ -31,22 +39,32 @@ var Emitter = function() {
 };
 
 Emitter.prototype.subscribe = function(event, callback) {
-  this.subscriptions[event] = new Subscription(event, callback, this);
-  return this.subscriptions[event];
+  let subscription = new Subscription(event, callback, this);
+  if (!this.subscriptions.hasOwnProperty(event)) {
+    this.subscriptions[event] = [subscription];
+  } else {
+    this.subscriptions[event].push(subscription);
+  }
+  return subscription;
 };
 
 Emitter.prototype.emit = function(event, ...args) {
   if (this.subscriptions.hasOwnProperty(event)) {
-    this.subscriptions[event].cb.apply(null, args);
+    for (let i = 0; i < this.subscriptions[event].length; i++) {
+      this.subscriptions[event][i].cb.apply(null, args);
+    }
   }
 };
 
 let emitter = new Emitter();
-let sub = emitter.subscribe('testEvent', function(...args) {
-  console.log(args);
+let sub1 = emitter.subscribe('testEvent', function(...args) {
+  console.log('test callback 1' + args);
+});
+let sub2 = emitter.subscribe('testEvent', function(...args) {
+  console.log('test callback 2' + args);
 });
 
-emitter.emit('testEvent', 1, 2);
-emitter.emit('testEvent', 3, 4);
-sub.release();
-emitter.emit('testEvent', 5, 6);
+emitter.emit('testEvent', 'hello');
+emitter.emit('testEvent', 'world');
+sub1.release();
+emitter.emit('testEvent', 'again');

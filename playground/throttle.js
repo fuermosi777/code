@@ -6,7 +6,7 @@ function throttle(fn, delay) {
     if (timer === null) {
       fn.apply(null, args);
       timer = setTimeout(() => {
-        clearTimeout(timer);  
+        // clearTimeout(timer);  
         timer = null;
       }, delay);
     }
