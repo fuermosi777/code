@@ -55,29 +55,34 @@
  * }
  */
 
-var helper = function(root) {
-  if (root === null) return [null, null];
-  let left = helper(root.left);
-  let right = helper(root.right);
-  if (left[0] === null && right[0] === null) return [root, root];
-  
-  if (left[0] !== null) {
-    root.left = null;
-    root.right = left[0];
-    left[1].left = null;
-    left[1].right = right[0];
-  }
-  if (right[0] !== null) {
-    return [root, right[1]]; 
-  } else {
-    return [root, left[1]];
-  }
-};  
+// var helper = function(root) {
+//   if (root === null) return [null, null];
+//   let left = helper(root.left);
+//   let right = helper(root.right);
+//   if (left[0] === null && right[0] === null) return [root, root];
+
+//   if (left[0] !== null) {
+//     root.left = null;
+//     root.right = left[0];
+//     left[1].left = null;
+//     left[1].right = right[0];
+//   }
+//   if (right[0] !== null) {
+//     return [root, right[1]]; 
+//   } else {
+//     return [root, left[1]];
+//   }
+// };  
 
 /**
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
+// var flatten = function(root) {
+//   helper(root);
+// };
+
+// Inordered traversal
 var flatten = function(root) {
   helper(root);
 };
