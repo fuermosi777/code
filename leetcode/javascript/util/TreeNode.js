@@ -48,9 +48,7 @@ TreeNode.prototype.toArray = function() {
  * @return {void}
  */
 TreeNode.prototype.buildArray = function(node, arr, i) {
-  if (node === null) {
-    arr[i] = null;
-  } else {
+  if (node !== null) {
     arr[i] = node.val;
     if (node.left !== null || node.right !== null) {
       this.buildArray(node.left, arr, 2 * i + 1);
@@ -63,11 +61,3 @@ module.exports = {
   TreeNode,
   buildTreeFromArray
 };
-
-// test
-function test() {
-  let tree1 = buildTreeFromArray([1,null,3]);
-  console.log(tree1.toArray());
-}
-
-test();

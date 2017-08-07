@@ -55,34 +55,60 @@
  * }
  */
 
-// var helper = function(root) {
-//   if (root === null) return [null, null];
-//   let left = helper(root.left);
-//   let right = helper(root.right);
-//   if (left[0] === null && right[0] === null) return [root, root];
+var helper = function(root) {
+  if (root === null) return [null, null];
+  let left = helper(root.left);
+  let right = helper(root.right);
+  if (left[0] === null && right[0] === null) return [root, root];
+
+  if (left[0] !== null) {
+    root.left = null;
+    root.right = left[0];
+    left[1].left = null;
+    left[1].right = right[0];
+  }
+  if (right[0] !== null) {
+    return [root, right[1]]; 
+  } else {
+    return [root, left[1]];
+  }
+};  
+
+// Inordered traversal
+/**
+ * @param  {TreeNode}
+ * @return {[TreeNode, TreeNode]}
+ */
+// function helper(node) {
+//   if (node === null) return [null, null];
+//   let left = helper(node.left);
+//   let right = helper(node.right);
+//   if (left[0] === null && right[0] === null) return [node, node];
 
 //   if (left[0] !== null) {
-//     root.left = null;
-//     root.right = left[0];
 //     left[1].left = null;
-//     left[1].right = right[0];
+//     left[1].right = node;
+//     node.left = null;
+//     node.right = right[0];
 //   }
+
 //   if (right[0] !== null) {
-//     return [root, right[1]]; 
+//     return [left[0], right[1]];
 //   } else {
-//     return [root, left[1]];
+//     return [left[0], node];
 //   }
-// };  
+// }
 
 /**
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
-// var flatten = function(root) {
-//   helper(root);
-// };
-
-// Inordered traversal
 var flatten = function(root) {
   helper(root);
 };
+
+// test
+var {buildTreeFromArray} = require('./util/TreeNode');
+let tree = buildTreeFromArray([1,2,5,3,4,6]);
+flatten(tree);
+console.log(tree.toArray())
