@@ -34,20 +34,21 @@ function swap(nums, i, j) {
 }
 
 /**
+ * Do it in minimize times swap
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
   let i = 0;
-  while (i < nums.length && nums[i] !== 0) {
-    i++;
-  }
-  let j = i;
-  while (j < nums.length) {
-    if (nums[j] !== 0) {
+  while (i < nums.length) {
+    if (nums[i] === 0) {
+      let j = i + 1;
+      while (j < nums.length && nums[j] === 0) {
+        j++;
+      }
+      if (j >= nums.length) break;
       swap(nums, i, j);
-      i++;
     }
-    j++;
+    i++;
   }
 };
