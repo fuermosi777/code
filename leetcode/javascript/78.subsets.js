@@ -33,6 +33,7 @@
  * 
  */
 /**
+ * DP
  * @param {number[]} nums
  * @return {number[][]}
  */
@@ -45,3 +46,36 @@ var subsets = function(nums) {
   }
   return last;
 };
+
+/**
+ * DFS
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+// var subsets = function(nums) {
+//   let res = [[]];
+//   let set = new Set();
+//   for (let i = 0; i < nums.length; i++) {
+//     let visited = [];
+//     dfs(res, nums, visited, [], i, set);
+//   }
+//   return res;
+// };
+
+// function dfs(res, nums, visited, existed, i, set) {
+//   if (visited[i]) return;
+
+//   let v = visited.slice();
+//   v[i] = true;
+//   let array = existed.slice();
+//   array.push(nums[i]);
+//   array.sort();
+//   let key = JSON.stringify(array);
+//   if (!set.has(key)) {
+//     res.push(array);
+//     set.add(key);
+//   }
+//   for (let j = 0; j < nums.length; j++) {
+//     dfs(res, nums, v, array, j, set);
+//   }
+// }
