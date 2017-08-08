@@ -17,6 +17,10 @@ class MinPQ {
     this.swim(this.size + 1);
     this.size += 1;
   }
+  top() {
+    if (this.isEmpty()) throw new Error('PQ is empty');
+    return this.vals[1];
+  }
   deleteMin() {
     if (this.isEmpty()) throw new Error('PQ is empty');
     let d = this.vals[1];
@@ -58,6 +62,8 @@ class MinPQ {
   }
 }
 
+module.exports = MinPQ;
+
 function test() {
   let pq = new MinPQ();
   pq.insert(2); console.log(pq.vals);
@@ -72,4 +78,4 @@ function test() {
   pq2.deleteMin();
 }
 
-test();
+// test();
