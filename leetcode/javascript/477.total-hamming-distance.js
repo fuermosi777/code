@@ -37,10 +37,26 @@
  * 
  * 
  */
+
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var totalHammingDistance = function(nums) {
-    
+  let d = 0;
+  let length = nums.length;
+
+  for (let i = 0; i < 32; i++) {
+    let ct0 = 0;
+    for (let num of nums) {
+      if (num >> i === 0) {
+        ct0++;
+      } else if (((num >> i) & 1) === 0) {
+        ct0++;
+      }      
+    }
+    d += ct0 * (length - ct0);
+  }
+
+  return d;
 };
