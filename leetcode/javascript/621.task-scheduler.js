@@ -37,70 +37,10 @@
  * 
  */
 
-// var MinPQ = require('./util/MinPQ');
-// TODO: remove the following and replace with the module when accepted
-class MinPQ {
-  constructor(cpFunc) {
-    this.vals = [];
-    this.size = 0;
-    this.cpFunc = cpFunc;
-  }
-  isEmpty() {
-    return this.size === 0;
-  }
-  insert(val) {
-    this.vals[this.size + 1] = val;
-    this.swim(this.size + 1);
-    this.size += 1;
-  }
-  top() {
-    if (this.isEmpty()) throw new Error('PQ is empty');
-    return this.vals[1];
-  }
-  deleteMin() {
-    if (this.isEmpty()) throw new Error('PQ is empty');
-    let d = this.vals[1];
-    this.vals[1] = null;
-    this.swap(1, this.size);
-    this.sink(1);
-    this.size -= 1;
-
-    return d;
-  }
-  sink(i) {
-    while (i <= this.size) {
-      let ci = i * 2;
-      if (!this.vals[ci]) break;
-      if (this.vals[ci + 1] && this.cp(ci + 1, ci) < 0) ci = ci + 1;
-      if (this.cp(ci, i) >= 0) break;
-      this.swap(ci, i);
-      i = ci;
-    }
-  }
-  swim(i) {
-    while (i > 1 && this.cp(Math.floor(i / 2), i) > 0) {
-      let pi = Math.floor(i / 2); // parent index
-      this.swap(pi, i);
-      i = pi;
-    }
-  }
-  swap(i, j) {
-    let t = this.vals[i];
-    this.vals[i] = this.vals[j];
-    this.vals[j] = t;
-  }
-  cp(i, j) { // compare function
-    if (this.cpFunc) {
-      return this.cpFunc(this.vals[i], this.vals[j]);
-    } else {
-      return this.vals[i] - this.vals[j];
-    }
-  }
-}
+var MinPQ = require('./util/MinPQ');
 
 var Task = function(val) {
   this.val = val;
-  this.worktime = 1;
   this.count = 1;
 };
 
@@ -113,13 +53,7 @@ var leastInterval = function(tasks, n) {
   if (tasks.length === 0) return 0;
   if (n === 0) return tasks.length;
 
-  let pq = new MinPQ((a, b) => {
-    if (a.worktime !== b.worktime) {
-      return a.worktime - b.worktime;
-    } else {
-      return b.count - a.count;
-    }
-  });
+  let pq = new MinPQ((a, b) => (b.count - a.count));
   let map = {};
   for (let task of tasks) {
     if (map.hasOwnProperty(task)) {
@@ -133,20 +67,28 @@ var leastInterval = function(tasks, n) {
   }
   let res = 0;
   while (!pq.isEmpty()) {
-    let nextTask = pq.deleteMin();
-    res += nextTask.worktime;
-    console.log(nextTask.val);
-    nextTask.count -= 1;
-    let w = nextTask.worktime;
-    nextTask.worktime = n;
-    if (nextTask.count > 0) {
-      for (let t of pq.vals) {
-        if (t && t.worktime > 1) t.worktime -= w;
+    let size = pq.size;
+    let temp = [];
+    let i = 0;
+    while (i <= n) {
+      if (pq.isEmpty()) break;
+
+      let task = pq.deleteMin();
+      task.count -= 1;
+      temp.push(task);
+      res++;
+      i++;
+    }
+    for (let t of temp) {
+      if (t.count > 0) {
+        pq.insert(t);
       }
-      pq.insert(nextTask);
+    }
+    if (!pq.isEmpty() && temp.length < n + 1) {
+      res += n - temp.length + 1;
     }
   }
-  return res + 1;
+  return res;
 };
 
-console.log(leastInterval(['A','A','A','B','B','B'], 50));
+console.log(leastInterval(['A','A','A','A','A','A','B','C','D','E','F','G'], 2));
