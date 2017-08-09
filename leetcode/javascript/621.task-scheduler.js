@@ -36,11 +36,112 @@
  * 
  * 
  */
+
+// var MinPQ = require('./util/MinPQ');
+class MinPQ {
+  constructor(cpFunc) {
+    this.vals = [];
+    this.size = 0;
+    this.cpFunc = cpFunc;
+  }
+  isEmpty() {
+    return this.size === 0;
+  }
+  insert(val) {
+    this.vals[this.size + 1] = val;
+    this.swim(this.size + 1);
+    this.size += 1;
+  }
+  top() {
+    if (this.isEmpty()) throw new Error('PQ is empty');
+    return this.vals[1];
+  }
+  deleteMin() {
+    if (this.isEmpty()) throw new Error('PQ is empty');
+    let d = this.vals[1];
+    this.vals[1] = null;
+    this.swap(1, this.size);
+    this.sink(1);
+    this.size -= 1;
+
+    return d;
+  }
+  sink(i) {
+    while (i <= this.size) {
+      let ci = i * 2;
+      if (!this.vals[ci]) break;
+      if (this.vals[ci + 1] && this.cp(ci + 1, ci) < 0) ci = ci + 1;
+      if (this.cp(ci, i) >= 0) break;
+      this.swap(ci, i);
+      i = ci;
+    }
+  }
+  swim(i) {
+    while (i > 1 && this.cp(Math.floor(i / 2), i) > 0) {
+      let pi = Math.floor(i / 2); // parent index
+      this.swap(pi, i);
+      i = pi;
+    }
+  }
+  swap(i, j) {
+    let t = this.vals[i];
+    this.vals[i] = this.vals[j];
+    this.vals[j] = t;
+  }
+  cp(i, j) { // compare function
+    if (this.cpFunc) {
+      return this.cpFunc(this.vals[i], this.vals[j]);
+    } else {
+      return this.vals[i] - this.vals[j];
+    }
+  }
+}
+
+var Task = function(val) {
+  this.val = val;
+  this.worktime = 1;
+  this.count = 1;
+};
+
 /**
  * @param {character[]} tasks
  * @param {number} n
  * @return {number}
  */
 var leastInterval = function(tasks, n) {
-    
+  if (tasks.length === 0) return 0;
+  if (n === 0) return tasks.length;
+  
+  let pq = new MinPQ((a, b) => {
+    if (a.worktime !== b.worktime) {
+      return a.worktime - b.worktime;
+    } else {
+      return b.count - a.count;
+    }
+  });
+  let map = {};
+  for (let task of tasks) {
+    if (map.hasOwnProperty(task)) {
+      map[task].count += 1;
+    } else {
+      map[task] = new Task(task);
+    }
+  }
+  for (let taskKey in map) {
+    pq.insert(map[taskKey]);
+  }
+  let res = 0;
+  while (!pq.isEmpty()) {
+    let nextTask = pq.deleteMin();
+    res += nextTask.worktime;
+    nextTask.count -= 1;
+    nextTask.worktime = n;
+    if (nextTask.count > 0) {
+      for (let t of pq.vals) {
+        if (t && t.worktime > 1) t.worktime -= 1;
+      }
+      pq.insert(nextTask);
+    }
+  }
+  return res + 1;
 };
