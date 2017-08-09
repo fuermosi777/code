@@ -38,6 +38,7 @@
  */
 
 // var MinPQ = require('./util/MinPQ');
+// TODO: remove the following and replace with the module when accepted
 class MinPQ {
   constructor(cpFunc) {
     this.vals = [];
@@ -111,7 +112,7 @@ var Task = function(val) {
 var leastInterval = function(tasks, n) {
   if (tasks.length === 0) return 0;
   if (n === 0) return tasks.length;
-  
+
   let pq = new MinPQ((a, b) => {
     if (a.worktime !== b.worktime) {
       return a.worktime - b.worktime;
@@ -134,14 +135,18 @@ var leastInterval = function(tasks, n) {
   while (!pq.isEmpty()) {
     let nextTask = pq.deleteMin();
     res += nextTask.worktime;
+    console.log(nextTask.val);
     nextTask.count -= 1;
+    let w = nextTask.worktime;
     nextTask.worktime = n;
     if (nextTask.count > 0) {
       for (let t of pq.vals) {
-        if (t && t.worktime > 1) t.worktime -= 1;
+        if (t && t.worktime > 1) t.worktime -= w;
       }
       pq.insert(nextTask);
     }
   }
   return res + 1;
 };
+
+console.log(leastInterval(['A','A','A','B','B','B'], 50));
