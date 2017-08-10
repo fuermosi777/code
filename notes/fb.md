@@ -56,91 +56,9 @@ Write a function to display a JSON string in pretty format.
 
 Using HTML and CSS, show how you would create an image that would display another image (aligned to the bottom, right) when the user hovers over the image.
 
---- 
+---
 
-https://github.com/h5bp/Front-end-Developer-Interview-Questions#js
+## LC
 
---- LC ---
-1
-Two Sum
-17.7%
-Medium
-
-33
-Search in Rotated Sorted Array
-28.7%
-Hard
-
-10
-Regular Expression Matching
-20.7%
-Hard
-
-158
-Read N Characters Given Read4 II - Call multiple times
-22.6%
-Hard
-
-50
-Pow(x, n)
-26.7%
-Medium
-
-161 - locked
-One Edit Distance
-24.5%
-Medium
-
-43
-Multiply Strings
-21.1%
-Medium
-
-23
-Merge k Sorted Lists
-21.0%
-Hard
-
-252 - locked
-Meeting Rooms
-33.3%
-Easy
-
-253 - locked
-Meeting Rooms II
-26.6%
-Medium
-
-17
-Letter Combinations of a Phone Number
-25.6%
-Medium
-
-28
-Implement strStr()
-22.4%
-Easy
-
-261 - locked
-Graph Valid Tree
-25.2%
-Medium
-
-38
-Count and Say
-25.3%
-Easy
-
-49
-Group Anagrams
-24.3%
-Medium
-
-15
-3Sum
-
-----
-
-621
-
-
+- LC15, LC16: 3 sum +
+- LC91: decode ways +
