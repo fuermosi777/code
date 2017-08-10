@@ -60,6 +60,6 @@ Using HTML and CSS, show how you would create an image that would display anothe
 
 ## LC
 
-- LC15, LC16: 3 sum +
-- LC91: decode ways +
+- LC15, LC16+: 3 sum
+- LC91+: decode ways
 - LC297: Serialize and Deserialize Binary Tree
