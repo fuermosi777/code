@@ -5,7 +5,8 @@
  *     this.left = this.right = null;
  * }
  */
-
+// This iteration is not good
+// Use the iteration in 1.js, which one is DFS, much better and clearer
 // iterative
 function isArraySymmetric(nums) {
   if (nums.length <= 1) return true;
