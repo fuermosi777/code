@@ -62,6 +62,8 @@ Using HTML and CSS, show how you would create an image that would display anothe
 
 - LC15, LC16+: 3 sum
 - LC91+: decode ways
-- LC297+: Serialize and Deserialize Binary Tree
+- LC297++: Serialize and Deserialize Binary Tree
 - LC125+: valid palindrome
 - LC88+: merge sorted array
+- LC6+: zigzag
+- LC208: trie
