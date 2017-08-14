@@ -27,6 +27,12 @@
  * 
  */
 
+/**
+ * Method 1: two pointers - relative order will change
+ * Method 2: use 1 pointer but need two loops, check next non-zero and replace with the current zero
+ * Method 3: find non-zero, paste to current non-zero count position, and then fill with zeros
+ */
+
 function swap(nums, i, j) {
   let t = nums[i];
   nums[i] = nums[j];
@@ -34,21 +40,19 @@ function swap(nums, i, j) {
 }
 
 /**
- * Do it in minimize times swap
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
   let i = 0;
-  while (i < nums.length) {
-    if (nums[i] === 0) {
-      let j = i + 1;
-      while (j < nums.length && nums[j] === 0) {
-        j++;
-      }
-      if (j >= nums.length) break;
-      swap(nums, i, j);
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] !== 0) {
+      nums[i] = nums[j];
+      i++;
     }
+  }
+  while (i < nums.length) {
+    nums[i] = 0;
     i++;
   }
 };
