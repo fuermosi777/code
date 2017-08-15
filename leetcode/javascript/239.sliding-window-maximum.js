@@ -38,97 +38,75 @@
  * Could you solve it in linear time?
  */
 
-class MinPQ {
-  constructor(cpFunc) {
-    this.vals = [];
-    this.size = 0;
-    this.cpFunc = cpFunc;
-  }
-  isEmpty() {
-    return this.size === 0;
-  }
-  insert(val) {
-    this.vals[this.size + 1] = val;
-    this.swim(this.size + 1);
-    this.size += 1;
-  }
-  top() {
-    if (this.isEmpty()) throw new Error('PQ is empty');
-    return this.vals[1];
-  }
-  deleteMin() {
-    if (this.isEmpty()) throw new Error('PQ is empty');
-    let d = this.vals[1];
-    this.vals[1] = null;
-    this.swap(1, this.size);
-    this.sink(1);
-    this.size -= 1;
+/**
+ * PQ
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+// var maxSlidingWindow = function(nums, k) {
+//   let res = [];
+//   if (nums.length === 0) return res;
+//   let pq = new MinPQ((a, b) => (b.val - a.val));
+//   for (let i = 0; i < k; i++) {
+//     let node = new Node(nums[i], i);
+//     pq.insert(node);
+//   }
 
-    return d;
-  }
-  sink(i) {
-    while (i <= this.size) {
-      let ci = i * 2;
-      if (!this.vals[ci]) break;
-      if (this.vals[ci + 1] && this.cp(ci + 1, ci) < 0) ci = ci + 1;
-      if (this.cp(ci, i) >= 0) break;
-      this.swap(ci, i);
-      i = ci;
-    }
-  }
-  swim(i) {
-    while (i > 1 && this.cp(Math.floor(i / 2), i) >= 0) {
-      let pi = Math.floor(i / 2); // parent index
-      this.swap(pi, i);
-      i = pi;
-    }
-  }
-  swap(i, j) {
-    let t = this.vals[i];
-    this.vals[i] = this.vals[j];
-    this.vals[j] = t;
-  }
-  cp(i, j) { // compare function
-    if (this.cpFunc) {
-      return this.cpFunc(this.vals[i], this.vals[j]);
-    } else {
-      return this.vals[i] - this.vals[j];
-    }
-  }
-}
+//   res.push(pq.top().val);
 
-var Node = function(val, pos) {
-  this.val = val;
-  this.pos = pos;
-};
+//   for (let i = k; i < nums.length; i++) {
+//     let node = new Node(nums[i], i);
+//     pq.insert(node);
+
+//     // find max
+//     let tmax = pq.top();
+//     while (tmax.pos <= i - k) {
+//       pq.deleteMin();
+//       tmax = pq.top();
+//     }
+//     res.push(tmax.val);
+//   }
+//   return res;
+// };
 
 /**
+ * Deque
  * @param {number[]} nums
  * @param {number} k
  * @return {number[]}
  */
 var maxSlidingWindow = function(nums, k) {
+  let queue = [];
+  let pos = [];
   let res = [];
-  let pq = new MinPQ((a, b) => (b.val - a.val));
-  for (let i = 0; i < k; i++) {
-    let node = new Node(nums[i], i);
-    pq.insert(node);
-  }
-
-  res.push(pq.top.val);
-
-  for (let i = k; i < nums.length; i++) {
-    let max = pq.top();
-    let node = new Node(nums[i], i);
-
-    if (max.pos === i - k) {
-      pq.deleteMin();
-      pq.insert(node);
+  for (let i = 0; i < nums.length; i++) {
+    if (queue.length === 0) {
+      queue.push(nums[i]);
+      pos.push(i);
     } else {
-      
+      // check max legit
+
+      while (pos[pos.length - 1] <= i - k && pos.length > 0) {
+        queue.pop();
+        pos.pop();
+      }
+
+      if (nums[i] >= queue[queue.length - 1]) {
+        queue.push(nums[i]);
+        pos.push(i);
+      } else {
+        while (queue[0] <= nums[i] && queue.length > 0) {
+          queue.shift();
+          pos.shift();
+        }
+        queue.unshift(nums[i]);
+        pos.unshift(i);
+      }
+    }
+    if (i >= k - 1) {
+      res.push(queue[queue.length - 1]);
     }
   }
   return res;
 };
-
-console.log(maxSlidingWindow([1,3,-1,-3,-5,3,6,7], 3))
