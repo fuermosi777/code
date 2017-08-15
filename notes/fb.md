@@ -68,3 +68,5 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC6+: zigzag
 - LC208: trie
 - LC283+: move zeros
+
+- Dot product of 2 sparse vectors
