@@ -65,8 +65,10 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC297++: Serialize and Deserialize Binary Tree
 - LC125+: valid palindrome
 - LC88+: merge sorted array
+- LC21+: merge two sorted lists
 - LC6+: zigzag
 - LC208: trie
 - LC283+: move zeros
+- LC239+: sliding window
 
 - Dot product of 2 sparse vectors
