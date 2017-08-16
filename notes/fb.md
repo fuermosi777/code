@@ -70,5 +70,6 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC208: trie
 - LC283+: move zeros
 - LC239+: sliding window
+- LC76+: minimum window substring
 
 - Dot product of 2 sparse vectors
