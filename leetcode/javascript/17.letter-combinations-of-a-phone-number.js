@@ -19,31 +19,23 @@
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
-  let map = {
-    '2': ['a', 'b', 'c'],
-    '3': ['d', 'e', 'f'],
-    '4': ['g', 'h', 'i'],
-    '5': ['j', 'k', 'l'],
-    '6': ['m', 'n', 'o'],
-    '7': ['p', 'q', 'r', 's'],
-    '8': ['t', 'u', 'v'],
-    '9': ['w', 'x', 'y', 'z']
-  };
-  let res = [];
+  if (digits.length === 0) return [];
+  let codes = [null, null, 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
+  let last;
   for (let i = 0; i < digits.length; i++) {
     let d = digits[i];
-    if (res.length === 0) {
-      res = map[d];
+    if (i === 0) {
+      last = codes[d].split('');
     } else {
       let current = [];
-      for (let j = 0; j < res.length; j++) {
-        for (let k = 0; k < map[d].length; k++) {
-          current.push(res[j] + map[d][k]);
+      let newd = codes[d].split('');
+      for (let j = 0; j < last.length; j++) {
+        for (let k = 0; k < newd.length; k++) {
+          current.push(last[j] + newd[k]);
         }
       }
-      res = current;
+      last = current;
     }
   }
-
-  return res;
+  return last;
 };
