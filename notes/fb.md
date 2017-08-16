@@ -72,5 +72,6 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC239+: sliding window
 - LC98+: valid BST
 - LC76+: minimum window substring
+- LC349+: interection of two arrays
 
 - Dot product of 2 sparse vectors
