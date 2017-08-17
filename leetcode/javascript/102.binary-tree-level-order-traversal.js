@@ -43,28 +43,24 @@
  */
 
 /**
+ * 81.13%
  * @param {TreeNode} root
  * @return {number[][]}
  */
 var levelOrder = function(root) {
   let res = [];
   if (root === null) return res;
-  let q = [];
-  q.push(root);
-  let i = 0;
-  while (q.length > 0) {
-    res[i] = [];
-    let len = q.length;
-    while (len > 0) {
-      let n = q.shift();
-      res[i].push(n.val);
-      if (n.left) q.push(n.left);
-      if (n.right) q.push(n.right);  
-      len--;
+  let queue = [root];
+  while (queue.length > 0) {
+    let item = [];
+    let len = queue.length;
+    while (item.length < len) {
+      let deq = queue.shift();
+      item.push(deq.val);
+      if (deq.left) queue.push(deq.left);
+      if (deq.right) queue.push(deq.right);
     }
-
-    i++;
+    res.push(item);
   }
-
   return res;
 };
