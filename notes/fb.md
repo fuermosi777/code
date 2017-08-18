@@ -75,5 +75,6 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC349+: interection of two arrays
 - LC102+: binary tree level print
 - LC304+: range sum
+- LC128+: longest arithmetic sequence
 
 - Dot product of 2 sparse vectors
