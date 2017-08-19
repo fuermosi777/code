@@ -71,7 +71,7 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC283+: move zeros
 - LC239+: sliding window
 - LC98+: valid BST
-- LC76+: minimum window substring
+- LC76++: minimum window substring
 - LC349+: interection of two arrays
 - LC102+: binary tree level print
 - LC304+: range sum
