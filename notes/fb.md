@@ -77,5 +77,8 @@ Using HTML and CSS, show how you would create an image that would display anothe
 - LC304+: range sum
 - LC128+: longest arithmetic sequence
 - LC278+: first bad version
+- LC210+: topological
+- LC621+: task scheduler
 
 - Dot product of 2 sparse vectors
+- LC311+: sparse matrix multiply
