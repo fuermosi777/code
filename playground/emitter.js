@@ -32,9 +32,13 @@ Subscription.prototype.release = function() {
   if (subs.length === 0) {
     delete this.emitter.subscription[this.e];
   }
+  this.emitter = null;
+  this.cb = null;
+  this.e = null;
 };
 
 var Emitter = function() {
+  /** @property {Subscription[]} */
   this.subscriptions = {};
 };
 
