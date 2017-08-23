@@ -36,56 +36,63 @@
  * example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of
  * itself according to the LCA definition.
  */
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
 
-/*function TreeNode(val) {
-  this.val = val;
-  this.left = this.right = null;
+
+
+
+
+
+
+
+function dfs(node) {
+  if (node.left) {
+    node.left.parent = node;
+    dfs(node.left);
+  }
+  if (node.right) {
+    node.right.parent = node;
+    dfs(node.right);
+  }
 }
 
-function dsp(root, n) {
-  if (root === n) return;
-  if (root.left !== null) {
-    root.left.path = root;
-    dsp(root.left, n);
+function length(child) {
+  let n = child;
+  let l = 0;
+  while (n) {
+    l++;
+    n = n.parent;
   }
-  if (root.right !== null) {
-    root.right.path = root;
-    dsp(root.right, n);
-  }
+  return l;
 }
- 
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
 var lowestCommonAncestor = function(root, p, q) {
-  dsp(root, p);
-  dsp(root, q);
-
-  let p1 = [], p2 = [];
-  let n1 = p, n2 = q;
-  while (n1) {
-    p1.unshift(n1);
-    n1 = n1.path;
-  }
-  while (n2) {
-    p2.unshift(n2);
-    n2 = n2.path;
-  }
-
+  dfs(root);
+  let pl = length(p);
+  let ql = length(q);
+  let longer = pl >= ql ? p : q;
+  let n = longer;
+  let s = p === longer ? q : p;
   let i = 0;
-  let lca = null;
-  while (p1[i] === p2[i]) {
-    lca = p1[i];
+  while (i < Math.abs(pl - ql)) {
+    n = n.parent;
     i++;
   }
-
-  return lca;
-};*/
-
-var lowestCommonAncestor = function(root, p, q) {
-  if (root === null || p === root || q === root) return root;
-
-  let left = lowestCommonAncestor(root.left, p, q);
-  let right = lowestCommonAncestor(root.right, p, q);
-
-  if (left && right) return root;
-  else if (left) return left;
-  return right;
+  while (s !== n) {
+    s = s.parent;
+    n = n.parent;
+  }
+  return s.val;
 };
