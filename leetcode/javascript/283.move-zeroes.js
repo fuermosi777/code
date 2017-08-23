@@ -40,19 +40,54 @@ function swap(nums, i, j) {
 }
 
 /**
+ * One pointer
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-  let i = 0;
-  for (let j = 0; j < nums.length; j++) {
-    if (nums[j] !== 0) {
-      nums[i] = nums[j];
-      i++;
+  let i = 0, j = 0;
+  for (i; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      swap(nums, i, j);
+      j++;
     }
   }
-  while (i < nums.length) {
-    nums[i] = 0;
-    i++;
+  for (j; j < nums.length; j++) {
+    nums[j] = 0;
   }
 };
+
+// var moveZeroes = function(nums) {
+//   let i = 0;
+//   for (let j = 0; j < nums.length; j++) {
+//     if (nums[j] !== 0) {
+//       nums[i] = nums[j];
+//       i++;
+//     }
+//   }
+//   while (i < nums.length) {
+//     nums[i] = 0;
+//     i++;
+//   }
+// };
+
+/**
+ * One pointer stupid
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+/*var moveZeroes = function(nums) {
+  let i = 0;
+  while (i < nums.length) {
+    let ch = nums[i];
+    if (ch === 0) {
+      let j = i + 1;
+      while (j < nums.length && nums[j] === 0) {
+        j++;
+      }
+      if (j >= nums.length) break;
+      swap(nums, i, j);
+    }
+    i++;
+  }
+};*/
