@@ -43,10 +43,27 @@ var search = function(nums, target) {
     }
   }
 
-  hi = lo === 0 ? nums.length - 1 : lo - 1;
-  while (lo < hi) {
-    
+  if (nums[lo] === target) return lo;
+  if (nums[lo] < target && target <= nums[nums.length - 1]) {
+    return bs(lo, nums.length - 1, nums, target);
   }
+  if (nums[0] <= target && target <= nums[lo - 1]) {
+    return bs(0, lo - 1, nums, target);
+  }
+
+  return -1;
 };
 
-console.log(search([7,0,1,2,3,4,5], 2));
+function bs(lo, hi, nums, target) {
+  while (lo <= hi) {
+    let mid = lo + (hi - lo) / 2 | 0;
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      lo = mid + 1;
+    } else {
+      hi = mid - 1;
+    }
+  }
+  return -1;
+}
