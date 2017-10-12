@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infinite scroll</title>
+  <style type="text/css">
+    #posts {
+      height: 100px;
+      overflow: auto;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <p></p>
+  <script type="text/javascript">
+    // mock Ajax return random items after 500 ms loading time
+    var ajax = function() {
+      return new Promise((resolve, reject) => {
+        let res = [];
+        for (let i = 0; i < 10; i++) {
+          res.push(`Item${Math.random() * 10 | 0}`);
+        }
+        setTimeout(() => {
+          resolve(res);
+        }, 500);
+      });
+    };
+  </script>
+  <ul id="posts">
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+    <li>Item</li>
+  </ul>
+  <script type="text/javascript">
+    // start
+    const box = document.querySelector('#posts');
+
+    box.addEventListener('scroll', throttle(handleBoxScroll, 1000));
+
+    var isLoading = false;
+
+    function throttle(func, timeout) {
+      let canDo = true;
+      return function() {
+        if (canDo) {
+          func();
+          setTimeout(() => {
+            canDo = true;
+          }, timeout);
+        }
+      }
+    }
+
+    function handleBoxScroll() {
+      if (isLoading) return;
+      if (box.scrollHeight - box.scrollTop - box.offsetHeight > 20) return;
+
+      isLoading = true;
+      ajax().then(items => {
+        isLoading = false;
+        items.forEach(item => {
+          let li = document.createElement('LI');
+          li.innerHTML = item;
+          box.appendChild(li);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
