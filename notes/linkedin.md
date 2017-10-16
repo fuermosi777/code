@@ -34,10 +34,9 @@ follow up: 输出需要按照count排序
 
 用了一个map把skill作为key，遍历endorsements数组处理，然后用Object.values(map)输出结果。
 
-. Waral 鍗氬鏈夋洿澶氭枃绔�,
 第二题，给一个url：
 http://www.linkedin.com?q1=v1&q2=v2
-写一个函数提取query string，返回 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+写一个函数提取query string，返回 
 {q1: 'v1', q2: 'v2'}
 有点坑，需要考虑没query string，或者有fragement的情况http://www.linkedin.com?q1=v1&q2=v2#xxx
 这样子的话就要写regular expression进行处理
@@ -62,7 +61,6 @@ Round 2：culture fit
 
 Round 3：product + design taste
 
-. Waral 鍗氬鏈夋洿澶氭枃绔�,
 Round 4：吃饭。领英的饭还是甩其他家几条街的，有糖醋排骨。
 
 
@@ -113,4 +111,227 @@ onsite一共四轮，每轮1小时，中间还有1小时吃饭。
 感觉他们家非常重视jQuery，需要好好看看相关的documentation。
 
 ---
+
+自己平时做Fullstack， 前端后端都有接触，主要用AngularJS，所以很少直接操作DOM，利用这次面试机会饿补了一下DOM的相关知识，但是基础还是欠缺，像上面这几道题还是没有答的非常流利。另外我工作中是不用JQuery的，也没有时间特地准备，但是通过面试了解到，Linkedin的还是用很多JQuery，因为写DOM原生程序，面试官说他对原生DOM操作也不是很熟，然后就在他的误导下写了一个和JQuery杂交的程序，就是下面让我写append一个array到dom节点上。后来面试之后在codepen上自己测了一下，才知道他给我的方法是JQuery独有的，DOM根本没法直接插一个Array到DOM上。而且之后他还让我对比一个一个的append元素和append一个array的区别，哪个好，因为当时并不知道这个是JQuery上独有的，所以从时间空间复杂度上做了回答。他又有所补充，说每次如果一个一个的append元素，那么每次都要定位它将要插入的位置，而后者不用，所以省时间。我对他的补充提出了质疑，说我已经在程序外边定位了parent dom，为什么每次还是要找，而且Array的长度是一致，循环的次数也不是一样多？之后他又尝试解释了一下，但是我并不觉得解释到了点子上。事后我专门做了测试，JQuery确实append一个array的话会比一个一个append快，但是和我最开始写的原生DOM方法比，这两个都慢了起码一倍，具体为什么快，我觉得可能面试官的解释有一定的道理，但是这完全是基于对一个第三方Library的了解，并不具备普遍意义。
+
+总体感觉Linkedin某些前端面试官水平挺一般的，但是自己连电面都没过去，也说明自己挺菜的。总之还是继续刷题，继续找吧。大家好运！
+. 1point 3acres 璁哄潧
+另外一个细节，就是之前他们给我发邮件安排一个男的面我，然后面试的时候突然换人，也没有任何解释。我觉得一个专注职业社交的网站，能把面试安排的如此混乱，实在让我大跌眼镜。
+
+基础题：
+1. How to improve the accessibility of a website?
+2. Explain event bubbling? Why it is a good approach?
+3. Ways to add addtional stylesheets on bootstrap?
+4. Why a css preprocessor such as LESS is better than traditional css?
+
+
+
+以下代码是Markdown写的，可以到我自己的网站看编排好的版本。http://www.stevenxzhou.com/linkedin-dian-mian-mian-jing/
+
+### 题目一： 看代码猜结果
+```javascript
+var Foo = function(a) {
+  // This function is not defined.
+  // Either window or this doesn't have this method.
+  function bar() {   
+    console.log(a);
+  };
+  var a = 1;
+  // This function is defined and is assigned to `this` Object only.
+  // So the function can be accessed from a new created instance.
+  // parameter a is accessible from all the nested function defined here.
+  this.baz = function() {
+      console.log(a);
+  };
+};
+
+Foo.prototype = {
+  // function is defined in prototype.
+  // new created instance can access to this function.
+  // but this function is defined in a different Object,
+  // so it can not access to constructor's parameter.
+  biz: function() {   
+    console.log(a);
+  }
+};
+
+var f = new Foo(8);
+// Question1: Observe the function above and tell the result they would print
+// for the following function calls.
+f.bar(); // TypeError, f.bar is not a function.
+f.baz(); // 8
+f.biz(); // ReferenceError, a is not defined
+
+// followup: how to resolve the errors and print expected values.
+var Foo = function(a) {
+  // Assign defined function to this Object.
+  this.bar = function() {   
+    console.log(a);
+  };
+  // Unchanged
+  this.baz = function() {
+      console.log(a);
+  };
+  // Assign parameter a to this Object.
+  this.a = a;
+};
+
+Foo.prototype = {
+  biz: function() {
+    // access a from this, which is the created instance.
+    console.log(this.a);
+  }
+};
+
+// The instance before and after.
+instance_before = {
+  baz: function(){},
+  proto: {
+    biz: function(){}
+  }
+}
+// The instance after.
+instance = {
+  bar: function(){},
+  baz: function(){},
+  a: 8,
+  proto: {
+    biz: function(){}
+  }
+}
+// Summary
+// Function and variable has to be defined in constructor  and assigned to this
+// Object to make them accessible to new created instance and functions in
+// proto object. Parameter for constructor can only be accessed within the   
+// constructor. But constructor and proto are both in the same `this` scope,
+// which means they belong to the same instance. proto is an attribute with an
+// object as its value. functions in this new object doesn’t have access to  it’s
+// parent function’s parameter if only it’s assigned to the `this` scope they share.
+// For the given array of members:
+```
+### 题目二： 操纵DOM
+```javascript
+var members = [
+    {
+        name: 'Bill Denbrough',
+        id: 1
+    },
+    {
+        name: 'Ben Hanscom',
+        id: 2
+    },
+    {
+        name: 'Mike Hanlon',
+        id: 3
+    },
+    {
+        name: 'Richie Tozier',
+        id: 4
+    },
+    {
+        name: 'Beverly Marsh',
+        id: 5
+    },
+    {
+        name: 'Eddie Kaspbrak',
+        id: 6
+    },
+    {
+        name: 'Stan Uris',
+        id: 7
+    }  
+];
+
+<div id="content"></div>
+
+// Question: insert links for each of the members into the content div
+// The link would be like the example below
+<a href="profile.jsp?id=<memeber.id>"><member.name></a>
+
+var contentEl = document.getElementById("content");
+var htmlC = [];
+members.forEach(function(memeber){
+    var name = member.name;
+    var id = member.id;
+    var link = "profile.jsp?id=" + id;
+    var aEl = doucment.createElement('a');
+    aEl.setAttribute('href', link);
+    aEl.innerText = name;
+    htmlC.push(aEl);
+});
+contentEl.append(htmlC);
+
+// Follow up question:
+What the benefits you can get by inserting them at once rather than inserting it each time you create a anchor tag?
+
+// http://codepen.io/stevenz1987/pen/YWEBvQ?editors=1010
+```
+
+---
+
+
+最近面了linkedin前端电面2次，估计第一次第二个题讨论了太长时间没问完，基本都是面经题，不多说直接上题。口头问题：
+
+
+coding：
+1. 看代码说结果，如何改正
+
+var Foo = function( a ) {. from: 1point3acres.com/bbs 
+function bar() {
+return a;
+}
+this.baz = function() {
+return a;
+};
+};
+Foo.prototype = {.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+biz: function() {
+return a;. 1point3acres.com/bbs
+} 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+};
+var f = new Foo( 7 );
+f.bar(); // error, undefined function
+f.baz(); // 7
+f.biz(); // undefined
+复制代码
+2. 给你一个有参数url："linkedin.com?q1=v1&q2=v2”
+写一个方返回{q1: 'v1', q2: 'v2'}， 要用到decodeURL();
+3. 给个tooltip图片，照着写html, css
+
+4. 用js拿第n个斐波拉契数
+1，1，2，3，5，8，13。。。
+第7个就是13，可以用top down的递归方法写，但是时间复杂度很高，用hash存子结果可以防止重复计算，但是会有格外空间消耗。
+用bottom up 迭代是最优解。
+-google 1point3acres
+-google 1point3acres
+
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+
+
+补充内容 (2017-9-24 09:02):. more info on 1point3acres.com
+口头问题贴掉了：
+1. difference between GET and POST
+2. difference between Class inheritance and prototype inheritance
+3. difference between Promise and callback
+
+---
+
+http://www.1point3acres.com/bbs/thread-192576-1-1.html
+
+---
+
+http://www.1point3acres.com/bbs/thread-235355-1-1.html
+
+---
+
+http://www.1point3acres.com/bbs/thread-270784-1-1.html
+
+---
+
+http://www.1point3acres.com/bbs/thread-216185-1-1.html
+
+---
+
+http://www.1point3acres.com/bbs/thread-218266-1-1.html
+
 

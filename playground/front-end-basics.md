@@ -77,3 +77,28 @@ https://segmentfault.com/q/1010000000640869
 O(logn)
 
 16. There are five basic data type: Undefined, Null, Boolean, String, and Number
+
+17. What is website accessibility and how to improve the accessibility of a website?
+
+Web accessibility means that people with disabilities can use the Web. 
+
+- Use ALT attr for images
+- Tab indexes
+- Use access key
+
+18. CSS preprocessor
+
+Used Less and Sass.
+
+Pros:
+
+- Modularization
+- Reduse redundancy using variables and mixins
+- Better architecture (e.g. colors) 
+- Code reuse
+- Nested, easy to read
+
+Cons: 
+
+- Need an engine first
+- Too many nested layers may cause low performance
