@@ -102,3 +102,6 @@ Cons:
 
 - Need an engine first
 - Too many nested layers may cause low performance
+
+19. Prototype inheritance and classical inheritance
+
