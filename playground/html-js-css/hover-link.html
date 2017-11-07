@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My First React Example</title>
+    <style>
+      .item {
+        position: relative;
+      }
+      .popup {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script type="text/babel">
+      var Profiles = React.createClass({
+        getInitialState() {
+          return {
+            people: [{
+              name: 'Tom Riddle',
+              showPopup: false,
+              info: null
+            }, {
+              name: 'Harry Potty',
+              showPopup: false,
+              info: null
+            }]
+          }
+        },
+        render: function() {
+          return (
+            <div class="profiles">
+              {this.state.people.map((p, k) => {
+                return (
+                  <div class="item" key={k} onMouseEnter={this.handleMouseEnter.bind(this, k)} onMouseLeave={this.handleMouseLeave.bind(this, k)}>
+                    {p.name}
+                    {p.showPopup ? <div class="popup">
+                      {p.info === null ? 'Loading...' : p.info}
+                    </div> : null}
+                  </div>
+                );
+              })}
+            </div>
+          )
+        },
+        handleMouseEnter(pid) {
+          let people = this.state.people;
+          people[pid].showPopup = true;
+          this.setState({people});
+
+          if (people[pid].info === null) {
+            this.fetchInfo(pid).then((stuff) => {
+              people[pid].info = stuff;
+              this.setState({people});
+            });
+          }
+        },
+        handleMouseLeave(pid) {
+          let people = this.state.people;
+          people[pid].showPopup = false;
+          this.setState({people});
+        },
+        fetchInfo(pid) {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve('ohohoho' + pid);
+            }, 1000);
+          });
+        }
+      });
+
+      ReactDOM.render(
+        <Profiles/>,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
