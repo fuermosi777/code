@@ -1,0 +1,3 @@
+- What's the position primary task? Building features or creating new?
+- How long does the project exist?
+- How many people
