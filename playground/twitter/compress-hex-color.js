@@ -1,5 +1,5 @@
 /**
- * Compose HEX color:
+ * Compress HEX color:
  * #EEAABB -> EAB
  * #E0ACF0 -> DAE
  *
