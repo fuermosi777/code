@@ -103,5 +103,13 @@ Cons:
 - Need an engine first
 - Too many nested layers may cause low performance
 
-19. Prototype inheritance and classical inheritance
+19. 
+
+https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+
+20. What's event loop?
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
 

@@ -11,7 +11,7 @@ LC
 10        Regular Expression Matching        22.0%        Hard        
 ✓ 12        Integer to Roman        38.8%        Medium        
 ✓ 20        Valid Parentheses        29.3%        Easy        
-23        Merge k Sorted Lists        23.3%        Hard        
+✓ 23        Merge k Sorted Lists        23.3%        Hard        
 42        Trapping Rain Water        32.2%        Hard        
 43        Multiply Strings        23.4%        Medium        
 56        Merge Intervals        25.3%        Hard        
@@ -30,4 +30,5 @@ LC
 269        Alien Dictionary         22.9%        Hard        
 296        Best Meeting Point         46.7%        Hard    
 
-ROMAN Letters <-> real number
+- ROMAN Letters <-> real number
+- topological
