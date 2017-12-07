@@ -8,12 +8,16 @@
 <body>
   <input class="debounce" placeholder="debounce">
   <input class="throttle" placeholder="throttle">
+  <div class="output">
+    
+  </div>
   <script>
     document.querySelector('.debounce').addEventListener('keyup', debounce(onChange, 1000));
     document.querySelector('.throttle').addEventListener('keyup', throttle(onChange, 500));
     
+    let output = document.querySelector('.output');
     function onChange(e) {
-      console.log(e.target.value)
+      output.textContent = output.textContent + ' ' + e.target.value; 
     }
   </script>
 </body>
