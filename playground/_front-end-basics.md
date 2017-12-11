@@ -2,7 +2,7 @@
 
 A function and the variables it can use.
 
-2. What is this? Meet the following code:
+2. What is "this"? Meet the following code:
 
 ```
 var obj = {
