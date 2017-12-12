@@ -1,19 +1,10 @@
 ## ONLINE
 
-http://www.1point3acres.com/bbs/thread-210976-1-1.html
-
-http://www.1point3acres.com/bbs/thread-161423-1-1.html
-
-电话面试很简单, 45分钟时间, 30分钟结束.
 
 一个问题: Implement getElementsByClassN4m3.
 
-
-
 实现
 getElementsByClassName('className')
-
-
 
 follow-up, 实现
 document.querySelector();

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Implement getElementsByClassName function</title>
+</head>
+<body>
+  <script src="../google/getElementsByClassName.js"></script>
+
+  <div class="root">
+    <div class="child">
+      <span class="text">Test text</span>
+    </div>
+    <div class="child"></div>
+    <div class="child">
+      <div class="child">
+        <p class="text">Text</p>
+      </div>
+    </div>
+    <div class="child-bottom">
+      <span class="text">Another test text</span>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    console.log(getElementsByClassName(document.body, 'root').length === 1);
+    console.log(getElementsByClassName(document.body, 'child').length === 4);
+    console.log(getElementsByClassName(document.body, 'text').length === 3);
+  </script>
+</body>
+</html>
