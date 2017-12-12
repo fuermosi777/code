@@ -1,4 +1,6 @@
 /**
+ * Facebook ~ draft.js 
+ * 
  * Given a string and the styling array, return the styled HTML text:
  *
  * For example, for string "Hello, world" and array
