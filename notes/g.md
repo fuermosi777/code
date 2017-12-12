@@ -1,14 +1,3 @@
-## ONLINE
-
-
-一个问题: Implement getElementsByClassN4m3.
-
-实现
-getElementsByClassName('className')
-
-follow-up, 实现
-document.querySelector();
-
 ## FRONT END
 
 ---
