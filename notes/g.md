@@ -53,6 +53,27 @@ coding: implement getElementbyClassName without any APIs
 
 http://www.1point3acres.com/bbs/thread-225553-1-1.html
 
+电面：. 鍥磋鎴戜滑@1point 3 acres
+白人小哥，设计一个Tree的Class，要支持插入，查找和删除（整个sub tree). 插入时要带一个callback function删除时叫。删除时要从上层往下层呼叫callback，BFS。就这样一条水题，小哥人很好。貌似一年前地里也有人面了一样的题也是白人小哥，莫非这白人小哥是长期发糖的？
+
+白人中哥，说是在google做了11年了。一开始因为有Angular经验就问了一下，结果因为最近一年都是在修改，忘记大部分Angular语法了,主要是如何实现directive之间的沟通，随便水了下。然后问了JSON的特性，以company为例写一个例子包含json的所有特性，随便写了个不靠谱的例子。follow up：用js object来写company来体现js object的特性，用{}语法写了个。结果follow up问哪些是static function, private function和public function.直接蒙了，{}语法全都是static。所以用function语法重写了。再follow up就是如何继承。 
+
+中国人大哥，带着强大的气场进来，小弟直接被镇住了。开始问问js基础，closure scope ==之类的。然后算法题很简单，数组里找最大的连续和，只返回最大和。lc的简单题，但是因为被气场压制了，紧张的回答了它的进阶版，说了two pointer。演算是发现那两个pointer根本没鸟用，大哥说没关系我也要，没挺准这句的意思，导致后面改edge case的时候大哥一直说不对，结果原来已经进入了进阶版的状态。 
+
+白人小哥，问了下基础CSS问题,然而因为CSS基础很差，听不懂术语。想问的angular题被问了就直接算法。LC的原题，求一个矩阵对角线是否对称。做出了检验是否矩阵和正方形的情况，准备推广到长方形时时间到了。最后闲聊时突然想到就提了一下解题思路。
+
+分不清是阿三哥还是中东人，不是那种标准阿三的长相，但是也像。唯一一个是JAVA的老兄。设计题，设计negativeIterator，地里有说明，不重复了。 剩下15分钟做一个check all的html checkbox。
+
+亚裔，名字像是日本人，英语完美。一上来问CSS，理所当然的答错了。然后设计一个comparator可以让Array.sort用。是用来sort file path的：
+abc
+cde/mbc
+cde/efg/a
+cde/efg/b
+
+要求file优先于folder，字母顺序次之。一开始没看到file优先的条件，做出来被提醒，改了之后只能使用第一层，于是放入while loop里面。最后问run time。回答O(N)，被告知不对，因为while里面用了shift，所以是O(N^2)；可以用pop然后reverse（然后就在下就说出了一开始提到的傻话）
+
+---
+
 
 ## Glassdoor
 
