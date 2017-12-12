@@ -4,7 +4,7 @@
   <title>Implement getElementsByClassName function</title>
 </head>
 <body>
-  <script src="../google/getElementsByClassName.js"></script>
+  <script src="../google/getElementsByClassName-querySelector.js"></script>
 
   <div class="root">
     <div class="child">
@@ -25,6 +25,12 @@
     console.log(getElementsByClassName(document.body, 'root').length === 1);
     console.log(getElementsByClassName(document.body, 'child').length === 4);
     console.log(getElementsByClassName(document.body, 'text').length === 3);
+
+    console.log(querySelector(document.body, '.root'));
+    console.log(querySelector(document.body, '.child'));
+    console.log(querySelector(document.body, '.text'));
+
+    console.log(querySelector(document.body, '.root, .child'));
   </script>
 </body>
 </html>
