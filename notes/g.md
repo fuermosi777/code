@@ -88,3 +88,28 @@ coding: implement getElementbyClassName without any APIs
 
 http://www.1point3acres.com/bbs/thread-225553-1-1.html
 
+
+## Glassdoor
+
+
+Minesweeper problem. Write a function reveal() that outputs the number of tiles shown when a user clicks on a tile. Each tile shows the number of bombs as its neighbor. If the user click on a tile that is a bomb, the game is over. If that tile is 0, reveal all its neighbors.  
+
+---
+
+Find k-nearest points
+
+---
+
+I had to do recursion in a tree to find values. Similar to a find common parents algorithm
+
+---
+
+Implement a deferred event handler that recursively walks up the tree to determine whether to fire.  
+
+---
+
+What all happens in a browser when you click on a link?  
+
+---
+
+
