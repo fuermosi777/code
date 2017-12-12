@@ -1,20 +1,5 @@
 ## FRONT END
 
----
-
-http://www.1point3acres.com/bbs/thread-283104-1-1.html
-
-Write a class that lets functions be registered that will be executed when a particular event (a string) is triggered..
- 
-The class should have two methods:
- 
-
-
-fire(eventName)
-listenFor(eventName, someFunctionToCall) 
-
----
-
 http://www.1point3acres.com/bbs/thread-215351-1-1.html
 
 给你两个string, 找说他们的common prefix
