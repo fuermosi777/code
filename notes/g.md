@@ -74,6 +74,35 @@ cde/efg/b
 
 ---
 
+http://www.1point3acres.com/bbs/thread-217122-1-1.html
+
+第一轮：前端设计。设计一个tilt maze游戏，先从数据结构入手，在提示下选择了graph，然后写了整个class来描述球的移动，然后到如何将数据翻译成游戏地图，最后大致讨论了如何写html/css将游戏呈现到UI。
+
+第二轮：algorithm。题目是写一个combined iterator class，输入是list<Iterator>，next()要按iterator的顺序依次return每个iterator的element。用queue解决了。
+
+第三轮：前端设计。这一轮按照安排本来是考algorithm，但还是考的前端设计。主题是form validators。先从最简单的问题入手，讨论了validator的作用，如何提高安全性，然后开始在白板上写一个最简单的form validator来验证username。写完后面试官不断诱导，又让我加入后端验证和validation info display，最后加入limitor去限制单位时间内的user input。
+
+第四轮：前端设计。面试官很奇怪，上来问我想要他出什么题，我也不知道说什么，然后他就列举了几个让我选，感觉都没有写过，就随便选了一个前端cache的题。大概就是以request为key，response为value。以前没写过类似的cache，加上面试官举了个很奇怪的例子，花了很长时间我才理解题意。写的很差，毫无疑问挂在了这一轮。
+
+第五轮：algorithm。题目是生成tournament对阵顺序，输入是队伍支数，输出为对阵顺序。例如有8只队伍参赛，用数值表示球队能力值，1最强，8最弱。每一轮要求最强跟最弱对阵，次强跟次弱对阵。。。强者始终胜出。[1, 8, 4, 5, 2, 7, 3, 6] -> [1, 4, 2, 3] -> [1, 2] ->[1]。所以这里输入是8，输出是[1, 8, 4, 5, 2, 7, 3, 6]。我只提出了O(nlogn)的解法，用map<Integer, List>来存每一轮的对阵，key是list中最强队伍，然后不断merge，最终得出对阵序列。然后讨论了一下如何O(n)，大致就是不断展开：[1] -> [1, 2] -> [1, 4, 2, 3] -> [1, 8, 4, 5, 2, 7, 3, 6]。
+
+---
+
+http://www.1point3acres.com/bbs/thread-280663-1-1.html
+
+其实这次面试槽点满满，不过不在这里吐了-google 1point3acres
+面的是偏前端的role 所以 有两轮专问前端，主要集中在 search, autocomplete ui, trie 这些topic 都是用javascript写
+还有三轮coding ， 2046 游戏划一下update board status， 看着简单其实容易有bug；乐扣三丝洞， 用常规方法秒了，然后让优化算法（虽然最后我并不觉得那是最优的。。。）；给一个unsorted array 切开分别sort 在按切的顺序合并后必须是原来的sorted array，求如何切，先是假定数字在1-n 然后去掉这个假定咋做； 乐扣额要伞；
+总体来讲算法部分有些难度，主要是思路的部分，有了思路写code很轻松，还有建议大家练习一下在题难的状态下如何情绪不受影响而写出bug free的code
+
+---
+
+Other shits:
+
+http://www.geeksforgeeks.org/auto-complete-feature-using-trie/
+
+---
+
 
 ## Glassdoor
 
