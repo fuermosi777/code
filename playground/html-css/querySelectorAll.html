@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing querySelectorAll func</title>
+  <script type="text/javascript" src="../google/querySelectorAll.js"></script>
+</head>
+<body>
+  <div id="root" class="center">
+    <div id="sidebar"></div>
+    <div class="main-content center">
+      <div class="title">Some title</div>
+      <section>
+        <p>Test</p>
+        <p class="special center">Special test</p>
+      </section>
+    </div>
+    <footer>Some footer</footer>
+  </div>
+  <script type="text/javascript">
+    console.log(querySelectorAll('#root'), document.querySelectorAll('#root'));
+  </script>
+</body>
+</html>
