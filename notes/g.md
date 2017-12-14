@@ -60,7 +60,11 @@ http://www.1point3acres.com/bbs/thread-225553-1-1.html
 
 中国人大哥，带着强大的气场进来，小弟直接被镇住了。开始问问js基础，closure scope ==之类的。然后算法题很简单，数组里找最大的连续和，只返回最大和。lc的简单题，但是因为被气场压制了，紧张的回答了它的进阶版，说了two pointer。演算是发现那两个pointer根本没鸟用，大哥说没关系我也要，没挺准这句的意思，导致后面改edge case的时候大哥一直说不对，结果原来已经进入了进阶版的状态。 
 
+> LC 53 124 523
+
 白人小哥，问了下基础CSS问题,然而因为CSS基础很差，听不懂术语。想问的angular题被问了就直接算法。LC的原题，求一个矩阵对角线是否对称。做出了检验是否矩阵和正方形的情况，准备推广到长方形时时间到了。最后闲聊时突然想到就提了一下解题思路。
+
+> LC 498 223 391
 
 分不清是阿三哥还是中东人，不是那种标准阿三的长相，但是也像。唯一一个是JAVA的老兄。设计题，设计negativeIterator，地里有说明，不重复了。 剩下15分钟做一个check all的html checkbox。
 
@@ -126,5 +130,4 @@ Implement a deferred event handler that recursively walks up the tree to determi
 What all happens in a browser when you click on a link?  
 
 ---
-
 
