@@ -51,4 +51,5 @@
  * @return {boolean}
  */
 var checkSubarraySum = function(nums, k) {
+  let sums = [];
 };
