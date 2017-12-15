@@ -45,11 +45,48 @@
  * 
  */
 
+Array.prototype.hasTwoMoreZeros = function() {
+  for (let i = 1; i < this.length; i++) {
+    if (this[i] === 0 && this[i - 1] === 0) return true;
+  }
+
+  return false;
+}
+
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {boolean}
  */
 var checkSubarraySum = function(nums, k) {
-  let sums = [];
+  if (nums.length < 2) return false;
+
+  let map = new Map([[0, -1]]);
+  let sum = 0;
+
+  k = Math.abs(k);
+
+  if (nums.hasTwoMoreZeros()) return true;
+
+  if (k === 0) return false;
+
+  if (k === 1) return true;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+
+    let j = 1;
+    while (sum - k * j >= 0) {
+      let sumToFind = sum - k * j;
+
+      if (map.has(sumToFind) && i - map.get(sumToFind) > 1) {
+        return true;
+      } else {
+        j++;
+      }
+    }
+    map.set(sum, i);
+  }
+
+  return false;
 };
