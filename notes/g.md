@@ -130,4 +130,20 @@ Implement a deferred event handler that recursively walks up the tree to determi
 What all happens in a browser when you click on a link?  
 
 ---
+---
 
+
+
+5
+
+CS fundamental algorithm data structure
+
+1. html
+2. pace of answering - ask qualifying question, verbal, n = 10, 32 int triple ai + aj + ak < n
+http://www.geeksforgeeks.org/find-a-sorted-subsequence-of-size-3-in-linear-time/
+
+3. longest path of tree  longest of array
+4. topological
+5. what to add to html, js , pace of answering
+
+JavaScript, mountain view
