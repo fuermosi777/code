@@ -31,10 +31,12 @@ var { TreeNode, buildTreeFromArray } = require('../leetcode/javascript/util/Tree
 
 // ===
 
+let pre = null;
+
 function addThreadInPlace(binaryTreeNode) {
   // addParent(binaryTreeNode);
 
-  dfs(binaryTreeNode);
+  dfs(binaryTreeNode, null);
 }
 
 // function addParent(binaryTreeNode) {
@@ -50,20 +52,23 @@ function addThreadInPlace(binaryTreeNode) {
 //   _addP(node.right);
 // }
 
-function dfs(node, prev) {
+function dfs(node) {
   if (!node) return null;
 
-  dfs(node.left, prev);
+  dfs(node.left);
   
-  if (!node.left) {
-    node.left = prev;
+  if (pre) {
+    if (!node.left) {
+      node.left = pre;
+    }
+    if (!pre.right) {
+      pre.right = node;
+    }
   }
-  prev = node;
 
-  dfs(node.right, prev);
+  pre = node;
 
-
-  // return node;
+  dfs(node.right);
 }
 
 let tree = buildTreeFromArray([1, 2, 3, 4, 5]);
