@@ -28,5 +28,3 @@ let paths = [
 ];
 
 paths.sort(byFilePath);
-
-console.log(paths);
