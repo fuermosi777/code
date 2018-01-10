@@ -1,56 +1,52 @@
+const DICT_SIZE = 256;
+
 class Node {
-  constructor(char, val) {
-    this.char = char;
-    this.val = val;
-    this.left = null;
-    this.mid = null;
-    this.right = null;
+  constructor() {
+    this.val = null;
+    this.content = [];
+    // for (let i = 0; i < DICT_SIZE; i++) {
+    //   this.next[i] = new Node();
+    // }
   }
 }
 
-class TerneryTrie {
+class Trie {
   constructor() {
-    this.root = null;
+    this.root = new Node();
   }
+
   put(key, val) {
     this.root = this._put(this.root, key, val, 0);
   }
+
   _put(node, key, val, d) {
-    let char = key[d];
-    if (!node) node = new Node(char, null);
-    if (node.char > char) {
-      node.left = this._put(node.left, key, val, d);
-    } else if (node.char < char) {
-      node.right = this._put(node.right, key, val, d);
-    } else if (d === key.length - 1) {
+    let cc = key.charCodeAt(d);
+    if (!node) node = new Node();
+    if (d === key.length - 1) {
       node.val = val;
     } else {
-      node.mid = this._put(node.mid, key, val, d + 1);
+      node.content[cc] = this._put(node.content[cc], key, val, d + 1);
     }
     return node;
   }
+
   get(key) {
     return this._get(this.root, key, 0);
   }
+
   _get(node, key, d) {
-    let char = key[d];
     if (!node) return null;
-    if (node.char > char) {
-      return this._get(node.left, key, d);
-    } else if (node.char < char) {
-      return this._get(node.right, key, d);
-    } else if (d === key.length - 1) {
+    let cc = key.charCodeAt(d);
+    if (d === key.length - 1) {
       return node.val;
     } else {
-      return this._get(node.mid, key, d + 1);
+      return this._get(node.content[cc], key, d + 1);
     }
   }
-  delete(key) {
 
-  }
 }
 
-let trie = new TerneryTrie();
+let trie = new Trie();
 
 trie.put('bbc', 3);
 trie.put('abc', 4);
