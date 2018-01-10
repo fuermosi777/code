@@ -15,9 +15,12 @@ function cp(str1, str2) {
   return res;
 }
 
+
 var expect = require('chai').expect;
 
-expect(cp('', 'ab')).to.equal('');
-expect(cp('aa', 'ab')).to.equal('a');
-expect(cp('abc', 'ab')).to.equal('ab');
-expect(cp('abc', 'abc')).to.equal('abc');
+cp2('aaa', 'ae')
+
+// expect(cp2('', 'ab')).to.equal('');
+// expect(cp2('aa', 'ab')).to.equal('a');
+// expect(cp2('abc', 'ab')).to.equal('ab');
+// expect(cp2('abc', 'abc')).to.equal('abc');
