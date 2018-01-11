@@ -3,6 +3,8 @@ function Node(val) {
   this.next = null;
 }
 
+// TODO: 725, 148, union find
+
 function partsCount(...args) {
   // sort a linked list
   
@@ -51,5 +53,5 @@ e.next = f;
 console.log('=== test ===')
 console.log(partsCount(a, c, d, f)); // 3
 console.log(partsCount(b, c, a)); // 1
-console.log(partsCount(c, e)); // 2
+console.log(partsCount(e, c)); // 2
 console.log(partsCount()); // 0
