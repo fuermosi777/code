@@ -78,6 +78,14 @@ cde/efg/b
 
 ---
 
+http://www.1point3acres.com/bbs/thread-279509-1-1.html
+
+---
+
+http://www.1point3acres.com/bbs/thread-205549-1-1.html
+
+---
+
 http://www.1point3acres.com/bbs/thread-217122-1-1.html
 
 第一轮：前端设计。设计一个tilt maze游戏，先从数据结构入手，在提示下选择了graph，然后写了整个class来描述球的移动，然后到如何将数据翻译成游戏地图，最后大致讨论了如何写html/css将游戏呈现到UI。
@@ -98,6 +106,10 @@ http://www.1point3acres.com/bbs/thread-280663-1-1.html
 面的是偏前端的role 所以 有两轮专问前端，主要集中在 search, autocomplete ui, trie 这些topic 都是用javascript写
 还有三轮coding ， 2046 游戏划一下update board status， 看着简单其实容易有bug；乐扣三丝洞， 用常规方法秒了，然后让优化算法（虽然最后我并不觉得那是最优的。。。）；给一个unsorted array 切开分别sort 在按切的顺序合并后必须是原来的sorted array，求如何切，先是假定数字在1-n 然后去掉这个假定咋做； 乐扣额要伞；
 总体来讲算法部分有些难度，主要是思路的部分，有了思路写code很轻松，还有建议大家练习一下在题难的状态下如何情绪不受影响而写出bug free的code
+
+---
+
+http://www.1point3acres.com/bbs/thread-210141-1-1.html
 
 ---
 

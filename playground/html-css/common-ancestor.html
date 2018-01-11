@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Common ancestor</title>
+  <style>
+    .node {
+      padding: 10px 10px 10px 15px;
+      margin-bottom: 5px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="node" id="a">
+    a
+    <div class="node" id="b">b</div>
+    <div class="node" id="c">c</div>
+    <div class="node" id="d">
+      d
+      <div class="node" id="e">e</div>
+    </div>
+  </div>
+  <div class="node" id="f">
+      f
+    <div class="node" id="g">g</div>
+  </div>
+
+  <script type="text/javascript" src="../google/common-ancestor.js"></script>
+</body>
+</html>
