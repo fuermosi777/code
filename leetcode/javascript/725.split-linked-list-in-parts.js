@@ -71,11 +71,65 @@
  *     this.next = null;
  * }
  */
+
+/*var { ListNode, arrayToListNode, listNodeToArray } = require('./util/ListNode');*/
+
 /**
  * @param {ListNode} root
  * @param {number} k
  * @return {ListNode[]}
  */
 var splitListToParts = function(root, k) {
-    
+  let size = 0;
+  let node = root;
+  while (node) {
+    size++;
+    node = node.next;
+  }
+
+  let psize = Math.floor(size / k);
+  let remain = size % k;
+  let res = [];
+  let head = null;
+  let tail = null;
+  let i = 0;
+
+  node = root;
+  while (node) {
+    let n = new ListNode(node.val);
+    if (!head) {
+      head = n;
+      tail = head;
+    } else {
+      tail.next = n;
+      tail = n;
+    }
+    i++;
+    if (i === psize + (remain > 0 ? 1 : 0)) {
+      res.push(head);
+      head = null;
+      tail = null;
+      i = 0;
+      if (remain > 0) remain--;
+    }
+    node = node.next;
+  }
+
+  for (let i = res.length; i < k; i++) {
+    res[i] = null;
+  }
+
+  return res;
 };
+
+
+
+/*let ll = arrayToListNode([1,2,3,4]);
+
+let parts = splitListToParts(ll, 4);
+
+parts.forEach(p => {
+  console.log(listNodeToArray(p));
+});*/
+
+
