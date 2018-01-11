@@ -36,11 +36,34 @@
  * Credits:Special thanks to @jianchao.li.fighter for adding this problem and
  * creating all test cases.
  */
+
+/**
+ * 0: 0
+ * 1: 
+ */
+
 /**
  * @param {number[]} coins
  * @param {number} amount
  * @return {number}
  */
 var coinChange = function(coins, amount) {
-    
+  if (amount === 0) return 0; // Edge
+
+  let res = [0];
+
+  for (let i = 1; i <= amount; i++) {
+    let poss = [];
+    for (let j = 0; j < coins.length; j++) {
+      let coin = coins[j];
+      let val = i - coin;
+      if (val >= 0 && res[val] > -1) {
+        poss.push(res[val] + 1);
+      }
+    }
+    if (poss.length === 0) res[i] = -1;
+    else res[i] = Math.min(...poss);
+  }
+
+  return res[amount];
 };
