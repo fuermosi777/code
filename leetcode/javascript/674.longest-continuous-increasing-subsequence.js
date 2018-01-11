@@ -43,5 +43,20 @@
  * @return {number}
  */
 var findLengthOfLCIS = function(nums) {
-    
+  if (nums.length <= 1) return nums.length;
+  
+  let max = 1;
+  let current = 1;
+  let last = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] <= last) {
+      current = 1;
+    } else {
+      current++;
+      max = Math.max(max, current);
+    }
+
+    last = nums[i];
+  }
+  return max;
 };
