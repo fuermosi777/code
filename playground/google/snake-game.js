@@ -1,3 +1,5 @@
+'use strict';
+
 function Snake(board, i, j) {
   let bornPlace = `${i}-${j}`;
 
@@ -62,6 +64,8 @@ Snake.prototype = {
       this.tail = this.queue[0];
     }
 
+    console.log('head: ', this.head, 'tail:', this.tail)
+
     onSuccess();
 
   }
@@ -70,15 +74,16 @@ Snake.prototype = {
 var isGameRunning = false;
 var snake, board;
 var tick;
-var appleTick = 50000;
+var appleTick = 5000;
 
 function startGame(t = 1000) {
-  board = drawBoard(10, 10);
+  board = genBoard(10, 10);
   snake = new Snake(board, 0, 0);
   isGameRunning = true;
   tick = t;
 
   handleSnakeGoFoward();
+  handleApple();
 }
 
 function handleSnakeGoFoward() {
@@ -95,6 +100,7 @@ function handleSnakeDie(err) {
 }
 
 function handleApple() {
+  if (!isGameRunning) return;
   setTimeout(() => {
     generateApples(2, board, handleApple);
   }, appleTick);
@@ -107,11 +113,12 @@ function generateApples(count, board, callback) {
     if (board[i][j] !== 1) {
       board[i][j] = 1;
     }
+    console.log('apple: ', i, j);
   }
   callback();
 }
 
-function drawBoard(row, col) {
+function genBoard(row, col) {
   let board = [];
   for (let i = 0; i <= row; i++) {
     board[i] = [];
