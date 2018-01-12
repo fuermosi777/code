@@ -1,5 +1,5 @@
 Promise.myAll = function(arr) {
-  let resolved = arr.map(a => false);
+  let resolvedCt = 0;
   let result = [];
 
   return new Promise((resolve, reject) => {
@@ -8,9 +8,9 @@ Promise.myAll = function(arr) {
 
       promise.then(res => {
         result[i] = res;
-        resolved[i] = true;
+        resolvedCt++;
 
-        if (resolved.indexOf(false) === -1) {
+        if (resolvedCt === arr.length) {
           resolve(result);
         }
       }).catch(err => {
