@@ -29,6 +29,8 @@ let p3 = new Promise((resolve, reject) => {
   }, 1000);
 });
 
+let p4 = void 0;
+
 Promise.myAll([p1, p2, p3]).then(values => {
   console.log(values);
 }).catch(err => {
