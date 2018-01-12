@@ -64,5 +64,19 @@
  * @return {number}
  */
 var findSecondMinimumValue = function(root) {
-    
+  return dfs(root, null);
 };
+
+function dfs(node, parent) {
+  if (!node) return -1;
+  if (parent && node.val > parent.val) {
+    return node.val;
+  } else {
+    let left = dfs(node.left, node);
+    let right = dfs(node.right, node);
+    if (left === -1 && right === -1) return -1;
+    if (left === -1 && right > -1) return right;
+    if (left > -1 && right === -1) return left;
+    if (left > -1 && right > -1) return Math.min(left, right);
+  }
+}
