@@ -100,6 +100,10 @@ http://www.1point3acres.com/bbs/thread-217122-1-1.html
 
 ---
 
+http://www.1point3acres.com/bbs/thread-226722-1-1.html youtube 前端
+
+---
+
 http://www.1point3acres.com/bbs/thread-280663-1-1.html
 
 其实这次面试槽点满满，不过不在这里吐了-google 1point3acres
@@ -118,7 +122,6 @@ Other shits:
 http://www.geeksforgeeks.org/auto-complete-feature-using-trie/
 
 ---
-
 
 ## Glassdoor
 
