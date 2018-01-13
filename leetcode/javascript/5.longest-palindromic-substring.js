@@ -38,30 +38,30 @@
  * @return {string}
  */
 var longestPalindrome = function(s) {
-  return lps(s);
-};
-
-function lps(s) {
-  if (s === '') return [s, -1, -1];
-  if (s.length === 1) return [s, 0, 0];
-
-  let midStr = s.substring(1, s.length - 1);
-  let midLps = lps(midStr);
-  if (midLps.length === midStr.length) {
-    if (s[0] === s[s.length - 1]) {
-      return [s, true, true];
-    } else {
-      return midLps;
-    }
-  } else if (midLps[1] === 0 && midLps[2] < midLps[0].length - 1) {
-    if (s[0] === midLps[0][midLps[2] - 1]) {
-      return [s[0] + midLps[0] + midLps[0][midLps[2] - 1], 0, midLps[2]];
-    }
-  } else if (midLps[1] !== 0 && midLps[2] === midLps[0].length - 1) {
-
-  } else {
-    return midLps;
+  let dp = [];
+  for (let i = 0; i < s.length; i++) {
+    dp[i] = [];
+    dp[i][i] = true;
   }
-}
 
-console.log(longestPalindrome('abbb'))
+  let maxLeft = 0, maxRight = 0, maxLen = 1;
+  for (let len = 2; len <= s.length; len++) {
+    for (let start = 0; start <= s.length - len; start++) {
+      let i = start, j = start + len - 1;
+      if (len === 2) dp[i][j] = s[i] === s[j];
+      else {
+        dp[i][j] = (
+          s[i] === s[j] && 
+          dp[i + 1][j - 1]
+        )
+      }
+      if (dp[i][j] && len > maxLen) {
+        maxLeft = i;
+        maxRight = j;
+        maxLen = len;
+      }
+    }
+  }
+
+  return s.substring(maxLeft, maxRight + 1);
+};
