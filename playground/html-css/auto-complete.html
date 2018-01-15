@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    .autocomplete {
+      position: relative;
+    }
+    .hints {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      list-style: none;
+      border: 1px solid lightgray;
+      margin: 0;
+      padding: 2px;
+    }
+    .hints li {
+      cursor: pointer;
+    }
+    .hints li:hover {
+      background: lightgray;
+    }
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>A auto complete demo implemented with Trie</h2>
+  <div class="autocomplete">
+    <input type="text" placeholder='Enter a "g" for start' />
+    <ul class="hints hide"></ul>
+  </div>
+
+  <script type="text/javascript" src="../google/auto-complete.js"></script>
+</body>
+</html>
