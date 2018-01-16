@@ -60,6 +60,13 @@ class MinPQ {
       return this.vals[i] - this.vals[j];
     }
   }
+  values() {
+    let values = [];
+    for (let i = 1; i <= this.size; i++) {
+      values.push(this.vals[i]);
+    }
+    return values;
+  }
 }
 
 module.exports = MinPQ;
