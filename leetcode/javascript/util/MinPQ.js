@@ -69,7 +69,7 @@ class MinPQ {
   }
 }
 
-module.exports = MinPQ;
+if (typeof module !== 'undefined') module.exports = MinPQ;
 
 function test() {
   let pq = new MinPQ();

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>K Nearest Point</title>
+  <style type="text/css">
+    .board {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    .point {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+    }
+    .point.target {
+      border: 1px solid red;
+      background-color: transparent !important;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid lightgray;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    
+  </div>
+  <script src="../../leetcode/javascript/util/MinPQ.js"></script>
+  <script src="../google/k-nearest-points.js"></script>
+</body>
+</html>
