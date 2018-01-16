@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mine weeper</title>
+  <style type="text/css">
+    .board {
+      position: relative;
+      border: 1px solid black;
+    }
+    .cell {
+      position: absolute;
+      cursor: pointer;
+      border: 1px solid lightgray;
+      background-color: rgba(0, 0, 0, 0.0);
+    }
+    .cell:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    .cell.visible {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="board"></div>
+
+  <script type="text/javascript" src="../google/mine-weeper.js"></script>
+</body>
+</html>
