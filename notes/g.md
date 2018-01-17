@@ -154,8 +154,6 @@ http://www.1point3acres.com/bbs/thread-314139-1-1.html
 
 ---
 
-
-
 5
 
 CS fundamental algorithm data structure
@@ -164,12 +162,16 @@ CS fundamental algorithm data structure
 2. pace of answering - ask qualifying question, verbal, n = 10, 32 int triple ai + aj + ak < n
 http://www.geeksforgeeks.org/find-a-sorted-subsequence-of-size-3-in-linear-time/
 
-3. longest path of tree  longest of array
+3. longest path of tree  longest of array - 
 4. topological
   - find circle in a directed graph
   
 5. what to add to html, js , pace of answering
 
-LC 72 edit distance
-
 JavaScript, mountain view
+
+
+TODO:
+
+- LC300, https://www.geeksforgeeks.org/longest-consecutive-sequence-binary-tree/
+- Topological, find circle
