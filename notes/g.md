@@ -150,7 +150,7 @@ What all happens in a browser when you click on a link?
 
 ---
 
-http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=314139&ctid=84995
+http://www.1point3acres.com/bbs/thread-314139-1-1.html
 
 ---
 
