@@ -1,3 +1,7 @@
+## Links:
+
+http://www.1point3acres.com/bbs/forum.php?mod=collection&action=view&ctid=84995
+
 ## FRONT END
 
 http://www.1point3acres.com/bbs/thread-215351-1-1.html
@@ -145,6 +149,9 @@ Implement a deferred event handler that recursively walks up the tree to determi
 What all happens in a browser when you click on a link?  
 
 ---
+
+http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=314139&ctid=84995
+
 ---
 
 
@@ -162,5 +169,7 @@ http://www.geeksforgeeks.org/find-a-sorted-subsequence-of-size-3-in-linear-time/
   - find circle in a directed graph
   
 5. what to add to html, js , pace of answering
+
+LC 72 edit distance
 
 JavaScript, mountain view
