@@ -166,7 +166,7 @@ http://www.geeksforgeeks.org/find-a-sorted-subsequence-of-size-3-in-linear-time/
 4. topological
   - find circle in a directed graph
   
-5. what to add to html, js , pace of answering
+5. what to add to html, js, pace of answering
 
 JavaScript, mountain view
 
