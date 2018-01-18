@@ -37,9 +37,6 @@ var maxProduct = function(nums) {
     dp[i] = [min, max];
   }
 
-
-  console.log(dp)
-
   let max = dp[0][0];
   dp.forEach(d => {
     max = Math.max(max, d[0], d[1]);
