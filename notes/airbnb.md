@@ -1,6 +1,5 @@
-給一個flight tickets的list，其中flight ticket包括出發地，到達地，價錢，現在規定最多k個connections，找出從A到B花費最少的path和cost。
-
-text justification
+题库
+http://www.1point3acres.com/bbs/thread-191081-1-1.html
 
 ---
 
@@ -43,7 +42,7 @@ RoundedNumber                                3
 ---
 
 两轮coding， palindrome pair和find median in large integer file
-两轮cross functional，聊的比较多，记得的可能有. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+两轮cross functional，聊的比较多，记得的可能有
 你怎么理解airbnb的let anyone belong to anywhere的mission
 你觉得很challenging但却一直在做的事，这里我还跟面试官开玩笑说比如这个面试？哈哈，最后她给我评价说我很有sense of humor
 你做过的一件meaningful的事
