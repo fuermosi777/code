@@ -10,7 +10,7 @@ board:
 
 dict:
 ["abc", "cfi", "beh", "defi", "gh"]
-答案应该是 ["abc", "defi", "gh"]
+答案应该是 ["abc", "defi", "gh"]2
  */
 
 var Trie = require('../google/trie');
