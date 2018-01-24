@@ -55,3 +55,5 @@ trie.put('bac', 5);
 console.log(trie.get('abc'));
 console.log(trie.get('bbc'));
 console.log(trie.get('bac'));
+
+module.exports = Trie;
