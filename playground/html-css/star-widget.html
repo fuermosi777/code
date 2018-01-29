@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Star review</title>
+  <script type="text/javascript" src="https://unpkg.com/react@16.2.0/umd/react.development.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/react-dom@16.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class StarReview extends React.Component {
+      static defaultProps = {
+        defaultStar: 3,
+      }
+      constructor(props) {
+        super(props);
+        this.state = {
+          star: props.defaultStar,
+          mouseStar: null
+        };
+      }
+      handleMouseEnter = i => {
+        this.setState({mouseStar: i + 1});
+      }
+      handleMouseLeave = () => {
+        this.setState({mouseStar: null});
+      }
+      handleClick = i => {
+        this.setState({star: i + 1});
+      }
+      render() {
+        const { star, mouseStar } = this.state;
+        const displayStar = Math.floor(star);
+        const targetStar = mouseStar || displayStar;
+        return (
+          <div className="StarReview">
+            {[...Array(5).keys()].map(i => (
+              <span
+                key={i}
+                onMouseEnter={this.handleMouseEnter.bind(this, i)}
+                onMouseLeave={this.handleMouseLeave}
+                onClick={this.handleClick.bind(this, i)}
+              >{i < targetStar ? '★' : '☆'}</span>
+            ))}
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <StarReview defaultStar={2.5}/>,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
+</html>

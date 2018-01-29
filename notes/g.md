@@ -6,6 +6,9 @@
     
     write enqueue(url, callback)
 
+    how to test?
+    followup: heap
+
 lunch
 
 3. colorize(elector, ['red', 'green']);
