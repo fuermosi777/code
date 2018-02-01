@@ -1,18 +1,1 @@
-1. write a clock web page
-2. 
-  1. reverse the vowels in a string
-  2.
-    given makeRequest(url, callback); 
-    
-    write enqueue(url, callback)
-
-    how to test?
-    followup: heap
-
-lunch
-
-3. colorize(elector, ['red', 'green']);
-4. schedule(fn, interval); -> async
-5. 
-  1) 1,0,1,1,1,0 -> 0,0,1,1,1,1
-  2) get max subarray from a tree
+MS4gd3JpdGUgYSBjbG9jayB3ZWIgcGFnZQ0KMi4gDQogIDEuIHJldmVyc2UgdGhlIHZvd2VscyBpbiBhIHN0cmluZw0KICAyLg0KICAgIGdpdmVuIG1ha2VSZXF1ZXN0KHVybCwgY2FsbGJhY2spOyANCiAgICANCiAgICB3cml0ZSBlbnF1ZXVlKHVybCwgY2FsbGJhY2spDQoNCiAgICBob3cgdG8gdGVzdD8NCiAgICBmb2xsb3d1cDogaGVhcA0KDQpsdW5jaA0KDQozLiBjb2xvcml6ZShlbGVjdG9yLCBbJ3JlZCcsICdncmVlbiddKTsNCjQuIHNjaGVkdWxlKGZuLCBpbnRlcnZhbCk7IC0+IGFzeW5jDQo1LiANCiAgMSkgMSwwLDEsMSwxLDAgLT4gMCwwLDEsMSwxLDENCiAgMikgZ2V0IG1heCBzdWJhcnJheSBmcm9tIGEgdHJlZQ==
