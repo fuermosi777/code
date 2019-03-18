@@ -72,3 +72,4 @@ function compareInplace(arr1, arr2) {
 
 console.log(compareInplace(['a','b', 'BACKSPACE', 'B'], ['c', 'a', 'BACKSPACE', 'BACKSPACE', 'a', 'CAPS', 'b', 'x', 'BACKSPACE']));
 console.log(compareInplace([], ['a', 'B', 'CAPS', 'CAPS', 'BACKSPACE', 'BACKSPACE']));
+console.log(compareInplace(['a', 'BACKSPACE', 'BACKSPACE'], ['A', 'BACKSPACE']))
