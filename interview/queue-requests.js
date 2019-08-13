@@ -45,4 +45,7 @@ let enqueueTask = queue();
 enqueueTask(30, data => console.log(data));
 enqueueTask(5, data => console.log(data));
 
-// Follow up: 1. Add concurrency option; 2. Assign priority. 3. Error handling?
+// Follow up:
+// - 1. Add concurrency option; 
+// - 2. Assign priority. 
+// - 3. Error handling?
