@@ -1,3 +1,27 @@
+// Improved 9/9/2019
+// original: http://shortn/_r61ydy52fX
+
+/*
+Part 1 of the problem (warm-up):
+- Create a search input box that when typing something, a function called "onSearch(keyword)" is triggered.
+
+Part 2 of the problem (suggest fetchers, bottom line is to finish this with minor errors and hints):
+- Someone has completed some fetchers:
+  - fruitFetcher(keyword): string[] e.g. "apple", "apricot", ...
+  - animalFetcher(keyword): string[] e.g. "ape"
+  - wordFetcher(keyword): string[]  e.g. "application"
+- Create a fetchAll(fetchers), so that we can do let oneFetcher = fetchAll([fruitFetchers...]), and oneFetcher() => ...
+
+Part 3 (follow-up, verbally is fine):
+- Make the input threshold.
+- If each result comes with a score, and we want to put the result with hightest score on top and rank the rest, how to implement it?
+
+Ask what to improve
+- Error handling
+- Timeout if any of the case is unfinished
+- Show the result immediately if any of the result comes back.
+*/
+
 // Some functions already exist.
 
 function _fetchWrapper(result, delay) {

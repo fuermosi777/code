@@ -7,11 +7,11 @@ given makeRequest(url, callback);
     followup: heap
 */
 
-function makeRequest(url, callback) {
-    setTimeout(() => {
-        callback(url);
-    }, url * 100);
-}
+// function makeRequest(url, callback) {
+//     setTimeout(() => {
+//         callback(url);
+//     }, url * 100);
+// }
 
 
 function queue() {
@@ -40,10 +40,10 @@ function queue() {
 }
 
 
-let enqueueTask = queue();
+let makeRequestInQ = queue();
 
-enqueueTask(30, data => console.log(data));
-enqueueTask(5, data => console.log(data));
+makeRequestInQ(30, data => console.log(data));
+makeRequestInQ(5, data => console.log(data));
 
 // Follow up:
 // - 1. Add concurrency option; 
