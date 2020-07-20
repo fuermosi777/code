@@ -1,4 +1,4 @@
-Question pool (the order matters):
+# Bunker
 
 - FE: design and implement a table component
 - product of last K
@@ -60,11 +60,8 @@ class Bunker {
 }
 ```
 
-Algo + DS
-number of valid metrics: https://docs.google.com/document/d/1QseU25zSUEyHc5HAwcA4rBu5-6cTK2nIiLjp3sPzMiU/edit#
+# FTE score: http://shortn/_uurezavSCB
 
-Algo + DS
-FTE score: https://ideas.corp.google.com/InterviewQuestions/view?idea=2595&f_field=text&f_status=idle&f_tags=%22Algorithms%22&sort=approval
 1. [Verbal] What is the score for each eid in the given example?
    1. 5,3,1,1,1
 2. [Verbal] In what cases do we say the map is invalid?
